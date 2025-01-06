@@ -1,0 +1,40 @@
+Jan 07, 2025 12:44:28 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 12:44:28 AM servlets.TestServlet doGet
+INFO: [[[[[TestServlet is working]]]]
+Jan 07, 2025 12:47:49 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 12:47:49 AM servlets.TestServlet doGet
+INFO: [[[[[TestServlet is working]]]]
+Jan 07, 2025 12:47:49 AM servlets.TestServlet doGet
+SEVERE: Table 'library_tracker2.books' doesn't exist
+Jan 07, 2025 12:48:08 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 12:48:08 AM servlets.TestServlet doGet
+INFO: [[[[[TestServlet is working]]]]
+Jan 07, 2025 12:48:08 AM servlets.TestServlet doGet
+SEVERE: Table 'library_tracker2.books' doesn't exist
+Jan 07, 2025 12:48:26 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 12:48:26 AM servlets.TestServlet doGet
+INFO: [[[[[TestServlet is working]]]]
+Jan 07, 2025 1:32:45 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 1:33:31 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 1:35:33 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 1:38:47 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 1:39:12 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 1:40:06 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 1:40:43 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 1:41:04 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 1:43:49 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 1:44:53 AM servlets.BaseServlet <init>
+INFO: Connected to the database
