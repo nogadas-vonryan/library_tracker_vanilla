@@ -1,38 +1,36 @@
 package servlets;
 
-import java.sql.ResultSet;
-import java.util.logging.Logger;
+import java.sql.SQLException;
 
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import models.User;
 import repository.BookRepository;
 import repository.BorrowingRecordRepository;
-import utils.FileLogger;
+import repository.UserRepository;
 
 @WebServlet("/test")
 public class TestServlet extends BaseServlet {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 5L;
 	
-	private Logger logger = FileLogger.getLogger(this.getClass().getName());
+	private UserRepository userRepository = new UserRepository();
 	private BookRepository bookRepository = new BookRepository();
 	private BorrowingRecordRepository borrowingRecordRepository = new BorrowingRecordRepository();
 	
-	public TestServlet() {
-		super();
-	}
-	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
-		ResultSet rs = borrowingRecordRepository.findByUserReferenceNumber(conn, "2022-00001-TG-0");
+		logger.info("TestServlet's doGet method is called");
 		
-		try {			
-			while (rs.next()) {
-				System.out.println(rs.getString("first_name"));
-			}
-			
-		} catch (Exception e) {
-			logger.severe(e.getMessage());
+		try {
+			User user = userRepository.findById(conn, 1);
+			System.out.println(user.firstName + " " + user.lastName);
+			logger.info("User found");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
+		
 	}
 }

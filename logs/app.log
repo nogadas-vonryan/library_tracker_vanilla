@@ -38,3 +38,182 @@ Jan 07, 2025 1:43:49 AM servlets.BaseServlet <init>
 INFO: Connected to the database
 Jan 07, 2025 1:44:53 AM servlets.BaseServlet <init>
 INFO: Connected to the database
+Jan 07, 2025 10:39:57 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 10:39:57 AM servlets.TestServlet doGet
+INFO: TestServlet's doGet method is called
+Jan 07, 2025 10:40:47 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 10:40:47 AM servlets.TestServlet doGet
+INFO: TestServlet's doGet method is called
+Jan 07, 2025 1:09:35 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 1:12:43 PM services.Auth login
+SEVERE: Illegal operation on empty result set.
+Jan 07, 2025 1:15:19 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 1:18:07 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 1:20:25 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 1:22:51 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 1:22:51 PM services.Auth login
+INFO: password: 12345678, userPassword: 
+Jan 07, 2025 1:24:36 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 1:24:36 PM servlets.TestServlet doGet
+INFO: TestServlet's doGet method is called
+Jan 07, 2025 1:26:27 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 1:26:27 PM services.Auth login
+INFO: referenceNumber:null, password: 12345678, userPassword: 
+Jan 07, 2025 1:29:54 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 1:29:55 PM services.Auth login
+INFO: referenceNumber:2022-00197-TG-0, password: 12345678, userPassword: 12345678
+Jan 07, 2025 6:18:21 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 6:18:21 PM services.Auth login
+INFO: referenceNumber:2022-00197-TG-0, password: 12345678, userPassword: 12345678
+Jan 07, 2025 6:19:50 PM services.Auth login
+INFO: referenceNumber:2022-00197-TG-0, password: 12345678, userPassword: 12345678
+Jan 07, 2025 6:26:53 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 6:26:53 PM services.Auth login
+INFO: referenceNumber:2022-00197-TG-0, password: 12345678, userPassword: 12345678
+Jan 07, 2025 6:47:43 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 6:47:43 PM services.Auth login
+INFO: referenceNumber:2022-00197-TG-0, password: 12345678, userPassword: 12345678
+Jan 07, 2025 6:55:11 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 6:55:11 PM services.Auth login
+INFO: referenceNumber:2022-00197-TG-0, password: 12345678, userPassword: 12345678
+Jan 07, 2025 7:18:10 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 7:18:10 PM services.Auth login
+INFO: referenceNumber:2022-00197-TG-0, password: 12345678, userPassword: 12345678
+Jan 07, 2025 7:48:10 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 7:48:10 PM servlets.TestServlet doGet
+INFO: TestServlet's doGet method is called
+Jan 07, 2025 7:49:14 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 7:49:14 PM servlets.TestServlet doGet
+INFO: TestServlet's doGet method is called
+Jan 07, 2025 8:09:17 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 8:09:17 PM servlets.TestServlet doGet
+INFO: TestServlet's doGet method is called
+Jan 07, 2025 8:15:06 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 8:15:06 PM servlets.TestServlet doGet
+INFO: TestServlet's doGet method is called
+Jan 07, 2025 8:26:09 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 8:26:09 PM servlets.TestServlet doGet
+INFO: TestServlet's doGet method is called
+Jan 07, 2025 8:27:09 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 8:27:09 PM servlets.TestServlet doGet
+INFO: TestServlet's doGet method is called
+Jan 07, 2025 8:30:29 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 8:30:29 PM servlets.TestServlet doGet
+INFO: TestServlet's doGet method is called
+Jan 07, 2025 8:37:43 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 8:37:43 PM servlets.TestServlet doGet
+INFO: TestServlet's doGet method is called
+Jan 07, 2025 9:27:28 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 9:27:28 PM servlets.TestServlet doGet
+INFO: TestServlet's doGet method is called
+Jan 07, 2025 11:17:48 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 11:17:48 PM servlets.TestServlet doGet
+INFO: TestServlet's doGet method is called
+Jan 07, 2025 11:18:59 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 11:18:59 PM servlets.TestServlet doGet
+INFO: TestServlet's doGet method is called
+Jan 07, 2025 11:18:59 PM servlets.TestServlet doGet
+INFO: User updated
+Jan 07, 2025 11:24:14 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 11:24:14 PM servlets.TestServlet doGet
+INFO: TestServlet's doGet method is called
+Jan 07, 2025 11:24:35 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 11:24:35 PM servlets.TestServlet doGet
+INFO: TestServlet's doGet method is called
+Jan 07, 2025 11:24:35 PM servlets.TestServlet doGet
+INFO: User found
+Jan 07, 2025 11:38:42 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 11:41:14 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 07, 2025 11:42:25 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 08, 2025 12:03:08 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 08, 2025 12:15:15 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 08, 2025 12:23:26 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 08, 2025 12:48:12 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 08, 2025 12:48:12 AM servlets.AdminBookServlet doGet
+SEVERE: An exception occurred processing [/WEB-INF/views/admin-books.jsp] at line [97]
+
+94: 			</div> -->
+95: 			
+96: 			<c:forEach var="book" items="${books}">
+97:             	<li>${book.title}</li>
+98:         	</c:forEach>
+99: 			
+100: 		</div>
+
+
+Stacktrace:
+Jan 08, 2025 12:49:26 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 08, 2025 12:49:26 AM servlets.AdminBookServlet doGet
+SEVERE: An exception occurred processing [WEB-INF/views/admin-books.jsp] at line [97]
+
+94: 			</div> -->
+95: 			
+96: 			<c:forEach var="book" items="${books}">
+97:             	<li>${book.title}</li>
+98:         	</c:forEach>
+99: 			
+100: 		</div>
+
+
+Stacktrace:
+Jan 08, 2025 12:49:42 AM servlets.AdminBookServlet doGet
+SEVERE: An exception occurred processing [WEB-INF/views/admin-books.jsp] at line [97]
+
+94: 			</div> -->
+95: 			
+96: 			<c:forEach var="book" items="${books}">
+97:             	<li>${book.title}</li>
+98:         	</c:forEach>
+99: 			
+100: 		</div>
+
+
+Stacktrace:
+Jan 08, 2025 12:56:02 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 08, 2025 1:58:49 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 08, 2025 2:04:55 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 08, 2025 2:06:15 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 08, 2025 2:13:50 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 08, 2025 2:28:15 AM servlets.BaseServlet <init>
+INFO: Connected to the database

@@ -1,21 +1,25 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="java.util.List" %>
+<%@ page import="services.Auth" %>
+<%@ page import="models.Book" %>
+
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="../../stylesheet/main.css">
+<link rel="stylesheet" href="../stylesheet/main.css">
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
 <title>Book List</title>
 </head>
 <body class="h-screen flex flex-col lg:flex-row justify-between">
-
 	<!--  Desktop Sidebar -->
 	<div
 		class="lg:flex flex-col hidden lg:block justify-between p-3 bg-primary text-white h-svh w-[15rem]">
 		<div class="grow space-y-3">
 			<div class="mt-2">
-				<img src="../../assets/open-book.png" alt="book Logo"
+				<img src="/library_tracker_vanilla/assets/open-book.png" alt="book Logo"
 					class="w-[60px] h-[60px] m-auto">
 				<div class="text-center pt-4 text-sm">Admin Portal</div>
 			</div>
@@ -73,16 +77,25 @@
 			<a href="/admin/books/add" class="bg-primary text-white px-4 py-1 rounded-md">Add Book</a>
 		</div>
 
-		<div
-			class="grow grid grid-cols-3 lg:grid-cols-5 gap-4 p-4 text-stone-700 overflow-auto">
-	        <div th:each="book : ${books}" class="bg-white flex flex-col justify-center items-center h-40 lg:h-64 lg:w-52 shadow-md">
-				<a th:href="'/admin/books/' + ${book.id}" th:if="${book.imageUrl}" class="h-full">
-					<img th:src="@{'/uploads/' + ${book.imageUrl}}" class="h-full">
+		<div class="grow grid grid-cols-3 lg:grid-cols-5 gap-4 p-4 text-stone-700 overflow-auto">
+	        <c:forEach var="book" items="${books}">
+	        <div class="bg-white flex flex-col justify-center items-center h-40 lg:h-64 lg:w-52 shadow-md">
+				
+				
+				<c:if test="${not empty book.imageUrl}">
+				<a href="/admin/books/${book.id}" class="h-full">
+					<img src="/library_tracker_vanilla/uploads/${book.imageUrl}" class="h-full">
 				</a>
-				<a th:href="'/admin/books/' + ${book.id}" th:unless="${book.imageUrl}" class="flex justify-center items-center h-full w-full" >
-                    <span class="block align-middle font-semibold" th:text="${book.title}"></span>
+				</c:if>
+				
+				<c:if test="${empty book.imageUrl}">
+				<a href="/admin/books/${book.id}" class="flex justify-center items-center h-full w-full" >
+					<span class="block align-middle font-semibold"> ${book.title} </span>
 				</a>
+				</c:if>
+				 
 			</div>
+			</c:forEach>
 		</div>
 	</div>
 

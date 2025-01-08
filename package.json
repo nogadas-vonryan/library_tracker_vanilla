@@ -1,0 +1,15 @@
+{
+  "name": "library_tracker_vanilla",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tailwindcss -i ./src/main/webapp/stylesheet/styles.css -o ./static/stylesheet/main.css",
+    "watch": "tailwindcss --watch -i ./src/main/webapp/stylesheet/styles.css -o ./src/main/webapp/stylesheet/main.css"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "tailwindcss": "^3.4.14"
+  }
+}

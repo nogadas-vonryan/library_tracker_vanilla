@@ -4,19 +4,25 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Logger;
 
+import models.BorrowingRecord;
 import utils.FileLogger;
+import utils.ResultHandler;
 
 public class BorrowingRecordRepository {
 
 	public Logger logger = FileLogger.getLogger(this.getClass().getName());
 
-	public ResultSet findAllBorrowingRecords(Connection conn) {
+	public List<BorrowingRecord> findAll(Connection conn) {
 		try {
 			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM borrowing_record");
 			ResultSet rs = stmt.executeQuery();
-			return rs;
+			List<BorrowingRecord> records = ResultHandler.getResultList(BorrowingRecord.class, rs);
+			
+			return records;
+			
 		} catch (SQLException e) {
 			logger.severe(e.getMessage());
 			return null;

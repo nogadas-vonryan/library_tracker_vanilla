@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="../stylesheet/main.css">
+    <link rel="stylesheet" href="stylesheet/main.css">
 </head>
 
 <body class="h-svh background">
     <div class="flex flex-col justify-center items-center pt-4">
-        <img src="../assets/pup-logo.png" class="w-[120px] h-[120px] mb-4" alt="PUP Logo">
+        <img src="assets/pup-logo.png" class="w-[120px] h-[120px] mb-4" alt="PUP Logo">
         <div class="font-bold text-2xl text-primary">LibLib: Book Tracker</div>
     </div>
 
