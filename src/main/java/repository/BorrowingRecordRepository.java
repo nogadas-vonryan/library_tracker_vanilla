@@ -15,11 +15,53 @@ public class BorrowingRecordRepository {
 
 	public Logger logger = FileLogger.getLogger(this.getClass().getName());
 
+	public void insert(Connection conn, BorrowingRecord record) {
+		try {
+			PreparedStatement stmt = conn.prepareStatement(
+					"INSERT INTO borrowing_record (user_id, book_id, borrow_date, return_date, is_returned) VALUES (?, ?, ?, ?, ?)");
+			stmt.setInt(1, record.getUser().getId());
+			stmt.setInt(2, record.getBook().getId());
+			stmt.setString(3, record.getBorrowDate());
+			stmt.setString(4, record.getReturnDate());
+			stmt.setBoolean(5, record.isReturned());
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			logger.severe(e.getMessage());
+		}
+	}	
+	
+	public void update(Connection conn, BorrowingRecord record) {
+		try {
+			PreparedStatement stmt = conn.prepareStatement(
+					"UPDATE borrowing_record SET user_id = ?, book_id = ?, borrow_date = ?, return_date = ?, is_returned = ? WHERE id = ?");
+			stmt.setInt(1, record.getUser().getId());
+			stmt.setInt(2, record.getBook().getId());
+			stmt.setString(3, record.getBorrowDate());
+			stmt.setString(4, record.getReturnDate());
+			stmt.setBoolean(5, record.isReturned());
+			stmt.setInt(6, record.getId());
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			logger.severe(e.getMessage());
+		}
+	}
+	
+	public void delete(Connection conn, int id) {
+		try {
+			PreparedStatement stmt = conn.prepareStatement("DELETE FROM borrowing_record WHERE id = ?");
+			stmt.setInt(1, id);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			logger.severe(e.getMessage());
+		}
+	}
+	
 	public List<BorrowingRecord> findAll(Connection conn) {
 		try {
-			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM borrowing_record");
+			PreparedStatement stmt = conn.prepareStatement(
+					"SELECT * FROM borrowing_record JOIN user ON borrowing_record.user_id = user.id JOIN book ON borrowing_record.book_id = book.id");
 			ResultSet rs = stmt.executeQuery();
-			List<BorrowingRecord> records = ResultHandler.getResultList(BorrowingRecord.class, rs);
+			List<BorrowingRecord> records = ResultHandler.getResultList(conn, BorrowingRecord.class, rs);
 			
 			return records;
 			
@@ -29,12 +71,15 @@ public class BorrowingRecordRepository {
 		}
 	}
 
-	public ResultSet findById(Connection conn, int id) {
+	public BorrowingRecord findById(Connection conn, int id) {
 		try {
 			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM borrowing_record WHERE id = ?");
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
-			return rs;
+			BorrowingRecord record = ResultHandler.getResult(conn, BorrowingRecord.class, rs);
+			
+			return record;
+					
 		} catch (SQLException e) {
 			logger.severe(e.getMessage());
 			return null;

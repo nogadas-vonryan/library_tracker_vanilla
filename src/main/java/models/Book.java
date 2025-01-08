@@ -5,9 +5,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import lombok.Getter;
+import lombok.Setter;
 import repository.BookRepository;
 
 @Getter
+@Setter
 public class Book {
 	public int id;
 	public String author;
@@ -24,7 +26,7 @@ public class Book {
 		this.imageUrl = imageUrl;
 	}
 	
-	public Book(ResultSet rs) throws SQLException {		
+	public Book(Connection conn, ResultSet rs) throws SQLException {		
 		this.id = rs.getInt("id");
 		this.author = rs.getString("author");
 		this.title = rs.getString("title");

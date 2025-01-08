@@ -1,5 +1,6 @@
 package utils;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -7,14 +8,13 @@ import java.util.List;
 import java.util.logging.Logger;
 
 public class ResultHandler<T> {
-	public static <T> T getResult(Class<T> model, ResultSet rs) {
+	public static <T> T getResult(Connection conn, Class<T> model, ResultSet rs) {
 		Logger logger = FileLogger.getLogger("utils.ResultHandler");
-		T item;
 		
 		try {
 			if (rs.next()) {
 				try {
-					item = model.getConstructor(ResultSet.class).newInstance(rs);
+					T item = model.getConstructor(Connection.class, ResultSet.class).newInstance(conn, rs);
 					return item;
 				} catch (Exception e) {
 					logger.severe(e.getMessage());
@@ -28,14 +28,14 @@ public class ResultHandler<T> {
 		return null;
 	}
 	
-	public static <T> List<T> getResultList(Class<T> model, ResultSet rs) {
+	public static <T> List<T> getResultList(Connection conn, Class<T> model, ResultSet rs) {
 		Logger logger = FileLogger.getLogger("utils.ResultHandler");
 		List<T> list = new ArrayList<T>();
 		
 		try {
 			while (rs.next()) {
 				try {
-					list.add(model.getConstructor(ResultSet.class).newInstance(rs));
+					list.add(model.getConstructor(Connection.class, ResultSet.class).newInstance(conn, rs));
 				} catch (Exception e) {
 					logger.severe(e.getMessage());
 				}

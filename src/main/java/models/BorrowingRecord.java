@@ -1,41 +1,58 @@
 package models;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.logging.Logger;
 
 import lombok.Getter;
+import lombok.Setter;
+import repository.BookRepository;
+import repository.BorrowingRecordRepository;
+import repository.UserRepository;
 
 @Getter
+@Setter
 public class BorrowingRecord {
 	public int id;
-	public int userId;
-	public int bookId;
-	public String dateBorrowed;
-	public String dateReturned;
-	public String status;
+	public User user;
+	public Book book;
+	public String borrowDate;
+	public String returnDate;
+	public boolean isReturned;
 	
-	public BorrowingRecord(int id, int userId, int bookId, String dateBorrowed, String dateReturned, String status) {
-		this.id = id;
-		this.userId = userId;
-		this.bookId = bookId;
-		this.dateBorrowed = dateBorrowed;
-		this.dateReturned = dateReturned;
-		this.status = status;
+	public BorrowingRecord(User user, Book book, String dateBorrowed, String dateReturned, boolean isReturned) {
+		this.user = user;
+		this.book = book;
+		this.borrowDate = dateBorrowed;
+		this.returnDate = dateReturned;
+		this.isReturned = isReturned;
 	}
 	
-	public BorrowingRecord(ResultSet rs) {
+	public BorrowingRecord(Connection conn, ResultSet rs) {
 		Logger logger = Logger.getLogger(this.getClass().getName());
+		UserRepository userRepository = new UserRepository();
+		BookRepository bookRepository = new BookRepository();
 		
 		try {
             this.id = rs.getInt("id");
-            this.userId = rs.getInt("user_id");
-            this.bookId = rs.getInt("book_id");
-            this.dateBorrowed = rs.getString("borrow_date");
-            this.dateReturned = rs.getString("return_date");
-            this.status = rs.getString("is_returned");
+            this.user = userRepository.findById(conn, rs.getInt("user_id"));
+            this.book = bookRepository.findById(conn, rs.getInt("book_id"));
+            this.borrowDate = rs.getString("borrow_date");
+            this.returnDate = rs.getString("return_date");
+            this.isReturned = rs.getBoolean("is_returned");
             
         } catch (Exception e) {
         	logger.severe(e.getMessage());
         }
+	}
+	
+	public void save(Connection conn) {
+		BorrowingRecordRepository borrowingRecordRepository = new BorrowingRecordRepository();
+
+		if (this.id == 0) {
+			borrowingRecordRepository.insert(conn, this);
+		} else {
+			borrowingRecordRepository.update(conn, this);
+		}
 	}
 }

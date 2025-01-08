@@ -6,9 +6,11 @@ import java.sql.SQLException;
 import java.util.logging.Logger;
 
 import lombok.Getter;
+import lombok.Setter;
 import repository.UserRepository;
 
 @Getter
+@Setter
 public class User {
 	Logger logger = Logger.getLogger(this.getClass().getName());
 	
@@ -28,7 +30,7 @@ public class User {
 		this.role = "USER";
 	}
 	
-	public User(ResultSet rs) {		
+	public User(Connection conn, ResultSet rs) {	
 		try {
             this.id = rs.getInt("id");
             this.referenceNumber = rs.getString("reference_number");

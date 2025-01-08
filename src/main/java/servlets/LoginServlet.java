@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import services.Auth;
 
 @WebServlet("/login")
@@ -36,7 +37,13 @@ public class LoginServlet extends BaseServlet {
 				return;
 			}
 			
-			if(req.getSession().getAttribute("role").equals("ADMIN")) {
+			String role = (String) req.getSession().getAttribute("role");
+			
+			if(role == null) {
+				resp.sendRedirect("login?error=InvalidRole");
+				return;
+			}
+			else if(role.equals("ADMIN")) {
                 resp.sendRedirect("admin/books");
             }
 			else {	

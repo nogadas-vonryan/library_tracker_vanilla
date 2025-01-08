@@ -217,3 +217,107 @@ Jan 08, 2025 2:13:50 AM servlets.BaseServlet <init>
 INFO: Connected to the database
 Jan 08, 2025 2:28:15 AM servlets.BaseServlet <init>
 INFO: Connected to the database
+Jan 08, 2025 11:22:21 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 08, 2025 11:24:04 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 08, 2025 11:29:02 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 08, 2025 11:29:19 PM servlets.LoginServlet doPost
+SEVERE: Cannot invoke "Object.toString()" because the return value of "jakarta.servlet.http.HttpSession.getAttribute(String)" is null
+Jan 08, 2025 11:30:36 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 08, 2025 11:32:21 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 08, 2025 11:32:28 PM services.Auth login
+INFO: User logged in: 2022-00197-TG-0, role: null
+Jan 08, 2025 11:33:52 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 08, 2025 11:34:00 PM services.Auth login
+INFO: User logged in: 2022-00197-TG-0, role: ADMIN
+Jan 08, 2025 11:39:59 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 08, 2025 11:42:22 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 08, 2025 11:43:56 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 08, 2025 11:45:34 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 08, 2025 11:45:46 PM servlets.AdminRecordServlet doGet
+SEVERE: org.apache.jasper.JasperException: jakarta.el.ELException: Failed to parse the expression [${#lists.isEmpty(records)}]
+Jan 08, 2025 11:54:21 PM servlets.AdminRecordServlet doGet
+SEVERE: org.apache.jasper.JasperException: jakarta.el.ELException: Failed to parse the expression [${#lists.isEmpty(records)}]
+Jan 08, 2025 11:54:40 PM servlets.AdminRecordServlet doGet
+SEVERE: org.apache.jasper.JasperException: jakarta.el.ELException: Failed to parse the expression [${#lists.isEmpty(records)}]
+Jan 08, 2025 11:54:57 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 08, 2025 11:55:10 PM servlets.AdminRecordServlet doGet
+SEVERE: org.apache.jasper.JasperException: jakarta.el.ELException: Failed to parse the expression [${#lists.isEmpty(records)}]
+Jan 08, 2025 11:59:04 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 08, 2025 11:59:16 PM servlets.AdminRecordServlet doGet
+SEVERE: An exception occurred processing [WEB-INF/views/admin-records.jsp] at line [108]
+
+105: 		    	
+106:                 <c:forEach var="record"  items="${records}">
+107:                 <tr class="bg-white shadow-md">
+108:                 	<td class="p-3"> ${record.user.referenceNumber}" </td>
+109:                     <td class="p-3"> ${record.user.lastName}, ${record.user.firstName}" </td>
+110:                     <td class="p-3"> ${record.book.title}" </td>
+111:                     <td class="p-3">
+
+
+Stacktrace:
+Jan 09, 2025 12:22:45 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 09, 2025 12:22:45 AM servlets.TestServlet doGet
+INFO: TestServlet's doGet method is called
+Jan 09, 2025 12:26:19 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 09, 2025 12:26:19 AM servlets.TestServlet doGet
+INFO: TestServlet's doGet method is called
+Jan 09, 2025 12:26:19 AM servlets.TestServlet doGet
+INFO: User found
+Jan 09, 2025 12:28:09 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 09, 2025 12:28:09 AM servlets.TestServlet doGet
+INFO: TestServlet's doGet method is called
+Jan 09, 2025 12:29:16 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 09, 2025 12:29:16 AM servlets.TestServlet doGet
+INFO: TestServlet's doGet method is called
+Jan 09, 2025 12:29:16 AM servlets.TestServlet doGet
+INFO: User found
+Jan 09, 2025 12:32:08 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 09, 2025 12:32:17 AM services.Auth login
+INFO: User logged in: 2022-00197-TG-0, role: ADMIN
+Jan 09, 2025 12:34:27 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 09, 2025 12:35:48 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 09, 2025 1:35:49 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 09, 2025 1:38:43 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 09, 2025 1:40:50 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 09, 2025 1:42:45 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 09, 2025 1:49:36 AM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 09, 2025 1:49:47 AM servlets.AdminRecordServlet doGet
+SEVERE: An exception occurred processing [WEB-INF/views/admin-records.jsp] at line [112]
+
+109:                     <td class="p-3"> ${record.user.lastName}, ${record.user.firstName} </td>
+110:                     <td class="p-3"> ${record.book.title} </td>
+111:                     <td class="p-3">
+112: 						<c:if test="${!record.isReturned}">
+113:                         <span class="text-green-900 font-medium">Returned</span>
+114:                         </c:if>
+115:                         
+
+
+Stacktrace:
+Jan 09, 2025 1:53:03 AM servlets.BaseServlet <init>
+INFO: Connected to the database

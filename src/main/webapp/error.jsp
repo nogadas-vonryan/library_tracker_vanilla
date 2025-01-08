@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/library_tracker_vanilla/stylesheet/main.css">
+    <link rel="stylesheet" href="/library_tracker/stylesheet/main.css">
     <title>Error</title>
 </head>
 <body class="flex justify-center p-16">
     <div class="text-center">
     	<div>
-    		<img class="m-auto w-[300px] h-[300px]" src="/library_tracker_vanilla/assets/error_icon.jpeg" />
+    		<img class="m-auto w-[300px] h-[300px]" src="/library_tracker/assets/error_icon.jpeg" />
 			<div class="text-6xl font-bold text-center pb-4">Error</div>
     	</div>
 	

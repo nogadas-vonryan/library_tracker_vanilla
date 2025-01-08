@@ -5,10 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Logger;
 
 import models.Book;
-import utils.FileLogger;
 import utils.ResultHandler;
 
 public class BookRepository {
@@ -45,7 +43,7 @@ public class BookRepository {
 	public List<Book> findAll(Connection conn) throws SQLException {
 		PreparedStatement stmt = conn.prepareStatement("SELECT * FROM book");
 		ResultSet rs = stmt.executeQuery();
-		List<Book> books = ResultHandler.getResultList(Book.class, rs);
+		List<Book> books = ResultHandler.getResultList(conn, Book.class, rs);
 
 		return books;
 	}
@@ -54,7 +52,7 @@ public class BookRepository {
 		PreparedStatement stmt = conn.prepareStatement("SELECT * FROM book WHERE id = ?");
 		stmt.setInt(1, id);
 		ResultSet rs = stmt.executeQuery();
-		Book book = ResultHandler.getResult(Book.class, rs);
+		Book book = ResultHandler.getResult(conn, Book.class, rs);
 		return book;
 	}
 
@@ -63,7 +61,7 @@ public class BookRepository {
 		stmt.setString(1, "%" + searchTerm + "%");
 		stmt.setString(2, "%" + searchTerm + "%");
 		ResultSet rs = stmt.executeQuery();
-		List<Book> books = ResultHandler.getResultList(Book.class, rs);
+		List<Book> books = ResultHandler.getResultList(conn, Book.class, rs);
 
 		return books;
 	}

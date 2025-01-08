@@ -37,7 +37,7 @@ public class UserRepository {
 		PreparedStatement stmt = conn.prepareStatement("SELECT * FROM user WHERE id = ?");
 		stmt.setInt(1, id);
 		ResultSet rs = stmt.executeQuery();
-		User user = ResultHandler.getResult(User.class, rs);
+		User user = ResultHandler.getResult(conn, User.class, rs);
 
 		return user;
 	}
@@ -46,7 +46,7 @@ public class UserRepository {
 		PreparedStatement stmt = conn.prepareStatement("SELECT * FROM user WHERE reference_number = ?");
 		stmt.setString(1, referenceNumber);
 		ResultSet rs = stmt.executeQuery();
-		User user = ResultHandler.getResult(User.class, rs);
+		User user = ResultHandler.getResult(conn, User.class, rs);
 
 		return user;
 	}

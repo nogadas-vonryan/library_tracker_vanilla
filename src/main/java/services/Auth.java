@@ -1,6 +1,7 @@
 package services;
 
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -19,6 +20,7 @@ public class Auth {
 			HttpSession session = req.getSession();
 			session.setAttribute("referenceNumber", referenceNumber);
 			session.setAttribute("role", user.role);
+			baseServlet.logger.info("User logged in: " + referenceNumber + ", role: " + user.role);
 			return true;
 		} 
 		

@@ -1,7 +1,5 @@
 package servlets;
 
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 import jakarta.servlet.annotation.WebServlet;
@@ -22,7 +20,7 @@ public class AdminBookServlet extends BaseServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) {	
 		if (!Auth.isLoggedIn(req)) {
 			try {
-				resp.sendRedirect("login");
+				resp.sendRedirect("/library_tracker/login");
 				return;
 			} catch (Exception e) {
 				logger.severe(e.getMessage());

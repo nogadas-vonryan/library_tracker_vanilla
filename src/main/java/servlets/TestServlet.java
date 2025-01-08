@@ -1,11 +1,9 @@
 package servlets;
 
-import java.sql.SQLException;
-
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import models.User;
+import models.BorrowingRecord;
 import repository.BookRepository;
 import repository.BorrowingRecordRepository;
 import repository.UserRepository;
@@ -23,10 +21,10 @@ public class TestServlet extends BaseServlet {
 		logger.info("TestServlet's doGet method is called");
 		
 		try {
-			User user = userRepository.findById(conn, 1);
-			System.out.println(user.firstName + " " + user.lastName);
+			BorrowingRecord record = borrowingRecordRepository.findById(conn, 4);
+			System.out.println(record.user.firstName + " " + record.user.lastName);
 			logger.info("User found");
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

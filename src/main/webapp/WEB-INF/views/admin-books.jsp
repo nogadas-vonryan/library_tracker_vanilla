@@ -26,15 +26,15 @@
 			<hr>
 			<div class="px-4 p-1 rounded-md hover:bg-white hover:text-black">
 				<span class="material-symbols-outlined translate-y-[6px]">library_books</span>
-				<a href="/admin/books" class="font-medium ml-2">Books</a>
+				<a href="/library_tracker/admin/books" class="font-medium ml-2">Books</a>
 			</div>
 			<div class="px-4 p-1 rounded-md hover:bg-white hover:text-black">
 				<span class="material-symbols-outlined translate-y-[6px]">history</span>
-				<a href="/admin/records" class="font-medium ml-2">Records</a>
+				<a href="/library_tracker/admin/records" class="font-medium ml-2">Records</a>
 			</div>
 			<div class="px-4 p-1 rounded-md hover:bg-white hover:text-black">
 				<span class="material-symbols-outlined translate-y-[6px]">monitoring</span>
-				<a href="/admin/analytics" class="font-medium ml-2">Analytics</a>
+				<a href="/library_tracker/admin/analytics" class="font-medium ml-2">Analytics</a>
 			</div>
 		</div>
 		<div>
@@ -42,7 +42,6 @@
 			<div class="px-4 p-1 mt-2 rounded-md hover:bg-white hover:text-black">
 				<span class="material-symbols-outlined translate-y-[6px]">logout</span>
 				<form class="inline" method="POST" action="/logout">
-					<input type="hidden" name="_csrf" th:value="${_csrf.token}" />
 					<button type="submit" class="inline font-medium ml-2">Logout</button>
 				</form>
 			</div>
@@ -66,15 +65,15 @@
 		<!-- Desktop Search -->
 		<div class="hidden lg:flex pl-4 pt-8 pb-2 space-x-4">
 			<div class="w-80 relative">
-				<form method="GET" action="/admin/books" class="inline">
+				<form method="GET" action="/library_tracker/admin/books" class="inline">
 					<input class="autocomplete-searchbar border rounded-md p-1 w-full" name="search" placeholder=" Search for a book..."> 
 					<span class="material-symbols-outlined text-neutral-400 absolute right-0 -translate-x-[4px] translate-y-[3px] z-10">search</span>
 				</form>
 			</div>
-			<form method="GET" action="/admin/books" >
+			<form method="GET" action="/library_tracker/admin/books" >
 				<button class="bg-gray-300 text-gray-800 px-4 py-1 rounded-md">Clear Search</button>
 			</form>
-			<a href="/admin/books/add" class="bg-primary text-white px-4 py-1 rounded-md">Add Book</a>
+			<a href="/library_tracker/admin/books/add" class="bg-primary text-white px-4 py-1 rounded-md">Add Book</a>
 		</div>
 
 		<div class="grow grid grid-cols-3 lg:grid-cols-5 gap-4 p-4 text-stone-700 overflow-auto">
@@ -83,13 +82,13 @@
 				
 				
 				<c:if test="${not empty book.imageUrl}">
-				<a href="/admin/books/${book.id}" class="h-full">
+				<a href="/library_tracker/admin/books/${book.id}" class="h-full">
 					<img src="/library_tracker_vanilla/uploads/${book.imageUrl}" class="h-full">
 				</a>
 				</c:if>
 				
 				<c:if test="${empty book.imageUrl}">
-				<a href="/admin/books/${book.id}" class="flex justify-center items-center h-full w-full" >
+				<a href="/library_tracker/admin/books/${book.id}" class="flex justify-center items-center h-full w-full" >
 					<span class="block align-middle font-semibold"> ${book.title} </span>
 				</a>
 				</c:if>
