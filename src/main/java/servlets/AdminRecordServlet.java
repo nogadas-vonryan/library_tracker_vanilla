@@ -42,10 +42,7 @@ public class AdminRecordServlet extends BaseServlet {
 		String method = req.getParameter("_method");
 		
 		try {
-			switch(method) {
-				case "POST":
-					break;
-					
+			switch(method) {					
 				case "PUT":
 					BorrowingRecord record = borrowingRecordRepository.findById(conn, Integer.parseInt(req.getParameter("recordId")));
 					record.setReturned(req.getParameter("isReturned").equals("true") ? true : false);

@@ -20,12 +20,12 @@ public class BorrowingRecord {
 	public String returnDate;
 	public boolean isReturned;
 	
-	public BorrowingRecord(User user, Book book, String dateBorrowed, String dateReturned, boolean isReturned) {
+	public BorrowingRecord(User user, Book book, String dateBorrowed, String dateReturned) {
 		this.user = user;
 		this.book = book;
 		this.borrowDate = dateBorrowed;
 		this.returnDate = dateReturned;
-		this.isReturned = isReturned;
+		this.isReturned = false;
 	}
 	
 	public BorrowingRecord(Connection conn, ResultSet rs) {

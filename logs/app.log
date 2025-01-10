@@ -373,3 +373,23 @@ Jan 10, 2025 6:04:10 PM servlets.BaseServlet <init>
 INFO: Connected to the database
 Jan 10, 2025 6:10:23 PM servlets.BaseServlet <init>
 INFO: Connected to the database
+Jan 10, 2025 7:02:17 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 10, 2025 7:05:20 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 10, 2025 7:05:51 PM servlets.AdminRecordAddServlet doPost
+SEVERE: Cannot parse null string
+Jan 10, 2025 7:07:14 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 10, 2025 7:07:14 PM servlets.AdminRecordAddServlet doPost
+SEVERE: Cannot parse null string
+Jan 10, 2025 7:07:40 PM servlets.AdminRecordAddServlet doPost
+SEVERE: Cannot parse null string
+Jan 10, 2025 7:08:58 PM servlets.AdminRecordAddServlet doPost
+SEVERE: For input string: "2022-00002-TG-0"
+Jan 10, 2025 7:10:35 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 10, 2025 7:10:51 PM servlets.AdminRecordAddServlet doPost
+SEVERE: For input string: "2022-00002-TG-0"
+Jan 10, 2025 7:12:38 PM servlets.BaseServlet <init>
+INFO: Connected to the database

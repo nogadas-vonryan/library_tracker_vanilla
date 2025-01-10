@@ -39,6 +39,15 @@ public class BookRepository {
 		stmt.setInt(1, id);
 		stmt.executeUpdate();
 	}
+	
+	public Book findByTitle(Connection conn, String title) throws SQLException {
+		PreparedStatement stmt = conn.prepareStatement("SELECT * FROM book WHERE title = ?");
+		stmt.setString(1, title);
+		ResultSet rs = stmt.executeQuery();
+		Book book = ResultHandler.getResult(conn, Book.class, rs);
+		
+		return book;
+	}
 
 	public List<Book> findAll(Connection conn) throws SQLException {
 		PreparedStatement stmt = conn.prepareStatement("SELECT * FROM book");
