@@ -20,3 +20,9 @@ Jan 10, 2025 7:12:38 PM servlets.BaseServlet <init>
 INFO: Connected to the database
 Jan 10, 2025 7:12:39 PM services.Auth login
 INFO: User logged in: 2022-00197-TG-0, role: ADMIN
+Jan 10, 2025 10:36:09 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 10, 2025 10:36:09 PM servlets.TestServlet doGet
+INFO: TestServlet's doGet method is called
+Jan 10, 2025 10:36:09 PM servlets.TestServlet doGet
+INFO: PasswordRequest: null

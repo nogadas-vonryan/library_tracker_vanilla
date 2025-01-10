@@ -2,3 +2,5 @@ Jan 10, 2025 4:56:20 PM servlets.BaseServlet <init>
 INFO: Connected to the database
 Jan 10, 2025 5:40:52 PM servlets.BaseServlet <init>
 INFO: Connected to the database
+Jan 10, 2025 10:32:32 PM utils.ResultHandler getResult
+SEVERE: null

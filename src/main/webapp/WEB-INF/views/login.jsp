@@ -16,7 +16,6 @@
     <div class="p-4 pt-16 lg:w-1/3 m-auto">
         <div class="text-stone-700 text-2xl font-semibold mb-4">Login</div>
         <form method="POST" action="login">
-        <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
         <div class="flex flex-col items-center">
             <div class="w-full space-y-4">
                 <div>

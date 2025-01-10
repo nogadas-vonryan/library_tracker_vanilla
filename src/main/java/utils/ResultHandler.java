@@ -17,11 +17,16 @@ public class ResultHandler<T> {
 					T item = model.getConstructor(Connection.class, ResultSet.class).newInstance(conn, rs);
 					return item;
 				} catch (Exception e) {
+					System.out.println("error initializing model");
 					logger.severe(e.getMessage());
+					e.getCause().printStackTrace();
+					e.printStackTrace();
 				}
 			}
 
 		} catch (SQLException e) {
+			System.out.println("error getting result list from database");
+			e.printStackTrace();
 			logger.severe(e.getMessage());
 		}
 		
@@ -37,6 +42,7 @@ public class ResultHandler<T> {
 				try {
 					list.add(model.getConstructor(Connection.class, ResultSet.class).newInstance(conn, rs));
 				} catch (Exception e) {
+					System.out.println("error initializing model");
 					logger.severe(e.getMessage());
 				}
 			}
@@ -44,9 +50,11 @@ public class ResultHandler<T> {
 			return list;
 			
 		} catch (SQLException e) {
+			System.out.println("error getting result list from database");
 			logger.severe(e.getMessage());
 		}
 		
+		System.out.println("returning null. Why?");
 		return null;
 	}
 }

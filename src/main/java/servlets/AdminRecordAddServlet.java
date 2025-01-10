@@ -28,7 +28,7 @@ public class AdminRecordAddServlet extends BaseServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
 		if (!Auth.isLoggedIn(req)) {
 			try {
-				resp.sendRedirect("/library_tracker/login");
+				resp.sendRedirect("/login");
 				return;
 			} catch (Exception e) {
 				logger.severe(e.getMessage());
@@ -51,12 +51,12 @@ public class AdminRecordAddServlet extends BaseServlet {
 			BorrowingRecord record = new BorrowingRecord(user, book, LocalDate.now().toString(), req.getParameter("returnDate"));
 			record.save(conn);
 			
-			resp.sendRedirect("/library_tracker/admin/records");
+			resp.sendRedirect("/admin/records");
 		} catch (Exception e) {
 			logger.severe(e.getMessage());
 			
 			try {
-				resp.sendRedirect("/library_tracker/admin/records/add?error=RecordNotAdded");
+				resp.sendRedirect("/admin/records/add?error=RecordNotAdded");
 			} catch (IOException e1) {
 				logger.severe(e1.getMessage());
 			}

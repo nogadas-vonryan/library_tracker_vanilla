@@ -1,14 +1,9 @@
 package servlets;
 
-import java.io.IOException;
-import configs.Config;
-
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.sql.SQLException;
-import java.util.Map;
 
-import jakarta.servlet.ServletException;
+import configs.Config;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -34,7 +29,7 @@ public class AdminBookUpdateServlet extends BaseServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
 		if (!Auth.isLoggedIn(req)) {
 			try {
-				resp.sendRedirect("/library_tracker/login");
+				resp.sendRedirect("/login");
 				return;
 			} catch (Exception e) {
 				logger.severe(e.getMessage());
@@ -44,7 +39,7 @@ public class AdminBookUpdateServlet extends BaseServlet {
 		String path = req.getPathInfo();
 		if (path == null) {
 			try {
-				resp.sendRedirect("/library_tracker/admin/books");
+				resp.sendRedirect("/admin/books");
 			} catch (Exception e) {
 				logger.severe(e.getMessage());
 			}
@@ -76,7 +71,7 @@ public class AdminBookUpdateServlet extends BaseServlet {
 		
 		if(method == null) {
             try {
-                resp.sendRedirect("/library_tracker/admin/books");
+                resp.sendRedirect("/admin/books");
             } catch (Exception e) {
                 logger.severe(e.getMessage());
             }
@@ -100,7 +95,7 @@ public class AdminBookUpdateServlet extends BaseServlet {
 				break;
             default:
             	try {
-            		resp.sendRedirect("/library_tracker/admin/books");
+            		resp.sendRedirect("/admin/books");
             	} catch (Exception e) {
             		logger.severe(e.getMessage());
 				}
@@ -127,7 +122,7 @@ public class AdminBookUpdateServlet extends BaseServlet {
 		book.setImageUrl(fileName.isEmpty() ? book.getImageUrl() : fileName);
 		book.save(conn);
 
-		resp.sendRedirect("/library_tracker/admin/books");
+		resp.sendRedirect("/admin/books");
 	}
 	
 	private void delete(HttpServletRequest req, HttpServletResponse resp) throws Exception {
@@ -136,6 +131,6 @@ public class AdminBookUpdateServlet extends BaseServlet {
 		Files.delete(Paths.get(Config.UPLOAD_PATH + book.getImageUrl()));
 		bookRepository.delete(conn, book.getId());
 		
-		resp.sendRedirect("/library_tracker/admin/books");
+		resp.sendRedirect("/admin/books");
 	}
 }

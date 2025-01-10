@@ -26,7 +26,7 @@ public class AdminBookAddServlet extends BaseServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		if (!Auth.isLoggedIn(req)) {
 			try {
-				resp.sendRedirect("/library_tracker/login");
+				resp.sendRedirect("/login");
 				return;
 			} catch (Exception e) {
 				logger.severe(e.getMessage());
@@ -52,7 +52,7 @@ public class AdminBookAddServlet extends BaseServlet {
 			logger.severe(e.getMessage());
 		}
 
-		resp.sendRedirect("/library_tracker/admin/books");
+		resp.sendRedirect("/admin/books");
 	}
 	
 }

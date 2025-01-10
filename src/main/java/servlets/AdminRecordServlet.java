@@ -21,7 +21,7 @@ public class AdminRecordServlet extends BaseServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
 		if (!Auth.isLoggedIn(req)) {
 			try {
-				resp.sendRedirect("/library_tracker/login");
+				resp.sendRedirect("/login");
 				return;
 			} catch (Exception e) {
 				logger.severe(e.getMessage());
@@ -47,16 +47,16 @@ public class AdminRecordServlet extends BaseServlet {
 					BorrowingRecord record = borrowingRecordRepository.findById(conn, Integer.parseInt(req.getParameter("recordId")));
 					record.setReturned(req.getParameter("isReturned").equals("true") ? true : false);
 					record.save(conn);
-					resp.sendRedirect("/library_tracker/admin/records?success=RecordUpdated");
+					resp.sendRedirect("/admin/records?success=RecordUpdated");
 					break;
 			
 			    case "DELETE":
 	                int id = Integer.parseInt(req.getParameter("id"));
 	                borrowingRecordRepository.delete(conn, id);
-	                resp.sendRedirect("/library_tracker/admin/records?success=RecordDeleted");
+	                resp.sendRedirect("/admin/records?success=RecordDeleted");
 	                break;
 	            default:
-	            	resp.sendRedirect("/library_tracker/admin/records?error=InvalidMethod");
+	            	resp.sendRedirect("/admin/records?error=InvalidMethod");
 	                break;
 			}
 		} catch (Exception e) {

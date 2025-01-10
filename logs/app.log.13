@@ -24,3 +24,5 @@ Jan 10, 2025 7:10:51 PM servlets.AdminRecordAddServlet doPost
 SEVERE: For input string: "2022-00002-TG-0"
 Jan 10, 2025 7:12:38 PM servlets.BaseServlet <init>
 INFO: Connected to the database
+Jan 10, 2025 10:32:32 PM utils.ResultHandler getResult
+SEVERE: null

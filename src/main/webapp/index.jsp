@@ -13,8 +13,8 @@
             <div class="text-white font-bold text-8xl">LIBLIB</div>
             <div class="text-gray-200 mt-2 text-lg">Track your books as you go</div>
             <div class="flex space-x-4">
-            	<a href="/library_tracker/login" class="bg-white text-red-700 p-2 px-4 rounded-lg mt-4 font-semibold">Login</a>
-            	<a href="/library_tracker/register" class="bg-white text-red-700 p-2 px-4 rounded-lg mt-4 font-semibold">Register</a>
+            	<a href="/login" class="bg-white text-red-700 p-2 px-4 rounded-lg mt-4 font-semibold">Login</a>
+            	<a href="/register" class="bg-white text-red-700 p-2 px-4 rounded-lg mt-4 font-semibold">Register</a>
             </div>
         </div>
         <img src="assets/liblib_cover.png" alt="People on books" class="hidden lg:block w-[350px] h-[300px]">

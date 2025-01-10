@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/library_tracker/stylesheet/main.css">
+    <link rel="stylesheet" href="/stylesheet/main.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <title>Borrowing Manager</title>
 </head>
@@ -18,29 +18,33 @@
 		class="lg:flex flex-col hidden lg:block justify-between p-3 bg-primary text-white h-svh w-[15rem]">
 		<div class="grow space-y-3">
 			<div class="mt-2">
-				<img src="/library_tracker/assets/open-book.png" alt="book Logo"
+				<img src="/assets/open-book.png" alt="book Logo"
 					class="w-[60px] h-[60px] m-auto">
 				<div class="text-center pt-4 text-sm">Admin Portal</div>
 			</div>
 			<hr>
 			<div class="px-4 p-1 rounded-md hover:bg-white hover:text-black">
 				<span class="material-symbols-outlined translate-y-[6px]">library_books</span>
-				<a href="/library_tracker/admin/books" class="font-medium ml-2">Books</a>
+				<a href="/admin/books" class="font-medium ml-2">Books</a>
 			</div>
 			<div class="px-4 p-1 rounded-md hover:bg-white hover:text-black">
 				<span class="material-symbols-outlined translate-y-[6px]">history</span>
-				<a href="/library_tracker/admin/records" class="font-medium ml-2">Records</a>
+				<a href="/admin/records" class="font-medium ml-2">Records</a>
 			</div>
 			<div class="px-4 p-1 rounded-md hover:bg-white hover:text-black">
 				<span class="material-symbols-outlined translate-y-[6px]">monitoring</span>
-				<a href="/library_tracker/admin/analytics" class="font-medium ml-2">Analytics</a>
+				<a href="/admin/analytics" class="font-medium ml-2">Analytics</a>
+			</div>
+			<div class="px-4 p-1 rounded-md hover:bg-white hover:text-black">
+				<span class="material-symbols-outlined translate-y-[6px]">key</span>
+				<a href="/admin/password-requests" class="font-medium ml-2">Password Request</a>
 			</div>
 		</div>
 		<div>
 			<hr>
 			<div class="px-4 p-1 mt-2 rounded-md hover:bg-white hover:text-black">
 				<span class="material-symbols-outlined translate-y-[6px]">logout</span>
-				<form class="inline" method="POST" action="/library_tracker/logout">
+				<form class="inline" method="POST" action="/logout">
 					<button type="submit" class="inline font-medium ml-2">Logout</button>
 				</form>
 			</div>
@@ -67,7 +71,7 @@
 			</form>	
 			<span class="material-symbols-outlined text-neutral-400 -translate-x-[16px] translate-y-[6px]">search</span>
 
-			<a href="/library_tracker/admin/records/add" class="bg-primary text-white px-4 py-1 rounded-md">New Record</a>
+			<a href="/admin/records/add" class="bg-primary text-white px-4 py-1 rounded-md">New Record</a>
 
 			<select onchange="updateSorting('sortOrder', this.value)" class="ml-2 pl-2 rounded-md">
 				<option value="" disabled selected>Sort Order</option>
@@ -121,7 +125,7 @@
                     <td class="p-3"> ${record.returnDate}</td>
                     <td class="p-3 space-x-2 font-semibold">
                     	<div class="inline">
-                    		<form class="inline" method="POST" action="/library_tracker/admin/records">
+                    		<form class="inline" method="POST" action="/admin/records">
                     			<input type="hidden" name="_method" value="PUT" />
 								<input type="hidden" name="recordId" value="${record.id}" />
 								<input type="hidden" name="isReturned" value="${!record.returned}" />
@@ -149,11 +153,11 @@
 
     <div
 		class="py-3 flex justify-around bg-primary text-white rounded-t-xl lg:hidden">
-		<a href="/library_tracker/admin/books" class="grow text-center"> <span
+		<a href="/admin/books" class="grow text-center"> <span
 			class="material-symbols-outlined !text-4xl">library_books</span>
-		</a> <a href="/library_tracker/admin/records" class="grow text-center"> <span
+		</a> <a href="/admin/records" class="grow text-center"> <span
 			class="material-symbols-outlined !text-4xl">history</span>
-		</a> <a href="/library_tracker/logout" class="grow text-center"> <span
+		</a> <a href="/logout" class="grow text-center"> <span
 			class="material-symbols-outlined !text-4xl">logout</span>
 		</a>
 	</div>

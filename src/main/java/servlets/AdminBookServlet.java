@@ -23,7 +23,7 @@ public class AdminBookServlet extends BaseServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) {	
 		if (!Auth.isLoggedIn(req)) {
 			try {
-				resp.sendRedirect("/library_tracker/login");
+				resp.sendRedirect("/login");
 				return;
 			} catch (Exception e) {
 				logger.severe(e.getMessage());
@@ -62,14 +62,14 @@ public class AdminBookServlet extends BaseServlet {
 					book.setTitle(req.getParameter("title"));
 					book.setAuthor(req.getParameter("author"));
 					book.save(conn);
-					resp.sendRedirect("/library_tracker/admin/books?success=BookUpdated");
+					resp.sendRedirect("/admin/books?success=BookUpdated");
 					break;
 				}
 	
 				case "DELETE": {
 					int id = Integer.parseInt(req.getParameter("id"));
 					bookRepository.delete(conn, id);
-					resp.sendRedirect("/library_tracker/admin/books?success=BookDeleted");
+					resp.sendRedirect("/admin/books?success=BookDeleted");
 					break;
 				}
 			}

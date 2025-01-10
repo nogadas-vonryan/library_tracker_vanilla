@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../stylesheet/main.css">
+    <link rel="stylesheet" href="/stylesheet/main.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <title>Borrowing Manager</title>
 </head>
@@ -16,7 +16,7 @@
 		class="lg:flex flex-col hidden lg:block justify-between p-3 bg-primary text-white h-svh w-[15rem]">
 		<div class="grow space-y-3">
 			<div class="mt-2">
-				<img src="../../assets/open-book.png" alt="book Logo"
+				<img src="/assets/open-book.png" alt="book Logo"
 					class="w-[60px] h-[60px] m-auto">
 				<div class="text-center pt-4 text-sm">User Portal</div>
 			</div>
