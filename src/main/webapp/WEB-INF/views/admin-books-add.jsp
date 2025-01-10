@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="../../stylesheet/main.css">
+	<link rel="stylesheet" href="/library_tracker/stylesheet/main.css">
 	<link rel="stylesheet"
 		href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
 	<title>Book List</title>
@@ -14,18 +14,18 @@
 		class="lg:flex flex-col hidden lg:block justify-between p-3 bg-primary text-white h-svh w-[15rem]">
 		<div class="grow space-y-3">
 			<div class="mt-2">
-				<img src="../../assets/open-book.png" alt="book Logo"
+				<img src="/library_tracker/assets/open-book.png" alt="book Logo"
 					class="w-[60px] h-[60px] m-auto">
 				<div class="text-center pt-4 text-sm">Admin Portal</div>
 			</div>
 			<hr>
 			<div class="px-4 p-1 rounded-md hover:bg-white hover:text-black">
 				<span class="material-symbols-outlined translate-y-[6px]">library_books</span>
-				<a href="/admin/books" class="font-medium ml-2">Books</a>
+				<a href="/library_tracker/admin/books" class="font-medium ml-2">Books</a>
 			</div>
 			<div class="px-4 p-1 rounded-md hover:bg-white hover:text-black">
 				<span class="material-symbols-outlined translate-y-[6px]">history</span>
-				<a href="/admin/records" class="font-medium ml-2">Records</a>
+				<a href="/library_tracker/admin/records" class="font-medium ml-2">Records</a>
 			</div>
 		</div>
 		<div>
@@ -53,7 +53,7 @@
 	</div>
 	
 	<div class="grow bg-gray-100 h-full p-12">
-		<form method="POST" action="/admin/books/add" enctype="multipart/form-data" class="bg-white shadow-md p-6 rounded-lg space-y-4 w-2/3 mx-auto">
+		<form method="POST" action="/library_tracker/admin/books/add" enctype="multipart/form-data" class="bg-white shadow-md p-6 rounded-lg space-y-4 w-2/3 mx-auto">
 			<div class="text-xl font-semibold text-gray-700"> Add a new book</div>
 			<hr>
 			<div class="flex flex-col pt-2">
@@ -73,7 +73,6 @@
 				<input type="file" name="bookCover">
 			</div>
 			<div class="flex justify-end">
-				<input type="hidden" name="_csrf" th:value="${_csrf.token}" />
 				<button type="submit" class="bg-primary text-white px-4 py-1 rounded-md font-semibold">Add</button>
 			</div>
 		</form>

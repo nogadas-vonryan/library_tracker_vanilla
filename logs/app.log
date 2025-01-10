@@ -321,3 +321,15 @@ SEVERE: An exception occurred processing [WEB-INF/views/admin-records.jsp] at li
 Stacktrace:
 Jan 09, 2025 1:53:03 AM servlets.BaseServlet <init>
 INFO: Connected to the database
+Jan 09, 2025 6:48:32 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 09, 2025 7:23:49 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 10, 2025 4:04:27 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 10, 2025 4:15:30 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 10, 2025 4:21:16 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 10, 2025 4:23:00 PM servlets.BaseServlet <init>
+INFO: Connected to the database

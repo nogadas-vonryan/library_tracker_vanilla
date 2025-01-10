@@ -1,13 +1,11 @@
 package servlets;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import models.BorrowingRecord;
-import models.User;
 import repository.BorrowingRecordRepository;
 import repository.UserRepository;
 import services.Auth;
@@ -17,7 +15,6 @@ public class AdminRecordServlet extends BaseServlet {
 
 	private static final long serialVersionUID = 2L;
 	
-	private UserRepository userRepository = new UserRepository();
 	BorrowingRecordRepository borrowingRecordRepository = new BorrowingRecordRepository();
 
 	@Override

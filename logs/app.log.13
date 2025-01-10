@@ -2,3 +2,5 @@ Jan 09, 2025 12:37:05 AM servlets.BaseServlet <init>
 INFO: Connected to the database
 Jan 09, 2025 12:37:11 AM services.Auth login
 INFO: User logged in: 2022-00197-TG-0, role: ADMIN
+Jan 10, 2025 4:23:09 PM servlets.BaseServlet <init>
+INFO: Connected to the database
