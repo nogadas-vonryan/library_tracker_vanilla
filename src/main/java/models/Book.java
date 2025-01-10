@@ -18,6 +18,8 @@ public class Book {
 	public String dateCreated;
 	public String imageUrl;
 	
+	public Book() { }
+	
 	public Book(String author, String title, String category, String dateCreated, String imageUrl) {
 		this.author = author;
 		this.title = title;

@@ -333,3 +333,43 @@ Jan 10, 2025 4:21:16 PM servlets.BaseServlet <init>
 INFO: Connected to the database
 Jan 10, 2025 4:23:00 PM servlets.BaseServlet <init>
 INFO: Connected to the database
+Jan 10, 2025 4:55:17 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 10, 2025 4:55:17 PM servlets.AdminBookUpdateServlet doGet
+SEVERE: For input string: "*"
+Jan 10, 2025 4:55:18 PM servlets.AdminBookUpdateServlet doGet
+SEVERE: For input string: "stylesheet"
+Jan 10, 2025 4:56:05 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 10, 2025 4:56:23 PM servlets.AdminBookUpdateServlet doGet
+SEVERE: For input string: "stylesheet"
+Jan 10, 2025 5:09:11 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 10, 2025 5:10:04 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 10, 2025 5:16:07 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 10, 2025 5:30:30 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 10, 2025 5:31:24 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 10, 2025 5:32:11 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 10, 2025 5:34:01 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 10, 2025 5:40:52 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 10, 2025 5:56:57 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 10, 2025 5:59:25 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 10, 2025 6:00:28 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 10, 2025 6:01:56 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 10, 2025 6:02:30 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 10, 2025 6:04:10 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 10, 2025 6:10:23 PM servlets.BaseServlet <init>
+INFO: Connected to the database
