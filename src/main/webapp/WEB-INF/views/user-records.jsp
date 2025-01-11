@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
@@ -79,19 +81,28 @@
                 </tr>
             </thead>
             <tbody>
-            	<tr th:if="${#lists.isEmpty(records)}" class="bg-white shadow-md">
+            	<c:if test="${empty records}">
+		    	<tr class="bg-white shadow-md">
 		            <td colspan="7" class="p-3 text-center font-medium">No record found</td>
 		        </tr>
-            
-                <tr th:each="record : ${records}" class="bg-white shadow-md">
-                    <td class="p-3" th:text="${record.book.title}"></td>
+		    	</c:if>
+		    	
+                <c:forEach var="record"  items="${records}">
+                <tr class="bg-white shadow-md">
+                    <td class="p-3"> ${record.book.title} </td>
                     <td class="p-3">
-                        <span th:if="${record.isReturned}" class="text-green-900 font-medium">Returned</span>
-                        <span th:unless="${record.isReturned}" class="text-red-900 font-medium">Borrowing</span>
+						<c:if test="${record.returned}">
+                        <span class="text-green-900 font-medium">Returned</span>
+                        </c:if>
+                        
+                        <c:if test="${!record.returned}">
+                        <span class="text-red-900 font-medium">Borrowing</span>
+                        </c:if>
                     </td>
-                    <td class="p-3" th:text="${record.borrowDate}"></td>
-                    <td class="p-3" th:text="${record.returnDate}"></td>
-                </tr>    
+                    <td class="p-3"> ${record.borrowDate}</td>
+                    <td class="p-3"> ${record.returnDate}</td>
+                </tr>
+                </c:forEach> 
             </tbody>
         </table>
     </div>

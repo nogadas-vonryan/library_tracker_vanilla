@@ -1,16 +1,11 @@
 package servlets;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.List;
 
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import models.Book;
 import models.BorrowingRecord;
-import models.PasswordRequest;
-import models.User;
 import repository.BookRepository;
 import repository.BorrowingRecordRepository;
 import repository.PasswordRequestRepository;

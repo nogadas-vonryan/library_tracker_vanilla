@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -78,16 +80,25 @@
 			</div>
 		</div>
 
-		<div
-			class="grow grid grid-cols-3 lg:grid-cols-5 gap-4 p-4 text-stone-700 overflow-auto">
-	        <div th:each="book : ${books}" class="bg-white flex flex-col justify-center items-center h-40 lg:h-64 lg:w-52 shadow-md">
-				<a th:href="'/user/books/' + ${book.id}" th:if="${book.imageUrl}" class="h-full">
-					<img th:src="@{'/uploads/' + ${book.imageUrl}}" class="h-full">
+		<div class="grow grid grid-cols-3 lg:grid-cols-5 gap-4 p-4 text-stone-700 overflow-auto">
+	        <c:forEach var="book" items="${books}">
+	        <div class="bg-white flex flex-col justify-center items-center h-40 lg:h-64 lg:w-52 shadow-md">
+				
+				
+				<c:if test="${not empty book.imageUrl}">
+				<a href="/admin/books/${book.id}" class="h-full">
+					<img src="/uploads/${book.imageUrl}" class="h-full">
 				</a>
-				<a th:href="'/user/books/' + ${book.id}" th:unless="${book.imageUrl}" class="flex justify-center items-center h-full w-full" >
-                    <span class="block align-middle font-semibold" th:text="${book.title}"></span>
+				</c:if>
+				
+				<c:if test="${empty book.imageUrl}">
+				<a href="/admin/books/${book.id}" class="flex justify-center items-center h-full w-full" >
+					<span class="block align-middle font-semibold"> ${book.title} </span>
 				</a>
+				</c:if>
+				 
 			</div>
+			</c:forEach>
 		</div>
 	</div>
 

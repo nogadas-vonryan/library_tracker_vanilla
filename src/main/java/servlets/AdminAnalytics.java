@@ -1,5 +1,6 @@
 package servlets;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -32,7 +33,12 @@ public class AdminAnalytics extends BaseServlet {
 		
 		if (yearString != null) year = Integer.parseInt(yearString);
 		
-		List<MonthlyRecord> records = borrowingRecordRepository.getRecordAnalytics(conn, year);
+		List<MonthlyRecord> records = null;
+		try {
+			records = borrowingRecordRepository.getRecordAnalytics(conn, year);
+		} catch (SQLException e) {
+			logger.severe(e.getMessage());
+		}
 		req.setAttribute("records", records);
 		
 		try {

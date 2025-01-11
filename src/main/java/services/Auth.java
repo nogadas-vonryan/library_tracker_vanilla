@@ -50,4 +50,8 @@ public class Auth {
 	public static boolean isAdmin(HttpServletRequest req) {
 		return req.getSession().getAttribute("role").equals("ADMIN");
 	}
+	
+	public static boolean isUser(HttpServletRequest req) {
+		return req.getSession().getAttribute("role").equals("USER");
+	}
 }
