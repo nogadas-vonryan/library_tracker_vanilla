@@ -14,11 +14,12 @@ public class UserRepository {
 
 	public void insert(Connection conn, User user) throws SQLException {
 		PreparedStatement stmt = conn.prepareStatement(
-				"INSERT INTO user (reference_number, first_name, last_name, password) VALUES (?, ?, ?, ?)");
+				"INSERT INTO user (reference_number, first_name, last_name, password, role) VALUES (?, ?, ?, ?, ?)");
 		stmt.setString(1, user.referenceNumber);
 		stmt.setString(2, user.firstName);
 		stmt.setString(3, user.lastName);
 		stmt.setString(4, user.password);
+		stmt.setString(5, user.role);
 		stmt.executeUpdate();
 	}
 

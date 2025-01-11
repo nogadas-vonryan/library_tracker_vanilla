@@ -2,6 +2,7 @@ package models;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.logging.Logger;
 
 import lombok.Getter;
@@ -46,7 +47,7 @@ public class BorrowingRecord {
         }
 	}
 	
-	public void save(Connection conn) {
+	public void save(Connection conn) throws SQLException {
 		BorrowingRecordRepository borrowingRecordRepository = new BorrowingRecordRepository();
 
 		if (this.id == 0) {
