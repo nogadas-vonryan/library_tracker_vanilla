@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import models.BorrowingRecord;
+import models.MonthlyRecord;
 import utils.FileLogger;
 import utils.ResultHandler;
 
@@ -86,7 +87,7 @@ public class BorrowingRecordRepository {
 		}
 	}
 
-	public ResultSet search(Connection conn, String searchTerm) {
+	public List<BorrowingRecord> search(Connection conn, String searchTerm) {
 		try {
 			PreparedStatement stmt = conn.prepareStatement("SELECT r.* "
 					    		+ "FROM borrowing_record r "
@@ -103,7 +104,8 @@ public class BorrowingRecordRepository {
 			stmt.setString(4, "%" + searchTerm + "%");
 			stmt.setString(5, "%" + searchTerm + "%");
             ResultSet rs = stmt.executeQuery();
-			return rs;
+            List<BorrowingRecord> records = ResultHandler.getResultList(conn, BorrowingRecord.class, rs);
+			return records;
 		} catch (SQLException e) {
 			logger.severe(e.getMessage());
 			return null;
@@ -147,12 +149,13 @@ public class BorrowingRecordRepository {
 		}
 	}
 	
-	public ResultSet getRecordAnalytics(Connection conn, int year) {
+	public List<MonthlyRecord> getRecordAnalytics(Connection conn, Integer year) {
 		try {
 			PreparedStatement stmt = conn.prepareStatement("SELECT DATE_FORMAT(MIN(borrow_date), '%M') AS month, COUNT(*) AS number FROM borrowing_record WHERE YEAR(borrow_date) = ? GROUP BY MONTH(borrow_date) ORDER BY MONTH(borrow_date)");
 			stmt.setInt(1, year);
 			ResultSet rs = stmt.executeQuery();
-			return rs;
+			List<MonthlyRecord> records = ResultHandler.getResultList(conn, MonthlyRecord.class, rs);
+			return records;
 		} catch (SQLException e) {
 			logger.severe(e.getMessage());
 			return null;

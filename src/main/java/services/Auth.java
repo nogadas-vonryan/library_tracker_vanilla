@@ -46,4 +46,8 @@ public class Auth {
 	public static boolean isLoggedIn(HttpServletRequest req) {
 		return req.getSession().getAttribute("referenceNumber") != null;
 	}
+	
+	public static boolean isAdmin(HttpServletRequest req) {
+		return req.getSession().getAttribute("role").equals("ADMIN");
+	}
 }

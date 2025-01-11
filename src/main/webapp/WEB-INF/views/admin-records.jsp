@@ -113,11 +113,11 @@
                     <td class="p-3"> ${record.user.lastName}, ${record.user.firstName} </td>
                     <td class="p-3"> ${record.book.title} </td>
                     <td class="p-3">
-						<c:if test="${!record.returned}">
+						<c:if test="${record.returned}">
                         <span class="text-green-900 font-medium">Returned</span>
                         </c:if>
                         
-                        <c:if test="${record.returned}">
+                        <c:if test="${!record.returned}">
                         <span class="text-red-900 font-medium">Borrowing</span>
                         </c:if>
                     </td>
@@ -130,18 +130,18 @@
 								<input type="hidden" name="recordId" value="${record.id}" />
 								<input type="hidden" name="isReturned" value="${!record.returned}" />
                         		
-                        		<c:if test="${!record.returned}">
+                        		<c:if test="${record.returned}">
                         		<button type="submit" class="bg-red-900 text-white px-4 py-1 rounded-md">Undo</button>
                         		</c:if>
                         		
-                        		<c:if test="${record.returned}">
+                        		<c:if test="${!record.returned}">
                         		<button type="submit" class="bg-green-900 text-white px-4 py-1 rounded-md">Returned</button>
                         		</c:if>
                         		
                         	</form>
                     	</div>
                         <form class="inline" method="POST" action="/admin/records/delete">
-							<input type="hidden" name="recordId" value="${record.id}" />
+							<input type="hidden" name="id" value="${record.id}" />
                         	<button type="submit" class="bg-primary text-white px-4 py-1 rounded-md">Delete</button>
                         </form>
                     </td>    

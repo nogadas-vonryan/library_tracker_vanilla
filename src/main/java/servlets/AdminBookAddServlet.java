@@ -24,7 +24,7 @@ public class AdminBookAddServlet extends BaseServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		if (!Auth.isLoggedIn(req)) {
+		if (!Auth.isLoggedIn(req) || !Auth.isAdmin(req)) {
 			try {
 				resp.sendRedirect("/login");
 				return;
@@ -37,8 +37,22 @@ public class AdminBookAddServlet extends BaseServlet {
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String fileName = FileUploader.save(req.getPart("bookCover"));
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+		if (!Auth.isLoggedIn(req) || !Auth.isAdmin(req)) {
+			try {
+				resp.sendRedirect("/login");
+				return;
+			} catch (Exception e) {
+				logger.severe(e.getMessage());
+			}
+		}
+		
+		String fileName = null;
+		try {
+			fileName = FileUploader.save(req.getPart("bookCover"));
+		} catch (Exception e) {
+			logger.severe(e.getMessage());
+		}
 
 		Book book = new Book(req.getParameter("author"), 
 							 req.getParameter("title"), 
@@ -52,7 +66,11 @@ public class AdminBookAddServlet extends BaseServlet {
 			logger.severe(e.getMessage());
 		}
 
-		resp.sendRedirect("/admin/books");
+		try {
+			resp.sendRedirect("/admin/books");
+		} catch (IOException e) {
+			logger.severe(e.getMessage());
+		}
 	}
 	
 }

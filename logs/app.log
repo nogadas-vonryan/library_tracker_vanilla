@@ -479,3 +479,89 @@ Jan 10, 2025 10:49:05 PM servlets.BaseServlet <init>
 INFO: Connected to the database
 Jan 10, 2025 10:49:06 PM services.Auth login
 INFO: User logged in: 2022-00197-TG-0, role: ADMIN
+Jan 11, 2025 4:36:40 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 11, 2025 4:39:44 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 11, 2025 5:16:40 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 11, 2025 5:16:40 PM servlets.TestServlet doGet
+INFO: TestServlet's doGet method is called
+Jan 11, 2025 5:24:34 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 11, 2025 5:24:34 PM servlets.TestServlet doGet
+INFO: TestServlet's doGet method is called
+Jan 11, 2025 5:27:58 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 11, 2025 5:28:39 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 11, 2025 5:28:39 PM servlets.TestServlet doGet
+INFO: TestServlet's doGet method is called
+Jan 11, 2025 5:28:42 PM servlets.TestServlet doGet
+INFO: TestServlet's doGet method is called
+Jan 11, 2025 5:28:54 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 11, 2025 5:28:54 PM servlets.TestServlet doGet
+INFO: TestServlet's doGet method is called
+Jan 11, 2025 5:32:26 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 11, 2025 5:34:18 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 11, 2025 5:35:14 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 11, 2025 5:35:59 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 11, 2025 5:37:31 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 11, 2025 5:48:06 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 11, 2025 5:57:58 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 11, 2025 5:58:42 PM servlets.AdminRecordDeleteServlet doPost
+SEVERE: Cannot parse null string
+Jan 11, 2025 5:59:25 PM servlets.AdminRecordDeleteServlet doPost
+SEVERE: Cannot parse null string
+Jan 11, 2025 6:17:39 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 11, 2025 6:18:11 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 11, 2025 6:18:35 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 11, 2025 6:18:54 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 11, 2025 6:22:54 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 11, 2025 6:23:36 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 11, 2025 6:26:36 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 11, 2025 6:30:25 PM servlets.AdminAnalytics doGet
+SEVERE: An exception occurred processing [/WEB-INF/views/admin-analytics.jsp] at line [81]
+
+78:         let dataset = [
+79: 	        <c:forEach var="record" items="${records}" varStatus="status">
+80: 	            {
+81: 	                id: "${record.id}",
+82: 	                name: "${record.name}",
+83: 	                value: "${record.value}"
+84: 	            }<c:if test="${!status.last}">,</c:if>
+
+
+Stacktrace:
+Jan 11, 2025 6:31:39 PM servlets.AdminAnalytics doGet
+SEVERE: An exception occurred processing [/WEB-INF/views/admin-analytics.jsp] at line [81]
+
+78:         let dataset = [
+79: 	        <c:forEach var="record" items="${records}" varStatus="status">
+80: 	            {
+81: 	                month: "${record.month}",
+82: 	                count: "${record.count}",
+83: 	            }
+84: 	        </c:forEach>
+
+
+Stacktrace:
+Jan 11, 2025 6:32:16 PM servlets.BaseServlet <init>
+INFO: Connected to the database
+Jan 11, 2025 6:40:31 PM servlets.BaseServlet <init>
+INFO: Connected to the database

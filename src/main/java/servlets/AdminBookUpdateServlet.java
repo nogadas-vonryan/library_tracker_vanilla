@@ -27,7 +27,7 @@ public class AdminBookUpdateServlet extends BaseServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
-		if (!Auth.isLoggedIn(req)) {
+		if (!Auth.isLoggedIn(req) || !Auth.isAdmin(req)) {
 			try {
 				resp.sendRedirect("/login");
 				return;
@@ -67,6 +67,15 @@ public class AdminBookUpdateServlet extends BaseServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+		if (!Auth.isLoggedIn(req) || !Auth.isAdmin(req)) {
+			try {
+				resp.sendRedirect("/login");
+				return;
+			} catch (Exception e) {
+				logger.severe(e.getMessage());
+			}
+		}
+		
 		String method = (String) req.getParameter("_method");
 		
 		if(method == null) {

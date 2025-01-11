@@ -7,6 +7,7 @@ import java.util.List;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import models.Book;
 import models.BorrowingRecord;
 import models.PasswordRequest;
 import models.User;
@@ -29,8 +30,11 @@ public class TestServlet extends BaseServlet {
 		logger.info("TestServlet's doGet method is called");
 		
 		try {
-			PasswordRequest request = passwordRequestRepository.findByUserId(conn, 2);
-			System.out.println(request.getUser().getFirstName() + request.getUser().getLastName() + request.getDateTimeCreated());
+			List<BorrowingRecord> records = borrowingRecordRepository.search(conn, "");
+			
+			for (BorrowingRecord record : records) {
+				System.out.println(record.getUser());
+			}
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

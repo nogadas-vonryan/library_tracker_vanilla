@@ -26,7 +26,7 @@ public class AdminRecordAddServlet extends BaseServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
-		if (!Auth.isLoggedIn(req)) {
+		if (!Auth.isLoggedIn(req) || !Auth.isAdmin(req)) {
 			try {
 				resp.sendRedirect("/login");
 				return;
@@ -44,6 +44,15 @@ public class AdminRecordAddServlet extends BaseServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+		if (!Auth.isLoggedIn(req) || !Auth.isAdmin(req)) {
+			try {
+				resp.sendRedirect("/login");
+				return;
+			} catch (Exception e) {
+				logger.severe(e.getMessage());
+			}
+		}
+		
 		try {
 			User user = userRepository.findByReferenceNumber(conn, req.getParameter("studentNumber"));
 			Book book = bookRepository.findByTitle(conn, req.getParameter("bookTitle"));

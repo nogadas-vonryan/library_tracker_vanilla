@@ -1,5 +1,6 @@
 package servlets;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import jakarta.servlet.annotation.WebServlet;
@@ -19,7 +20,7 @@ public class AdminRecordServlet extends BaseServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
-		if (!Auth.isLoggedIn(req)) {
+		if (!Auth.isLoggedIn(req) || !Auth.isAdmin(req)) {
 			try {
 				resp.sendRedirect("/login");
 				return;
@@ -29,7 +30,32 @@ public class AdminRecordServlet extends BaseServlet {
 		}
 		
 		try {
-			List<BorrowingRecord> records = borrowingRecordRepository.findAll(conn);
+			String search = req.getParameter("search");
+			String status = req.getParameter("status");
+			String month = req.getParameter("month");
+			String year = req.getParameter("year");
+			String sortOrder = req.getParameter("sortOrder");
+			
+			if (search == null) search = "";
+			
+			List<BorrowingRecord> records = borrowingRecordRepository.search(conn, search);
+			
+			records = records.stream()
+					.filter(record -> status == null || (status.equals("returned") && record.isReturned()) || (status.equals("borrowing") && !record.isReturned()))
+					.filter(record -> month == null || LocalDate.parse(record.getBorrowDate()).getMonthValue() == Integer.parseInt(month))
+					.filter(record -> year == null || LocalDate.parse(record.getBorrowDate()).getYear() == Integer.parseInt(year))
+					.sorted((record1, record2) -> {
+				        LocalDate date1 = LocalDate.parse(record1.getBorrowDate());
+				        LocalDate date2 = LocalDate.parse(record2.getBorrowDate());
+				        
+				        if (sortOrder != null && sortOrder.equals("asc")) {
+				            return date1.compareTo(date2);
+				        } else {
+				            return date2.compareTo(date1);
+				        }
+				    })
+					.toList();
+			
 			req.setAttribute("records", records);
 			forward(req, resp, "admin-records");
 		} catch (Exception e) {
@@ -39,6 +65,15 @@ public class AdminRecordServlet extends BaseServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+		if (!Auth.isLoggedIn(req) || !Auth.isAdmin(req)) {
+			try {
+				resp.sendRedirect("/login");
+				return;
+			} catch (Exception e) {
+				logger.severe(e.getMessage());
+			}
+		}
+		
 		String method = req.getParameter("_method");
 		
 		try {

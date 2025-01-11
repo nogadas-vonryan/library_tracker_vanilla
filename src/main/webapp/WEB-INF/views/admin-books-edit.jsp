@@ -19,13 +19,21 @@
 				<div class="text-center pt-4 text-sm">Admin Portal</div>
 			</div>
 			<hr>
-			<div class="px-4 p-1 rounded-md hover:bg-white hover:text-black">
+			<<div class="px-4 p-1 rounded-md hover:bg-white hover:text-black">
 				<span class="material-symbols-outlined translate-y-[6px]">library_books</span>
 				<a href="/admin/books" class="font-medium ml-2">Books</a>
 			</div>
 			<div class="px-4 p-1 rounded-md hover:bg-white hover:text-black">
 				<span class="material-symbols-outlined translate-y-[6px]">history</span>
 				<a href="/admin/records" class="font-medium ml-2">Records</a>
+			</div>
+			<div class="px-4 p-1 rounded-md hover:bg-white hover:text-black">
+				<span class="material-symbols-outlined translate-y-[6px]">monitoring</span>
+				<a href="/admin/analytics" class="font-medium ml-2">Analytics</a>
+			</div>
+			<div class="px-4 p-1 rounded-md hover:bg-white hover:text-black">
+				<span class="material-symbols-outlined translate-y-[6px]">key</span>
+				<a href="/admin/password-requests" class="font-medium ml-2">Password Request</a>
 			</div>
 		</div>
 		<div>

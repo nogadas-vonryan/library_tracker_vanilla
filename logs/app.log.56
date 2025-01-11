@@ -1,4 +1,0 @@
-Jan 09, 2025 1:41:02 AM repository.BorrowingRecordRepository update
-SEVERE: Data truncation: Data too long for column 'is_returned' at row 1
-Jan 10, 2025 7:12:39 PM servlets.BaseServlet <init>
-INFO: Connected to the database

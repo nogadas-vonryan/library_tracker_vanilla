@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,37 +15,42 @@
 <body class="h-screen flex flex-col lg:flex-row justify-between">
 
     <!--  Desktop Sidebar -->
-    <div class="lg:flex flex-col hidden lg:block justify-between p-3 bg-primary text-white h-svh w-[15rem]">
-        <div class="grow space-y-3">
-            <div class="mt-2">
-                <img src="../assets/open-book.png" alt="book Logo" class="w-[60px] h-[60px] m-auto">
-                <div class="text-center pt-4 text-sm">Admin Portal</div>
-            </div>
-            <hr>
-            <div class="px-4">
-                <span class="material-symbols-outlined translate-y-[6px]">library_books</span>
-                <a href="/admin/books" class="font-medium ml-2">Books</a>
-            </div>
-            <div class="px-4">
-                <span class="material-symbols-outlined translate-y-[6px]">history</span>
-                <a href="/admin/records" class="font-medium ml-2">Records</a>
-            </div>
-            <div class="px-4 p-1 rounded-md hover:bg-white hover:text-black">
+    <div
+		class="lg:flex flex-col hidden lg:block justify-between p-3 bg-primary text-white h-svh w-[15rem]">
+		<div class="grow space-y-3">
+			<div class="mt-2">
+				<img src="/assets/open-book.png" alt="book Logo"
+					class="w-[60px] h-[60px] m-auto">
+				<div class="text-center pt-4 text-sm">Admin Portal</div>
+			</div>
+			<hr>
+			<div class="px-4 p-1 rounded-md hover:bg-white hover:text-black">
+				<span class="material-symbols-outlined translate-y-[6px]">library_books</span>
+				<a href="/admin/books" class="font-medium ml-2">Books</a>
+			</div>
+			<div class="px-4 p-1 rounded-md hover:bg-white hover:text-black">
+				<span class="material-symbols-outlined translate-y-[6px]">history</span>
+				<a href="/admin/records" class="font-medium ml-2">Records</a>
+			</div>
+			<div class="px-4 p-1 rounded-md hover:bg-white hover:text-black">
 				<span class="material-symbols-outlined translate-y-[6px]">monitoring</span>
 				<a href="/admin/analytics" class="font-medium ml-2">Analytics</a>
 			</div>
-        </div>
-        <div>
-            <hr>
-            <div class="px-4 py-2">
-                <span class="material-symbols-outlined translate-y-[6px]">logout</span>
-                <form class="inline" method="POST" action="/logout">
-                    <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
-                    <button type="submit" class="inline font-medium ml-2">Logout</button>
-                </form>
-            </div>
-        </div>
-    </div>
+			<div class="px-4 p-1 rounded-md hover:bg-white hover:text-black">
+				<span class="material-symbols-outlined translate-y-[6px]">key</span>
+				<a href="/admin/password-requests" class="font-medium ml-2">Password Request</a>
+			</div>
+		</div>
+		<div>
+			<hr>
+			<div class="px-4 p-1 mt-2 rounded-md hover:bg-white hover:text-black">
+				<span class="material-symbols-outlined translate-y-[6px]">logout</span>
+				<form class="inline" method="POST" action="/logout">
+					<button type="submit" class="inline font-medium ml-2">Logout</button>
+				</form>
+			</div>
+		</div>
+	</div>
 
     <!-- Mobile Navbar -->
     <div class="p-4 bg-primary rounded-b-xl lg:hidden">
@@ -71,9 +78,16 @@
 		</a>
 	</div>
 
-    <script th:inline="javascript">
+    <script>
         const ctx = document.getElementById('ctx');
-        let dataset = /*[[${records}]]*/ [];
+        let dataset = [
+	        <c:forEach var="record" items="${records}" varStatus="status">
+	            {
+	                month: "${record.month}",
+	                count: "${record.count}",
+	            }
+	        </c:forEach>
+    	];
         
         const config = {
             type: 'line',

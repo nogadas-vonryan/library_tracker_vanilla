@@ -21,7 +21,7 @@ public class AdminBookServlet extends BaseServlet {
 	
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) {	
-		if (!Auth.isLoggedIn(req)) {
+		if (!Auth.isLoggedIn(req) || !Auth.isAdmin(req)) {
 			try {
 				resp.sendRedirect("/login");
 				return;
@@ -31,7 +31,11 @@ public class AdminBookServlet extends BaseServlet {
 		}
 		
 		try {
-			List<Book> books = bookRepository.findAll(conn);
+			String search = req.getParameter("search");
+			
+			if (search == null) search = "";
+			
+			List<Book> books = bookRepository.search(conn, search);
 			req.setAttribute("books", books);
 			forward(req, resp, "admin-books");
 		} catch (Exception e) {
@@ -41,6 +45,15 @@ public class AdminBookServlet extends BaseServlet {
 	
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) {
+		if (!Auth.isLoggedIn(req) || !Auth.isAdmin(req)) {
+			try {
+				resp.sendRedirect("/login");
+				return;
+			} catch (Exception e) {
+				logger.severe(e.getMessage());
+			}
+		}
+		
 		String method = req.getParameter("_method");
 
 		try {
