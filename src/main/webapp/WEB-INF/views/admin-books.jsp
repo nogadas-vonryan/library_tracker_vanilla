@@ -1,7 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="java.util.List" %>
-<%@ page import="services.Auth" %>
-<%@ page import="models.Book" %>
 
 <!DOCTYPE html>
 <html lang="en">

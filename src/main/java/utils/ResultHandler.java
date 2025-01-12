@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.logging.Logger;
 
 public class ResultHandler<T> {
+	public static Logger logger = FileLogger.getLogger(ResultHandler.class);
+	
 	public static <T> T getResult(Connection conn, Class<T> model, ResultSet rs) {
-		Logger logger = FileLogger.getLogger("utils.ResultHandler");
-		
 		try {
 			if (rs.next()) {
 				try {
@@ -34,7 +34,6 @@ public class ResultHandler<T> {
 	}
 	
 	public static <T> List<T> getResultList(Connection conn, Class<T> model, ResultSet rs) {
-		Logger logger = FileLogger.getLogger("utils.ResultHandler");
 		List<T> list = new ArrayList<T>();
 		
 		try {
@@ -54,7 +53,6 @@ public class ResultHandler<T> {
 			logger.severe(e.getMessage());
 		}
 		
-		System.out.println("returning null. Why?");
 		return null;
 	}
 }

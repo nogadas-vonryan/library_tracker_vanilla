@@ -10,6 +10,7 @@ import models.BorrowingRecord;
 import repository.BorrowingRecordRepository;
 import repository.UserRepository;
 import services.Auth;
+import utils.DateExpiry;
 
 @WebServlet("/admin/records")
 public class AdminRecordServlet extends BaseServlet {
@@ -41,7 +42,7 @@ public class AdminRecordServlet extends BaseServlet {
 			List<BorrowingRecord> records = borrowingRecordRepository.search(conn, search);
 			
 			records = records.stream()
-					.filter(record -> status == null || (status.equals("returned") && record.isReturned()) || (status.equals("borrowing") && !record.isReturned()))
+					.filter(record -> status == null || (status.equals("returned") && record.isReturned()) || (status.equals("borrowing") && !record.isReturned()) || status.equals("expired") && DateExpiry.isExpired(record.getReturnDate()))                              
 					.filter(record -> month == null || LocalDate.parse(record.getBorrowDate()).getMonthValue() == Integer.parseInt(month))
 					.filter(record -> year == null || LocalDate.parse(record.getBorrowDate()).getYear() == Integer.parseInt(year))
 					.sorted((record1, record2) -> {

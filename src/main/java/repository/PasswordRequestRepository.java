@@ -12,8 +12,6 @@ import utils.FileLogger;
 import utils.ResultHandler;
 
 public class PasswordRequestRepository {
-	public Logger logger = FileLogger.getLogger(this.getClass().getName());
-
 	public void insert(Connection conn, PasswordRequest request) throws SQLException {
 		PreparedStatement stmt = conn
 				.prepareStatement("INSERT INTO password_request (user_id) VALUES (?)");

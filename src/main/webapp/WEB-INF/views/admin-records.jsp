@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="utils.DateExpiry" %>
 
 <!DOCTYPE html>
 <html>
@@ -82,6 +83,7 @@
 				<option value="" disabled selected>Status</option>
 				<option value="borrowing">Borrowing</option>
 				<option value="returned">Returned</option>
+				<option value="expired">Expired</option>
 			</select>
 			<input onchange="updateDateSorting(this.value)" class="ml-2 bg-gray-200 rounded-md" type="month" />
 			<a href="/admin/records" class="ml-2 bg-gray-300 text-gray-800 px-4 py-1 rounded-md">Clear Filters</a>
@@ -108,7 +110,7 @@
 		    	</c:if>
 		    	
                 <c:forEach var="record"  items="${records}">
-                <tr class="bg-white shadow-md">
+                <tr class="${DateExpiry.isExpired(record.returnDate) ? 'bg-red-200' : 'bg-white'} shadow-md">
                 	<td class="p-3"> ${record.user.referenceNumber} </td>
                     <td class="p-3"> ${record.user.lastName}, ${record.user.firstName} </td>
                     <td class="p-3"> ${record.book.title} </td>

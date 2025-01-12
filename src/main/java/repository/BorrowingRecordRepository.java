@@ -13,9 +13,6 @@ import utils.FileLogger;
 import utils.ResultHandler;
 
 public class BorrowingRecordRepository {
-
-	public Logger logger = FileLogger.getLogger(this.getClass().getName());
-
 	public void insert(Connection conn, BorrowingRecord record) throws SQLException {
 		PreparedStatement stmt = conn.prepareStatement(
 				"INSERT INTO borrowing_record (user_id, book_id, borrow_date, return_date, is_returned) VALUES (?, ?, ?, ?, ?)");

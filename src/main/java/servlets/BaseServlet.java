@@ -16,12 +16,10 @@ import utils.FileLogger;
 public class BaseServlet extends HttpServlet {
 	private static final long serialVersionUID = 4L;
 	
-	public Logger logger;
+	public Logger logger = FileLogger.getLogger(BaseServlet.class);
 	public Connection conn;
 	
 	public BaseServlet() {
-		logger = FileLogger.getLogger(getClass().getName());
-		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (Exception e) {
