@@ -29,6 +29,25 @@ public class RecordService {
 		return isExpired;
 	}
 	
+	public static boolean isExpired(BorrowingRecord record) {
+		Logger logger = FileLogger.getLogger(RecordService.class);
+		boolean isExpired = false;
+		
+		try {
+			Date returnDate = new SimpleDateFormat("yyyy-MM-dd").parse(record.returnDate);
+			Date currentDate = new Date();
+			
+			if (!record.isReturned() && currentDate.after(returnDate)) {
+				isExpired = true;
+			}
+			
+		} catch (ParseException e) {
+			logger.severe(e.getMessage());
+		}
+		
+		return isExpired;
+	}
+	
 	public static long borrowCount(List<BorrowingRecord> records) {
 		return records.size();
 	}
@@ -38,6 +57,6 @@ public class RecordService {
 	}
 	
 	public static long expiredCount(List<BorrowingRecord> records) {
-		return records.stream().filter(record -> RecordService.isExpired(record.getReturnDate())).count();
+		return records.stream().filter(record -> RecordService.isExpired(record)).count();
 	}
 }

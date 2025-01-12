@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import models.User;
 import repository.UserRepository;
+import services.Auth;
 
 @WebServlet("/register")
 public class RegisterServlet extends BaseServlet {
@@ -18,6 +19,19 @@ public class RegisterServlet extends BaseServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
+		if (Auth.isLoggedIn(req)) {
+			try {
+				if (Auth.isAdmin(req)) {
+					resp.sendRedirect("admin/books");
+				} else {
+					resp.sendRedirect("user/books");
+				}
+				return;
+			} catch (Exception e) {
+				logger.severe(e.getMessage());
+			}
+		}
+		
 		try {
 			forward(req, resp, "register");
 		} catch (Exception e) {

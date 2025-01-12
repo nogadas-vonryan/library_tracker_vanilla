@@ -31,7 +31,6 @@ public class BaseServlet extends HttpServlet {
 		    		"jdbc:mysql://localhost/" + Config.SCHEMA +
 		    		"?user=" + Config.USER + 
 		    		"&password=" + Config.PASSWORD);
-		    logger.info("Connected to the database");
 		} catch (SQLException e) {
 		    logger.severe("SQLException: " + e.getMessage());
 		    logger.severe("SQLState: " + e.getSQLState());

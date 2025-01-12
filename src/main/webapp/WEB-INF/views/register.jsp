@@ -40,9 +40,6 @@
                     <div class="text-stone-700">Confirm Password</div>
                     <input class="p-1 rounded-md border w-full" type="password" name="confirmPassword" placeholder="Enter your password..." required>
                 </div>
-                <div class="block -translate-y-2">
-                	<a href="#" class="text-stone-400 text-sm pl-2">Forgot your password?</a>
-                </div>
             </div>
 
             <div class="w-full flex justify-end">
@@ -52,7 +49,7 @@
         </form>
 
         <div class="pt-4 text-center">
-            <div class="text-stone-700">Already have an account? <a href="./login.html" class="font-bold">Login now!</a></div>
+            <div class="text-stone-700">Already have an account? <a href="/login" class="font-bold">Login now!</a></div>
         </div>
     </div>
 </body>

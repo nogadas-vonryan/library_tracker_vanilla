@@ -24,14 +24,14 @@
 				<div class="text-center pt-4 text-sm">User Portal</div>
 			</div>
 			<hr>
-			<div class="px-4 p-1 rounded-md hover:bg-white hover:text-black">
+			<a href="/user/books" class="block px-4 p-1 rounded-md hover:bg-white hover:text-black">
 				<span class="material-symbols-outlined translate-y-[6px]">library_books</span>
-				<a href="/user/books" class="font-medium ml-2">Books</a>
-			</div>
-			<div class="px-4 p-1 rounded-md hover:bg-white hover:text-black">
-				<span class="material-symbols-outlined translate-y-[6px]">history</span>
-				<a href="/user/records" class="font-medium ml-2">Records</a>
-			</div>
+				<span class="inline p-2 font-medium">Books</span>
+			</a>	
+			<a href="/user/records" class="block px-4 p-1 rounded-md hover:bg-white hover:text-black">
+				<span class="material-symbols-outlined translate-y-[6px]">monitoring</span>
+				<span class="inline p-2 font-medium">Records</span>
+			</a>	
 		</div>
 		<div>
 			<hr>
@@ -88,7 +88,7 @@
 		    	</c:if>
 		    	
                 <c:forEach var="record"  items="${records}">
-                    <tr class="${DateExpiry.isExpired(record.returnDate) ? 'bg-red-200' : 'bg-white'} shadow-md">
+                    <tr class="${RecordService.isExpired(record) ? 'bg-red-200' : 'bg-white'} shadow-md">
                     <td class="p-3"> ${record.book.title} </td>
                     <td class="p-3">
 						<c:if test="${record.returned}">

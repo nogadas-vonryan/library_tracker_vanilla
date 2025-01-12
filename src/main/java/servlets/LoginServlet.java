@@ -17,6 +17,19 @@ public class LoginServlet extends BaseServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
+		if (Auth.isLoggedIn(req)) {
+			try {
+				if (Auth.isAdmin(req)) {
+					resp.sendRedirect("admin/books");
+				} else {
+					resp.sendRedirect("user/books");
+				}
+				return;
+			} catch (Exception e) {
+				logger.severe(e.getMessage());
+			}
+		}
+		
 		try {
 			forward(req, resp, "login");
 		} catch (Exception e) {
