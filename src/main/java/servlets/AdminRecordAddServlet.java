@@ -15,6 +15,7 @@ import repository.BookRepository;
 import repository.BorrowingRecordRepository;
 import repository.UserRepository;
 import services.Auth;
+import services.RecordService;
 
 @WebServlet("/admin/records/add")
 public class AdminRecordAddServlet extends BaseServlet {
@@ -36,6 +37,7 @@ public class AdminRecordAddServlet extends BaseServlet {
 		}
 		
 		try {
+			req.setAttribute("error", req.getParameter("error"));
 			forward(req, resp, "admin-records-add");
 		} catch (Exception e) {
             logger.severe(e.getMessage());
@@ -56,8 +58,14 @@ public class AdminRecordAddServlet extends BaseServlet {
 		try {
 			User user = userRepository.findByReferenceNumber(conn, req.getParameter("studentNumber"));
 			Book book = bookRepository.findByTitle(conn, req.getParameter("bookTitle"));
+			String returnDate = req.getParameter("returnDate");
+
+			if(RecordService.isExpired(returnDate)) {
+                resp.sendRedirect("/admin/records/add?error=ExpiredReturnDate");
+                return;
+			}
 			
-			BorrowingRecord record = new BorrowingRecord(user, book, LocalDate.now().toString(), req.getParameter("returnDate"));
+			BorrowingRecord record = new BorrowingRecord(user, book, LocalDate.now().toString(), returnDate);
 			record.save(conn);
 			
 			resp.sendRedirect("/admin/records");

@@ -1,7 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="services.RecordService" %>
 
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -37,7 +38,6 @@
 			<div class="px-4 p-1 mt-2 rounded-md hover:bg-white hover:text-black">
 				<span class="material-symbols-outlined translate-y-[6px]">logout</span>
 				<form class="inline" method="POST" action="/logout">
-					<input type="hidden" name="_csrf" th:value="${_csrf.token}" />
 					<button type="submit" class="inline font-medium ml-2">Logout</button>
 				</form>
 			</div>
@@ -88,7 +88,7 @@
 		    	</c:if>
 		    	
                 <c:forEach var="record"  items="${records}">
-                <tr class="bg-white shadow-md">
+                    <tr class="${DateExpiry.isExpired(record.returnDate) ? 'bg-red-200' : 'bg-white'} shadow-md">
                     <td class="p-3"> ${record.book.title} </td>
                     <td class="p-3">
 						<c:if test="${record.returned}">

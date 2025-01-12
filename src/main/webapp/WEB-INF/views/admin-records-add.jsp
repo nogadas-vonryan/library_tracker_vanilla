@@ -1,5 +1,7 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -66,6 +68,9 @@
                 class="bg-white shadow-md p-6 rounded-lg space-y-4 w-2/3 mx-auto">
                 <div class="text-xl font-semibold text-gray-700"> Add a new record</div>
                 <hr>
+                <c:if test="${error == 'ExpiredReturnDate'}">
+				<div class="text-red-900 bg-red-200 p-2 rounded-lg">Return Date is already past the current date</div>
+			    </c:if>
                 <div class="flex flex-col pt-2">
                     <label>Student Number</label>
                     <input class="border rounded-md p-1" name="studentNumber" placeholder="Add the student number" required>

@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="utils.DateExpiry" %>
+<%@ page import="services.RecordService" %>
 
 <!DOCTYPE html>
 <html>
