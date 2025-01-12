@@ -20,7 +20,7 @@ public class PasswordRequestRepository {
 	}
 	
 	public void delete(Connection conn, int id) throws SQLException {
-		PreparedStatement stmt = conn.prepareStatement("DELETE FROM password_request WHERE id = ?");
+		PreparedStatement stmt = conn.prepareStatement("DELETE FROM password_request WHERE user_id = ?");
 		stmt.setInt(1, id);
 		stmt.executeUpdate();
 	}

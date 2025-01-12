@@ -20,7 +20,8 @@
             </div>
 
             <div class="w-full flex justify-end">
-                <button type="submit" class="bg-primary font-semibold text-white p-2 rounded-2xl w-24 mt-4">Request</button>
+                <input type="hidden" name="_method" value="POST" />
+                <button type="submit" class="bg-primary font-semibold text-white p-2 rounded-lg w-24 mt-4">Request</button>
             </div>
         </div>
         </form>

@@ -52,16 +52,45 @@ public class PasswordRequestServlet extends BaseServlet {
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) {		
+		String method = req.getParameter("_method");
+		
+		try {
+			if (Auth.isLoggedIn(req) && method.equals("DELETE")) {
+				delete(req, resp);
+				resp.sendRedirect("/admin/password-requests?success=RequestDeleted");
+			} else if(method.equals("POST")) {
+				insert(req, resp);
+				resp.sendRedirect("/admin/password-requests?success=RequestCreated");
+			} else {
+				resp.sendRedirect("/login");
+			}
+		} catch (Exception e) {
+			logger.severe(e.getMessage());
+		}
+	}
+
+	private void insert(HttpServletRequest req, HttpServletResponse resp) {
 		String referenceNumber = req.getParameter("referenceNumber");
 		User user;
 		try {
 			user = userRepository.findByReferenceNumber(conn, referenceNumber);
 			PasswordRequest request = new PasswordRequest(user);
-		} catch (SQLException e) {
+			request.save(conn);
+			
+			resp.sendRedirect("/login?success=PasswordRequestSent");
+		} catch (Exception e) {
 			logger.severe(e.getMessage());
 		}
-		
 	}
 	
+	private void delete(HttpServletRequest req, HttpServletResponse resp) {
+		String id = req.getParameter("id");
+		try {
+			passwordRequestRepository.delete(conn, Integer.parseInt(id));
+			resp.sendRedirect("/admin/password-requests?success=RequestDeleted");
+		} catch (Exception e) {
+			logger.severe(e.getMessage());
+		}
+	}
 }

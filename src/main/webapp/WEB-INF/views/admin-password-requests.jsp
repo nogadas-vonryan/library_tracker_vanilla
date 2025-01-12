@@ -85,6 +85,10 @@
 			<a href="/admin/records" class="ml-2 bg-gray-300 text-gray-800 px-4 py-1 rounded-md">Clear Filters</a>
 		</div>
 
+		 <c:if test="${param.success == 'PasswordChanged'}">
+        	<div class="text-green-900 bg-green-200 p-2 rounded-lg mb-2">Password Changed Successfully</div>
+        </c:if>
+
         <table class="w-full text-center border-separate border-spacing-y-2">
             <thead>
                 <tr class="bg-white text-primary shadow-md">
@@ -98,7 +102,7 @@
             	
 		    	<c:if test="${empty requests}">
 		    	<tr class="bg-white shadow-md">
-		            <td colspan="7" class="p-3 text-center font-medium">No record found</td>
+		            <td colspan="7" class="p-3 text-center font-medium">No request found</td>
 		        </tr>
 		    	</c:if>
 		    	
@@ -111,9 +115,9 @@
                     	<div class="inline">
                     		<a href="/admin/password-requests/${request.user.id}" class="bg-primary text-white px-4 py-2 rounded-md">Change</a>
                     	</div>
-                        <form class="inline" method="POST" action="/admin/password-requests/delete">
+                        <form class="inline" method="POST" action="/admin/password-requests">
                         	<input type="hidden" name="_method" value="DELETE" />
-							<input type="hidden" name="recordId" value="${request.user.id}" />
+							<input type="hidden" name="id" value="${request.user.id}" />
                         	<button type="submit" class="bg-primary text-white px-4 py-1 rounded-md">Delete</button>
                         </form>
                     </td>    

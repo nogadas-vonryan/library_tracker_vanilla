@@ -82,12 +82,11 @@ public class PasswordChangeServlet extends BaseServlet {
 			user.setPassword(newPassword);
 			user.save(conn);
 			
+			passwordRequestRepository.delete(conn, user.id);
+
         	resp.sendRedirect("/admin/password-requests?success=PasswordChanged");
         } catch (Exception e) {
         	logger.severe(e.getMessage());
         }
-        
-       
-       
 	}
 }

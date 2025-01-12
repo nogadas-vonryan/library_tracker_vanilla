@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +17,19 @@
 
     <div class="p-4 pt-16 lg:w-1/3 m-auto">
         <div class="text-stone-700 text-2xl font-semibold mb-4">Login</div>
+        
+        <c:if test="${param.error == 'InvalidCredentials'}">
+        	<div class="text-red-900 bg-red-200 p-2 rounded-lg mb-2">Incorrect reference number or password</div>
+        </c:if>
+        
+        <c:if test="${param.error == 'InvalidRole'}">
+        	<div class="text-red-900 bg-red-200 p-2 rounded-lg mb-2">No Role found</div>
+        </c:if>
+        
+        <c:if test="${param.success == 'PasswordRequestSent'}">
+        	<div class="text-green-900 bg-green-200 p-2 rounded-lg mb-2">Change Password Request Sent</div>
+        </c:if>
+        
         <form method="POST" action="login">
         <div class="flex flex-col items-center">
             <div class="w-full space-y-4">
@@ -25,12 +40,12 @@
                 <div class="w-full mb-4">
                     <div class="text-stone-700">Password</div>
                     <input class="p-1 rounded-md border w-full" name="password" type="password" placeholder="Enter your password...">
-                    <a href="#" class="text-stone-400 text-sm pl-2">Forgot your password?</a>
+                    <a href="/change-password-request.jsp" class="text-stone-400 text-sm pl-2">Forgot your password?</a>
                 </div>
             </div>
 
             <div class="w-full flex justify-end">
-                <button type="submit" class="bg-primary font-semibold text-white p-2 rounded-2xl w-24 mt-4">Login</button>
+                <button type="submit" class="bg-primary font-semibold text-white p-2 rounded-lg w-24 mt-4">Login</button>
             </div>
         </div>
         </form>
