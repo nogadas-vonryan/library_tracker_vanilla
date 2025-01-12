@@ -73,7 +73,7 @@ public class AdminRecordAddServlet extends BaseServlet {
 			logger.severe(e.getMessage());
 			
 			try {
-				resp.sendRedirect("/admin/records/add?error=RecordNotAdded");
+				resp.sendRedirect("/admin/records/add?error=StudentOrBookNotFound");
 			} catch (IOException e1) {
 				logger.severe(e1.getMessage());
 			}

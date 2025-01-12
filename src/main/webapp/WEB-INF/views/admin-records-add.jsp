@@ -64,6 +64,9 @@
     <!-- Content -->
     <div class="grow">
         <div class="grow bg-gray-100 h-full p-12">
+		<c:if test="${param.error == 'StudentOrBookNotFound'}">
+        	<div class="text-red-900 bg-red-200 p-2 rounded-lg mb-2">The entered Student or Book was not found</div>
+        </c:if>
             <form method="POST" action="/admin/records/add"
                 class="bg-white shadow-md p-6 rounded-lg space-y-4 w-2/3 mx-auto">
                 <div class="text-xl font-semibold text-gray-700"> Add a new record</div>
