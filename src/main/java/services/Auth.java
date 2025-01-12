@@ -20,7 +20,7 @@ public class Auth {
 			HttpSession session = req.getSession();
 			session.setAttribute("referenceNumber", referenceNumber);
 			session.setAttribute("role", user.role);
-			baseServlet.logger.info("User logged in: " + referenceNumber + ", role: " + user.role);
+			baseServlet.logger.info("User logged in: " + referenceNumber + ", role: " + user.role + ", ip: " + req.getRemoteAddr());
 			return true;
 		} 
 		
