@@ -220,3 +220,23 @@ Jan 13, 2025 10:01:39 PM utils.LoggerManager logAccess
 INFO: User: 29, Accessed URL: /admin/records/add, HTTP Method: POST, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
 Jan 13, 2025 10:01:39 PM utils.LoggerManager logAccess
 INFO: User: 29, Accessed URL: /admin/records/add, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 11:54:41 PM services.Auth login
+INFO: User: 29 Logged In, IPaddress:0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 11:54:41 PM utils.LoggerManager logAccess
+INFO: User: 29, Accessed URL: /admin/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 11:54:46 PM utils.LoggerManager logAccess
+INFO: User: 29, Accessed URL: /admin/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 11:54:53 PM utils.LoggerManager logAccess
+INFO: User: 29, Accessed URL: /admin/books/add, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 11:55:59 PM utils.LoggerManager logAccess
+INFO: User: 29, Accessed URL: /admin/password-requests, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 11:56:00 PM utils.LoggerManager logAccess
+INFO: User: 29, Accessed URL: /admin/analytics, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 11:56:00 PM utils.LoggerManager logAccess
+INFO: User: 29, Accessed URL: /admin/records, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 11:56:01 PM utils.LoggerManager logAccess
+INFO: User: 29, Accessed URL: /admin/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 11:56:04 PM utils.LoggerManager logAccess
+INFO: User: 29, Accessed URL: /admin/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 11:56:15 PM utils.LoggerManager logAccess
+INFO: User: 29, Accessed URL: /logout, HTTP Method: POST, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
