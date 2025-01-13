@@ -83,8 +83,8 @@
 				
 				
 				<c:if test="${not empty book.imageUrl}">
-				<a href="/admin/books/${book.id}" class="h-full">
-					<img src="/uploads/${book.imageUrl}" class="h-full">
+				<a href="/admin/books/${book.id}" class="w-full h-full">
+					<img src="/uploads/${book.imageUrl}" class="w-full h-full">
 				</a>
 				</c:if>
 				
