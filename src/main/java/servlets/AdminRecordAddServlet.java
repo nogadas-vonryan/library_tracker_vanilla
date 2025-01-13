@@ -3,6 +3,7 @@ package servlets;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.logging.Level;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -16,6 +17,7 @@ import repository.BorrowingRecordRepository;
 import repository.UserRepository;
 import services.Auth;
 import services.RecordService;
+import utils.LoggerManager;
 
 @WebServlet("/admin/records/add")
 public class AdminRecordAddServlet extends BaseServlet {
@@ -27,12 +29,14 @@ public class AdminRecordAddServlet extends BaseServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
+		LoggerManager.logAccess(req, "/admin/records/add", "GET");
+		
 		if (!Auth.isLoggedIn(req) || !Auth.isAdmin(req)) {
 			try {
 				resp.sendRedirect("/login");
 				return;
 			} catch (Exception e) {
-				logger.severe(e.getMessage());
+				LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 			}
 		}
 		
@@ -40,18 +44,20 @@ public class AdminRecordAddServlet extends BaseServlet {
 			req.setAttribute("error", req.getParameter("error"));
 			forward(req, resp, "admin-records-add");
 		} catch (Exception e) {
-            logger.severe(e.getMessage());
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 		}
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+		LoggerManager.logAccess(req, "/admin/records/add", "POST");
+		
 		if (!Auth.isLoggedIn(req) || !Auth.isAdmin(req)) {
 			try {
 				resp.sendRedirect("/login");
 				return;
 			} catch (Exception e) {
-				logger.severe(e.getMessage());
+				LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 			}
 		}
 		
@@ -68,14 +74,16 @@ public class AdminRecordAddServlet extends BaseServlet {
 			BorrowingRecord record = new BorrowingRecord(user, book, LocalDate.now().toString(), returnDate);
 			record.save(conn);
 			
+			LoggerManager.logTransaction(req, "Add Record ID");
+			
 			resp.sendRedirect("/admin/records");
 		} catch (Exception e) {
-			logger.severe(e.getMessage());
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 			
 			try {
 				resp.sendRedirect("/admin/records/add?error=StudentOrBookNotFound");
 			} catch (IOException e1) {
-				logger.severe(e1.getMessage());
+				LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 			}
 		}
 	}

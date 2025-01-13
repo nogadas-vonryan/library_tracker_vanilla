@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import configs.Config;
@@ -11,19 +12,18 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import utils.FileLogger;
+import utils.LoggerManager;
 
 public class BaseServlet extends HttpServlet {
 	private static final long serialVersionUID = 4L;
 	
-	public Logger logger = FileLogger.getLogger(BaseServlet.class);
 	public Connection conn;
 	
 	public BaseServlet() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (Exception e) {
-			logger.severe(e.getMessage());
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 		}
 		
 		try {
@@ -33,9 +33,7 @@ public class BaseServlet extends HttpServlet {
 		    		"&password=" + Config.PASSWORD);
 		    conn.setAutoCommit(true);
 		} catch (SQLException e) {
-		    logger.severe("SQLException: " + e.getMessage());
-		    logger.severe("SQLState: " + e.getSQLState());
-		    logger.severe("VendorError: " + e.getErrorCode());
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 		}
 	}
 	

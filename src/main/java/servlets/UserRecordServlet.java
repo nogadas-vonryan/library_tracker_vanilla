@@ -3,6 +3,7 @@ package servlets;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.logging.Level;
 
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,6 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import models.BorrowingRecord;
 import repository.BorrowingRecordRepository;
 import services.Auth;
+import utils.LoggerManager;
 
 @WebServlet("/user/records")
 public class UserRecordServlet extends BaseServlet {
@@ -19,12 +21,14 @@ public class UserRecordServlet extends BaseServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
+		LoggerManager.logAccess(req, "/user/records", "GET");
+		
 		if (!Auth.isLoggedIn(req) || !Auth.isUser(req)) {
 			try {
 				resp.sendRedirect("/login");
 				return;
 			} catch (IOException e) {
-				logger.severe(e.getMessage());
+				LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 			}
 		}
 		
@@ -58,7 +62,7 @@ public class UserRecordServlet extends BaseServlet {
 			req.setAttribute("records", records);
 			forward(req, resp, "user-records");
 		} catch (Exception e) {
-			logger.severe(e.getMessage());
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 		}
 	}
 }

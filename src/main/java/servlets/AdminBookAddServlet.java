@@ -3,6 +3,7 @@ package servlets;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.logging.Level;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -12,6 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import models.Book;
 import services.Auth;
 import utils.FileUploader;
+import utils.LoggerManager;
 
 @MultipartConfig(
     fileSizeThreshold = 1024 * 1024 * 2, // 2MB 
@@ -25,12 +27,14 @@ public class AdminBookAddServlet extends BaseServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		LoggerManager.logAccess(req, "/admin/books/add", "GET");
+		
 		if (!Auth.isLoggedIn(req) || !Auth.isAdmin(req)) {
 			try {
 				resp.sendRedirect("/login");
 				return;
 			} catch (Exception e) {
-				logger.severe(e.getMessage());
+				LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 			}
 		}
 
@@ -39,12 +43,14 @@ public class AdminBookAddServlet extends BaseServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+		LoggerManager.logAccess(req, "/admin/books/add", "POST");
+		
 		if (!Auth.isLoggedIn(req) || !Auth.isAdmin(req)) {
 			try {
 				resp.sendRedirect("/login");
 				return;
 			} catch (Exception e) {
-				logger.severe(e.getMessage());
+				LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 			}
 		}
 		
@@ -53,7 +59,7 @@ public class AdminBookAddServlet extends BaseServlet {
 		try {
 			fileName = FileUploader.save(req.getPart("bookCover"));
 		} catch (Exception e) {
-			logger.severe(e.getMessage());
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 		}
 
 		Book book = new Book(req.getParameter("author"), 
@@ -65,19 +71,20 @@ public class AdminBookAddServlet extends BaseServlet {
 		try {
 			book.save(conn);
 			conn.commit();
+			LoggerManager.logTransaction(req, "Add Book ID");
 		} catch (SQLException e) {
-			logger.severe(e.getMessage());
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 			try {
 				conn.rollback();
 			} catch (SQLException e1) {
-				logger.severe(e1.getMessage());
+				LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 			}
 		}
 
 		try {
 			resp.sendRedirect("/admin/books");
 		} catch (IOException e) {
-			logger.severe(e.getMessage());
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 		}
 	}
 	

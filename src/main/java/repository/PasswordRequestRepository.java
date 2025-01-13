@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import models.PasswordRequest;
-import utils.FileLogger;
+import utils.LoggerManager;
 import utils.ResultHandler;
 
 public class PasswordRequestRepository {

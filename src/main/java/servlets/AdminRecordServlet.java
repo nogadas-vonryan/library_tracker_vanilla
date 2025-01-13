@@ -2,6 +2,7 @@ package servlets;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.logging.Level;
 
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import repository.BorrowingRecordRepository;
 import repository.UserRepository;
 import services.Auth;
 import services.RecordService;
+import utils.LoggerManager;
 
 @WebServlet("/admin/records")
 public class AdminRecordServlet extends BaseServlet {
@@ -21,12 +23,14 @@ public class AdminRecordServlet extends BaseServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
+		LoggerManager.logAccess(req, "/admin/records", "GET");
+		
 		if (!Auth.isLoggedIn(req) || !Auth.isAdmin(req)) {
 			try {
 				resp.sendRedirect("/login");
 				return;
 			} catch (Exception e) {
-				logger.severe(e.getMessage());
+				LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 			}
 		}
 		
@@ -60,7 +64,7 @@ public class AdminRecordServlet extends BaseServlet {
 			req.setAttribute("records", records);
 			forward(req, resp, "admin-records");
 		} catch (Exception e) {
-			logger.severe(e.getMessage());
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 		}
 	}
 
@@ -71,7 +75,7 @@ public class AdminRecordServlet extends BaseServlet {
 				resp.sendRedirect("/login");
 				return;
 			} catch (Exception e) {
-				logger.severe(e.getMessage());
+				LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 			}
 		}
 		
@@ -80,15 +84,25 @@ public class AdminRecordServlet extends BaseServlet {
 		try {
 			switch(method) {					
 				case "PUT":
+					LoggerManager.logAccess(req, "/admin/records", "PUT");
+					
 					BorrowingRecord record = borrowingRecordRepository.findById(conn, Integer.parseInt(req.getParameter("recordId")));
 					record.setReturned(req.getParameter("isReturned").equals("true") ? true : false);
 					record.save(conn);
+					
+					LoggerManager.logTransaction(req, "Update Record ID: " + record.getId());
+					
 					resp.sendRedirect("/admin/records?success=RecordUpdated");
 					break;
 			
 			    case "DELETE":
+			    	LoggerManager.logAccess(req, "/admin/records", "DELETE");
+			    	
 	                int id = Integer.parseInt(req.getParameter("id"));
 	                borrowingRecordRepository.delete(conn, id);
+	                
+	                LoggerManager.logTransaction(req, "Delete Record ID: " + id);
+	                
 	                resp.sendRedirect("/admin/records?success=RecordDeleted");
 	                break;
 	            default:
@@ -96,9 +110,7 @@ public class AdminRecordServlet extends BaseServlet {
 	                break;
 			}
 		} catch (Exception e) {
-			logger.severe(e.getMessage());
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 		}
-	}
-
-	
+	}	
 }

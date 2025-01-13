@@ -5,6 +5,7 @@ import java.lang.ProcessBuilder.Redirect;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.util.logging.Level;
 
 import configs.Config;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -16,6 +17,7 @@ import models.Book;
 import repository.BookRepository;
 import services.Auth;
 import utils.FileUploader;
+import utils.LoggerManager;
 
 @MultipartConfig(
     fileSizeThreshold = 1024 * 1024 * 2, // 2MB 
@@ -30,6 +32,8 @@ public class AdminBookUpdateServlet extends BaseServlet {
     
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
+    	LoggerManager.logAccess(req, "/admin/books/*", "GET");
+    	
         if (!Auth.isLoggedIn(req) || !Auth.isAdmin(req)) {
             redirectToLogin(resp);
             return;
@@ -69,9 +73,11 @@ public class AdminBookUpdateServlet extends BaseServlet {
         
         switch (method) {
             case "PUT":
+            	LoggerManager.logAccess(req, "/admin/books/*", "PUT");
                 handlePut(req, resp);
                 break;
             case "DELETE":
+            	LoggerManager.logAccess(req, "/admin/books/*", "DELETE");
                 handleDelete(req, resp);
                 break;
             default:
@@ -106,6 +112,8 @@ public class AdminBookUpdateServlet extends BaseServlet {
         book.setCategory(getParameterOrDefault(req, "category", book.getCategory()));
         book.setImageUrl(fileName.isEmpty() ? book.getImageUrl() : fileName);
         book.save(conn);
+        
+        LoggerManager.logTransaction(req, "Update Book ID: " + book.getId());
 
         resp.sendRedirect("/admin/books");
     }
@@ -119,6 +127,9 @@ public class AdminBookUpdateServlet extends BaseServlet {
         }
         
         bookRepository.delete(conn, book.getId());
+        
+        LoggerManager.logTransaction(req, "Delete Book ID: " + book.getId());
+        
         resp.sendRedirect("/admin/books");
     }
 
@@ -131,7 +142,7 @@ public class AdminBookUpdateServlet extends BaseServlet {
         try {
             resp.sendRedirect("/login");
         } catch (IOException e) {
-            logger.severe("Error redirecting to login: " + e.getMessage());
+        	LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
         }
     }
 
@@ -139,16 +150,17 @@ public class AdminBookUpdateServlet extends BaseServlet {
         try {
             resp.sendRedirect("/admin/books");
         } catch (IOException e) {
-            logger.severe("Error redirecting to books page: " + e.getMessage());
+        	LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
         }
     }
 
     private void logAndRedirectError(Exception e, HttpServletResponse resp, String redirectUrl) {
-        logger.severe("Error: " + e.getMessage());
+    	LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
+    	
         try {
             resp.sendRedirect(redirectUrl);
         } catch (IOException ioException) {
-            logger.severe("Error redirecting: " + ioException.getMessage());
+        	LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
         }
     }
 }

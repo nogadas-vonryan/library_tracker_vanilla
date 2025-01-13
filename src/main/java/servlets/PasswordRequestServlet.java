@@ -3,6 +3,7 @@ package servlets;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,6 +14,7 @@ import models.User;
 import repository.PasswordRequestRepository;
 import repository.UserRepository;
 import services.Auth;
+import utils.LoggerManager;
 
 @WebServlet("/admin/password-requests")
 public class PasswordRequestServlet extends BaseServlet {
@@ -24,12 +26,14 @@ public class PasswordRequestServlet extends BaseServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
+		LoggerManager.logAccess(req, "/admin/password-requests", "GET");
+		
 		if (!Auth.isLoggedIn(req)) {
 			try {
 				resp.sendRedirect("/login");
 				return;
 			} catch (Exception e) {
-				logger.severe(e.getMessage());
+				LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 			}
 		}
 		
@@ -42,12 +46,8 @@ public class PasswordRequestServlet extends BaseServlet {
 			
 			req.setAttribute("requests", requests);
 			forward(req, resp, "admin-password-requests");
-		} catch (SQLException e) {
-			logger.severe(e.getMessage());
-		} catch (ServletException e) {
-			logger.severe(e.getMessage());
-		} catch (IOException e) {
-			logger.severe(e.getMessage());
+		} catch (Exception e) {
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 		}
 	}
 
@@ -66,7 +66,7 @@ public class PasswordRequestServlet extends BaseServlet {
 				resp.sendRedirect("/login");
 			}
 		} catch (Exception e) {
-			logger.severe(e.getMessage());
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 		}
 	}
 
@@ -78,9 +78,11 @@ public class PasswordRequestServlet extends BaseServlet {
 			PasswordRequest request = new PasswordRequest(user);
 			request.save(conn);
 			
+			LoggerManager.logTransaction(req, "Add Password Request ID");
+			
 			resp.sendRedirect("/login?success=PasswordRequestSent");
 		} catch (Exception e) {
-			logger.severe(e.getMessage());
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 		}
 	}
 	
@@ -88,9 +90,12 @@ public class PasswordRequestServlet extends BaseServlet {
 		String id = req.getParameter("id");
 		try {
 			passwordRequestRepository.delete(conn, Integer.parseInt(id));
+			
+			LoggerManager.logTransaction(req, "Delete Password Request ID: " + id);
+			
 			resp.sendRedirect("/admin/password-requests?success=RequestDeleted");
 		} catch (Exception e) {
-			logger.severe(e.getMessage());
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 		}
 	}
 }

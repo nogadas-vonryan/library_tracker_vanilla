@@ -2,12 +2,14 @@ package servlets;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.logging.Level;
 
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import services.Auth;
+import utils.LoggerManager;
 
 @WebServlet("/login")
 public class LoginServlet extends BaseServlet {
@@ -26,14 +28,14 @@ public class LoginServlet extends BaseServlet {
 				}
 				return;
 			} catch (Exception e) {
-				logger.severe(e.getMessage());
+				LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 			}
 		}
 		
 		try {
 			forward(req, resp, "login");
 		} catch (Exception e) {
-			logger.severe(e.getMessage());
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 		}
 	}
 	
@@ -46,6 +48,7 @@ public class LoginServlet extends BaseServlet {
 	        boolean isAuthenticated = auth.login(this, req, referenceNumber, password);
 	        
 			if(!isAuthenticated) {
+				LoggerManager.accessLogger.info("User: " + req.getRemoteAddr() + " Failed to login: Invalid Credentials");
 				resp.sendRedirect("login?error=InvalidCredentials");
 				return;
 			}
@@ -64,7 +67,7 @@ public class LoginServlet extends BaseServlet {
 			}
 	        
 	    } catch (Exception e) {
-	        logger.severe(e.getMessage());
+	    	LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 	    }
 	}
 	

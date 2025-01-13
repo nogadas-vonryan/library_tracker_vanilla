@@ -5,10 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ResultHandler<T> {
-	public static Logger logger = FileLogger.getLogger(ResultHandler.class);
 	
 	public static <T> T getResult(Connection conn, Class<T> model, ResultSet rs) {
 		try {
@@ -18,16 +18,12 @@ public class ResultHandler<T> {
 					return item;
 				} catch (Exception e) {
 					System.out.println("error initializing model");
-					logger.severe(e.getMessage());
-					e.getCause().printStackTrace();
-					e.printStackTrace();
+					LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 				}
 			}
 
 		} catch (SQLException e) {
-			System.out.println("error getting result list from database");
-			e.printStackTrace();
-			logger.severe(e.getMessage());
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);		
 		}
 		
 		return null;
@@ -41,8 +37,7 @@ public class ResultHandler<T> {
 				try {
 					list.add(model.getConstructor(Connection.class, ResultSet.class).newInstance(conn, rs));
 				} catch (Exception e) {
-					System.out.println("error initializing model");
-					logger.severe(e.getMessage());
+					LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);				
 				}
 			}
 			
@@ -50,7 +45,7 @@ public class ResultHandler<T> {
 			
 		} catch (SQLException e) {
 			System.out.println("error getting result list from database");
-			logger.severe(e.getMessage());
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 		}
 		
 		return null;

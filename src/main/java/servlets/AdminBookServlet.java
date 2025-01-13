@@ -1,6 +1,7 @@
 package servlets;
 
 import java.util.List;
+import java.util.logging.Level;
 
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -8,6 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import models.Book;
 import repository.BookRepository;
 import services.Auth;
+import utils.LoggerManager;
 
 @WebServlet("/admin/books")
 public class AdminBookServlet extends BaseServlet {
@@ -18,12 +20,14 @@ public class AdminBookServlet extends BaseServlet {
 	
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) {	
+		LoggerManager.logAccess(req, "/admin/books", "GET");
+		
 		if (!Auth.isLoggedIn(req) || !Auth.isAdmin(req)) {
 			try {
 				resp.sendRedirect("/login");
 				return;
 			} catch (Exception e) {
-				logger.severe(e.getMessage());
+				LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 			}
 		}
 		
@@ -36,7 +40,7 @@ public class AdminBookServlet extends BaseServlet {
 			req.setAttribute("books", books);
 			forward(req, resp, "admin-books");
 		} catch (Exception e) {
-			logger.severe(e.getMessage());
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 		} 
 	}
 }

@@ -1,5 +1,7 @@
 package servlets;
 
+import java.util.logging.Level;
+
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -8,6 +10,7 @@ import models.User;
 import repository.PasswordRequestRepository;
 import repository.UserRepository;
 import services.Auth;
+import utils.LoggerManager;
 
 @WebServlet("/admin/password-requests/*")
 public class PasswordChangeServlet extends BaseServlet {
@@ -18,12 +21,14 @@ public class PasswordChangeServlet extends BaseServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
+		LoggerManager.logAccess(req, "/admin/password-requests/*", "GET");
+		
 		if (!Auth.isLoggedIn(req)) {
 			try {
 				resp.sendRedirect("/login");
 				return;
 			} catch (Exception e) {
-				logger.severe(e.getMessage());
+				LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 			}
 		}
 		
@@ -32,7 +37,7 @@ public class PasswordChangeServlet extends BaseServlet {
 			try {
 				resp.sendRedirect("/admin/password-requests");
 			} catch (Exception e) {
-				logger.severe(e.getMessage());
+				LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 			}
 			return;
 		}
@@ -51,7 +56,7 @@ public class PasswordChangeServlet extends BaseServlet {
 			req.setAttribute("request", request);
 			forward(req, resp, "admin-password-change");
 		} catch (Exception e) {
-			logger.severe(e.getMessage());
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 		}
 	}
 
@@ -74,7 +79,7 @@ public class PasswordChangeServlet extends BaseServlet {
      				resp.sendRedirect("/admin/password-requests/" + user.id + "/?error=PasswordMismatch");
 		    	}
 		    	catch (Exception e) {
-		    		logger.severe(e.getMessage());
+		    		LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 		    	}
 		    	return;
 		    }
@@ -83,10 +88,13 @@ public class PasswordChangeServlet extends BaseServlet {
 			user.save(conn);
 			
 			passwordRequestRepository.delete(conn, user.id);
+			
+			LoggerManager.logTransaction(req, "Update User ID: " + user.getId());
+			LoggerManager.logTransaction(req, "Delete Password Request's USER ID: " + user.id);
 
         	resp.sendRedirect("/admin/password-requests?success=PasswordChanged");
         } catch (Exception e) {
-        	logger.severe(e.getMessage());
+        	LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
         }
 	}
 }

@@ -3,6 +3,7 @@ package servlets;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.logging.Level;
 
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,6 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import models.MonthlyRecord;
 import repository.BorrowingRecordRepository;
 import services.Auth;
+import utils.LoggerManager;
 
 @WebServlet("/admin/analytics")
 public class AdminAnalytics extends BaseServlet {
@@ -19,12 +21,14 @@ public class AdminAnalytics extends BaseServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
+		LoggerManager.logAccess(req, "/admin/analytics", "GET");
+		
 		if (!Auth.isLoggedIn(req) || !Auth.isAdmin(req)) {
 			try {
 				resp.sendRedirect("/login");
 				return;
 			} catch (Exception e) {
-				logger.severe(e.getMessage());
+				LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 			}
 		}
 		
@@ -37,14 +41,14 @@ public class AdminAnalytics extends BaseServlet {
 		try {
 			records = borrowingRecordRepository.getRecordAnalytics(conn, year);
 		} catch (SQLException e) {
-			logger.severe(e.getMessage());
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 		}
 		req.setAttribute("records", records);
 		
 		try {
 			forward(req, resp, "admin-analytics");
 		} catch (Exception e) {
-			logger.severe(e.getMessage());
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 		}
 	}
 

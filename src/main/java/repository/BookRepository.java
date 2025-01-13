@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import models.Book;
+import utils.LoggerManager;
 import utils.ResultHandler;
 
 public class BookRepository {

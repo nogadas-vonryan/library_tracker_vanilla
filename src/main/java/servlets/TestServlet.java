@@ -1,6 +1,7 @@
 package servlets;
 
 import java.util.List;
+import java.util.logging.Level;
 
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,6 +11,7 @@ import repository.BookRepository;
 import repository.BorrowingRecordRepository;
 import repository.PasswordRequestRepository;
 import repository.UserRepository;
+import utils.LoggerManager;
 
 @WebServlet("/tests")
 public class TestServlet extends BaseServlet {
@@ -22,20 +24,11 @@ public class TestServlet extends BaseServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
-		logger.info("TestServlet's doGet method is called");
 		
 		try {
-			List<BorrowingRecord> records = borrowingRecordRepository.search(conn, "");
-			
-			for (BorrowingRecord record : records) {
-				System.out.println(record.getUser());
-			}
-			
+			int x = 10/0;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 		}
-		
-		
 	}
 }

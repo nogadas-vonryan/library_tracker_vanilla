@@ -4,14 +4,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import models.BorrowingRecord;
-import utils.FileLogger;
+import utils.LoggerManager;
 
 public class RecordService {
 	public static boolean isExpired(String date) {
-		Logger logger = FileLogger.getLogger(RecordService.class);
 		boolean isExpired = false;
 		
 		try {
@@ -23,14 +23,13 @@ public class RecordService {
 			}
 			
 		} catch (ParseException e) {
-			logger.severe(e.getMessage());
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 		}
 		
 		return isExpired;
 	}
 	
 	public static boolean isExpired(BorrowingRecord record) {
-		Logger logger = FileLogger.getLogger(RecordService.class);
 		boolean isExpired = false;
 		
 		try {
@@ -42,7 +41,7 @@ public class RecordService {
 			}
 			
 		} catch (ParseException e) {
-			logger.severe(e.getMessage());
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 		}
 		
 		return isExpired;

@@ -1,13 +1,14 @@
 package services;
 
 import java.sql.SQLException;
-import java.util.logging.Logger;
+import java.util.logging.Level;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import models.User;
 import repository.UserRepository;
 import servlets.BaseServlet;
+import utils.LoggerManager;
 
 public class Auth {
 	
@@ -20,7 +21,13 @@ public class Auth {
 			HttpSession session = req.getSession();
 			session.setAttribute("referenceNumber", referenceNumber);
 			session.setAttribute("role", user.role);
-			baseServlet.logger.info("User logged in: " + referenceNumber + ", role: " + user.role + ", ip: " + req.getRemoteAddr());
+			
+			LoggerManager.accessLogger.log(Level.INFO, 
+					"User: " + req.getSession().getAttribute("referenceNumber") + " " +
+			        "Logged In, " +
+					"IPaddress:" + req.getRemoteAddr() + ", " +
+					"role: " + req.getSession().getAttribute("role"));
+			
 			return true;
 		} 
 		

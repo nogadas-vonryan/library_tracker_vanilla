@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.logging.Level;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import models.User;
 import repository.UserRepository;
 import services.Auth;
+import utils.LoggerManager;
 
 @WebServlet("/register")
 public class RegisterServlet extends BaseServlet {
@@ -28,14 +30,14 @@ public class RegisterServlet extends BaseServlet {
 				}
 				return;
 			} catch (Exception e) {
-				logger.severe(e.getMessage());
+				LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 			}
 		}
 		
 		try {
 			forward(req, resp, "register");
 		} catch (Exception e) {
-			logger.severe(e.getMessage());
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 		}
 	}
 
@@ -59,7 +61,7 @@ public class RegisterServlet extends BaseServlet {
 			try {
 				resp.sendRedirect("register?error=ReferenceNumberExists");
 			} catch (IOException e) {
-				logger.severe(e.getMessage());
+				LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 			}
 			return;
 		}
@@ -68,7 +70,7 @@ public class RegisterServlet extends BaseServlet {
 			try {
 				resp.sendRedirect("register?error=PasswordMismatch");
 			} catch (IOException e) {
-				logger.severe(e.getMessage());
+				LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 			}
 			return;
 		}
@@ -78,16 +80,15 @@ public class RegisterServlet extends BaseServlet {
 		
 		try {
 			user.save(conn);
+			LoggerManager.logTransaction(req, "User Registered: " + user.getId());
 		} catch (SQLException e) {
-			logger.severe(e.getMessage());
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 		}
 		
 		try {
 			resp.sendRedirect("login");
 		} catch (Exception e) {
-			logger.severe(e.getMessage());
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 		}
 	}
-	
-	
 }

@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 import models.BorrowingRecord;
 import models.MonthlyRecord;
-import utils.FileLogger;
+import utils.LoggerManager;
 import utils.ResultHandler;
 
 public class BorrowingRecordRepository {

@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.logging.Logger;
 
 import models.User;
-import utils.FileLogger;
+import utils.LoggerManager;
 import utils.ResultHandler;
 
 public class UserRepository {
