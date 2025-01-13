@@ -34,3 +34,4 @@ build/
 
 ### NPM ###
 node_modules
+/bin/
