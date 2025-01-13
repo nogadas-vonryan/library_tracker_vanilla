@@ -49,6 +49,7 @@ public class AdminBookAddServlet extends BaseServlet {
 		}
 		
 		String fileName = null;
+		
 		try {
 			fileName = FileUploader.save(req.getPart("bookCover"));
 		} catch (Exception e) {
