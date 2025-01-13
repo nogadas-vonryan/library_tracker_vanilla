@@ -43,12 +43,12 @@
 		</div>
 		<div>
 			<hr>
-			<div class="px-4 p-1 mt-2 rounded-md hover:bg-white hover:text-black">
-				<span class="material-symbols-outlined translate-y-[6px]">logout</span>
-				<form class="inline" method="POST" action="/logout">
-					<button type="submit" class="inline font-medium ml-2">Logout</button>
-				</form>
-			</div>
+			<form class="inline-block w-full mt-2" method="POST" action="/logout">
+				<button type="submit" class="inline-block text-left font-medium w-full p-1 pl-4 rounded-md hover:bg-white hover:text-black">
+					<span class="material-symbols-outlined translate-y-[6px] mr-2">logout</span>
+					<span>Logout</span>
+				</button>
+			</form>
 		</div>
 	</div>
     
