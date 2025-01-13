@@ -1,2 +1,6 @@
 Jan 13, 2025 7:14:13 PM utils.LoggerManager logTransaction
 INFO: User: 2022-00197-TG-0,Transaction: Add Record ID: 0, IPaddress: 127.0.0.1, role: ADMIN
+Jan 13, 2025 9:54:54 PM utils.LoggerManager logTransaction
+INFO: User: null, Transaction: User Registered: 0, IPaddress: 127.0.0.1, role: null
+Jan 13, 2025 10:12:22 PM utils.LoggerManager logTransaction
+INFO: User: 2022-00197-TG-0, Transaction: Update Book ID: 47, IPaddress: 127.0.0.1, role: ADMIN

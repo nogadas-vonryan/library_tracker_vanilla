@@ -71,14 +71,14 @@
 				
 				
 				<c:if test="${not empty book.imageUrl}">
-				<a href="/admin/books/${book.id}" class="h-full">
-					<img src="/uploads/${book.imageUrl}" class="h-full">
+				<a href="/admin/books/${book.id}" class="h-full w-full">
+					<img src="/uploads/${book.imageUrl}" class="h-full w-full">
 				</a>
 				</c:if>
 				
 				<c:if test="${empty book.imageUrl}">
-				<a href="/admin/books/${book.id}" class="flex justify-center items-center h-full w-full" >
-					<span class="block align-middle font-semibold"> ${book.title} </span>
+				<a href="/admin/books/${book.id}" class="flex justify-center items-center h-full w-full p-2" >
+					<span class="block align-middle font-semibold overflow-hidden overflow-ellipsis"> ${book.title} </span>
 				</a>
 				</c:if>
 				 
