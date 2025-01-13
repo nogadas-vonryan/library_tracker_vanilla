@@ -56,7 +56,7 @@ public class PasswordRequestServlet extends BaseServlet {
 		String method = req.getParameter("_method");
 		
 		try {
-			if (Auth.isLoggedIn(req) && method.equals("DELETE")) {
+			if (Auth.isLoggedIn(req) && Auth.isAdmin(req) && method.equals("DELETE")) {
 				delete(req, resp);
 				resp.sendRedirect("/admin/password-requests?success=RequestDeleted");
 			} else if(method.equals("POST")) {
