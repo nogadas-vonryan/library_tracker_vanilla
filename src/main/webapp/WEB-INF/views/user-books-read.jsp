@@ -1,5 +1,7 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -57,20 +59,20 @@
 			<div class="flex justify-center">
 				<div class="flex flex-col">
 					<label class="text-center font-semibold">Book Cover</label>
-	                <img class="w-48 h-60" th:src="@{'/uploads/' + ${book.imageUrl}}" alt="book cover">
+	                <img class="w-48 h-60" src="/uploads/${book.imageUrl}" alt="book cover">
 				</div>
 			</div>
 			<div class="flex flex-col pt-2">
 				<label class="font-semibold">Title</label>
-				<input class="bg-slate-100 border rounded-md p-1" th:value="${book.title}" name="title" placeholder="No book name" disabled readonly>
+				<input class="bg-slate-100 border rounded-md p-1" value="${book.title}" name="title" placeholder="No book name" disabled readonly>
 			</div>
 			<div class="flex flex-col">
 				<label class="font-semibold">Author</label>
-				<input class="bg-slate-100 border rounded-md p-1" th:value="${book.author}" name="author" placeholder="No author" disabled readonly>
+				<input class="bg-slate-100 border rounded-md p-1" value="${book.author}" name="author" placeholder="No author" disabled readonly>
 			</div>
 			<div class="flex flex-col">
 				<label class="font-semibold">Category</label>
-				<input class="bg-slate-100 border rounded-md p-1" th:value="${book.category}" name="category" placeholder="No category" disabled required>
+				<input class="bg-slate-100 border rounded-md p-1" value="${book.category}" name="category" placeholder="No category" disabled required>
 			</div>
 		</div>
 	</div>

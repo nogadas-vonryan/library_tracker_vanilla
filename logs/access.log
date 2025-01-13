@@ -180,3 +180,29 @@ Jan 13, 2025 11:04:33 PM utils.LoggerManager logAccess
 INFO: User: 2022-00197-TG-0, Accessed URL: /admin/password-requests, HTTP Method: GET, IPaddress: 127.0.0.1, role: ADMIN
 Jan 13, 2025 11:04:35 PM utils.LoggerManager logAccess
 INFO: User: 2022-00197-TG-0, Accessed URL: /logout, HTTP Method: POST, IPaddress: 127.0.0.1, role: ADMIN
+Jan 13, 2025 11:12:21 PM servlets.LoginServlet doPost
+INFO: User: 127.0.0.1 Failed to login: Invalid Credentials
+Jan 13, 2025 11:12:29 PM servlets.LoginServlet doPost
+INFO: User: 127.0.0.1 Failed to login: Invalid Credentials
+Jan 13, 2025 11:12:49 PM services.Auth login
+INFO: User: 2022-00002-TG-0 Logged In, IPaddress:127.0.0.1, role: USER
+Jan 13, 2025 11:12:49 PM utils.LoggerManager logAccess
+INFO: User: 2022-00002-TG-0, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 127.0.0.1, role: USER
+Jan 13, 2025 11:12:52 PM utils.LoggerManager logAccess
+INFO: User: 2022-00002-TG-0, Accessed URL: /admin/books/*, HTTP Method: GET, IPaddress: 127.0.0.1, role: USER
+Jan 13, 2025 11:12:52 PM utils.LoggerManager logAccess
+INFO: User: 2022-00002-TG-0, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 127.0.0.1, role: USER
+Jan 13, 2025 11:13:15 PM utils.LoggerManager logAccess
+INFO: User: 2022-00002-TG-0, Accessed URL: /admin/books, HTTP Method: GET, IPaddress: 127.0.0.1, role: USER
+Jan 13, 2025 11:13:15 PM utils.LoggerManager logAccess
+INFO: User: 2022-00002-TG-0, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 127.0.0.1, role: USER
+Jan 13, 2025 11:13:53 PM utils.LoggerManager logAccess
+INFO: User: 2022-00002-TG-0, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 127.0.0.1, role: USER
+Jan 13, 2025 11:13:56 PM utils.LoggerManager logAccess
+INFO: User: 2022-00002-TG-0, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 127.0.0.1, role: USER
+Jan 13, 2025 11:14:07 PM utils.LoggerManager logAccess
+INFO: User: null, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 127.0.0.1, role: null
+Jan 13, 2025 11:14:14 PM services.Auth login
+INFO: User: 2022-00002-TG-0 Logged In, IPaddress:127.0.0.1, role: USER
+Jan 13, 2025 11:14:14 PM utils.LoggerManager logAccess
+INFO: User: 2022-00002-TG-0, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 127.0.0.1, role: USER
