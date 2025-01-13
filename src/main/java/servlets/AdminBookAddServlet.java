@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -57,13 +58,19 @@ public class AdminBookAddServlet extends BaseServlet {
 		Book book = new Book(req.getParameter("author"), 
 							 req.getParameter("title"), 
 							 req.getParameter("category"),
-							 req.getParameter("dateCreated"), 
+							 LocalDate.now().toString(), 
 							 fileName);
 		
 		try {
 			book.save(conn);
+			conn.commit();
 		} catch (SQLException e) {
 			logger.severe(e.getMessage());
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				logger.severe(e1.getMessage());
+			}
 		}
 
 		try {

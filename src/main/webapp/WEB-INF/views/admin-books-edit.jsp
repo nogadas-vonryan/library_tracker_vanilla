@@ -86,7 +86,7 @@
 					<button type="button" onclick="submitForm('DELETE')" class="bg-primary text-white px-4 py-1 rounded-md font-semibold">Delete</button>
 				</div>
 				<div class="flex">
-					<button type="button" onclick="submitForm('UPDATE')" class="bg-green-900 text-white px-4 py-1 rounded-md font-semibold">Update</button>
+					<button type="button" onclick="submitForm('PUT')" class="bg-green-900 text-white px-4 py-1 rounded-md font-semibold">Update</button>
 				</div>
 			</div>
 		</form>
