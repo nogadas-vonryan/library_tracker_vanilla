@@ -3,6 +3,7 @@ package servlets;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.logging.Level;
 
 import jakarta.servlet.ServletException;
@@ -41,7 +42,13 @@ public class AdminRecordAddServlet extends BaseServlet {
 		}
 		
 		try {
+			List<Book> books = bookRepository.findAll(conn);
+			List<User> users = userRepository.findAll(conn);
+			
+			req.setAttribute("books", books);
+			req.setAttribute("users", users);
 			req.setAttribute("error", req.getParameter("error"));
+			
 			forward(req, resp, "admin-records-add");
 		} catch (Exception e) {
 			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);

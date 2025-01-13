@@ -76,11 +76,11 @@
 			    </c:if>
                 <div class="flex flex-col pt-2">
                     <label>Student Number</label>
-                    <input class="border rounded-md p-1" name="studentNumber" placeholder="Add the student number" required>
+                    <input list="users" class="border rounded-md p-1" name="studentNumber" placeholder="Add the student number" required>
                 </div>
                 <div class="flex flex-col">
                     <label>Book Title</label>
-                    <input class="autocomplete-searchbar border rounded-md p-1" name="bookTitle" placeholder="Add the book title" required>
+                    <input list="books" class="autocomplete-searchbar border rounded-md p-1" name="bookTitle" placeholder="Add the book title" required>
                 	<div class="autocomplete-suggestion rounded-md p-1">
                 		<div class="hidden border border-t-0 border-b-0 p-1 cursor-pointer hover:bg-primary hover:text-white"></div>
                 	</div>
@@ -95,6 +95,19 @@
             </form>
         </div>
     </div>
+    
+    <datalist id="books">
+		<c:forEach var="book" items="${books}">
+			<option value="${book.title}">
+		</c:forEach>
+	</datalist>
+	
+	<datalist id="users">
+		<c:forEach var="user" items="${users}">
+			<option value="${user.referenceNumber}">
+		</c:forEach>
+	</datalist>
+
 
     <div class="py-3 flex justify-around bg-primary text-white rounded-t-xl lg:hidden">
         <a href="/admin/books" class="grow text-center"> <span

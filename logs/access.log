@@ -206,3 +206,29 @@ Jan 13, 2025 11:14:14 PM services.Auth login
 INFO: User: 2022-00002-TG-0 Logged In, IPaddress:127.0.0.1, role: USER
 Jan 13, 2025 11:14:14 PM utils.LoggerManager logAccess
 INFO: User: 2022-00002-TG-0, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 127.0.0.1, role: USER
+Jan 13, 2025 11:14:53 PM utils.LoggerManager logAccess
+INFO: User: 2022-00002-TG-0, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 127.0.0.1, role: USER
+Jan 13, 2025 11:27:55 PM services.Auth login
+INFO: User: 2022-00197-TG-0 Logged In, IPaddress:127.0.0.1, role: ADMIN
+Jan 13, 2025 11:27:55 PM utils.LoggerManager logAccess
+INFO: User: 2022-00197-TG-0, Accessed URL: /admin/books, HTTP Method: GET, IPaddress: 127.0.0.1, role: ADMIN
+Jan 13, 2025 11:27:57 PM utils.LoggerManager logAccess
+INFO: User: 2022-00197-TG-0, Accessed URL: /admin/books/*, HTTP Method: GET, IPaddress: 127.0.0.1, role: ADMIN
+Jan 13, 2025 11:27:59 PM utils.LoggerManager logAccess
+INFO: User: 2022-00197-TG-0, Accessed URL: /admin/books, HTTP Method: GET, IPaddress: 127.0.0.1, role: ADMIN
+Jan 13, 2025 11:28:00 PM utils.LoggerManager logAccess
+INFO: User: 2022-00197-TG-0, Accessed URL: /admin/books/add, HTTP Method: GET, IPaddress: 127.0.0.1, role: ADMIN
+Jan 13, 2025 11:28:07 PM utils.LoggerManager logAccess
+INFO: User: 2022-00197-TG-0, Accessed URL: /admin/records, HTTP Method: GET, IPaddress: 127.0.0.1, role: ADMIN
+Jan 13, 2025 11:28:08 PM utils.LoggerManager logAccess
+INFO: User: 2022-00197-TG-0, Accessed URL: /admin/records/add, HTTP Method: GET, IPaddress: 127.0.0.1, role: ADMIN
+Jan 13, 2025 11:29:19 PM services.Auth login
+INFO: User: 2022-00197-TG-0 Logged In, IPaddress:127.0.0.1, role: ADMIN
+Jan 13, 2025 11:29:19 PM utils.LoggerManager logAccess
+INFO: User: 2022-00197-TG-0, Accessed URL: /admin/books, HTTP Method: GET, IPaddress: 127.0.0.1, role: ADMIN
+Jan 13, 2025 11:29:20 PM utils.LoggerManager logAccess
+INFO: User: 2022-00197-TG-0, Accessed URL: /admin/books/*, HTTP Method: GET, IPaddress: 127.0.0.1, role: ADMIN
+Jan 13, 2025 11:29:24 PM utils.LoggerManager logAccess
+INFO: User: 2022-00197-TG-0, Accessed URL: /admin/records, HTTP Method: GET, IPaddress: 127.0.0.1, role: ADMIN
+Jan 13, 2025 11:29:27 PM utils.LoggerManager logAccess
+INFO: User: 2022-00197-TG-0, Accessed URL: /admin/records/add, HTTP Method: GET, IPaddress: 127.0.0.1, role: ADMIN
