@@ -52,3 +52,171 @@ Jan 13, 2025 7:24:33 PM utils.LoggerManager logAccess
 INFO: User: 2022-00002-TG-0, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 127.0.0.1, role: USER
 Jan 13, 2025 7:24:36 PM utils.LoggerManager logAccess
 INFO: User: 2022-00002-TG-0, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 127.0.0.1, role: USER
+Jan 13, 2025 8:51:47 PM utils.LoggerManager logAccess
+INFO: User: null, Accessed URL: /admin/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: null
+Jan 13, 2025 8:51:49 PM utils.LoggerManager logAccess
+INFO: User: null, Accessed URL: /admin/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: null
+Jan 13, 2025 8:51:51 PM utils.LoggerManager logAccess
+INFO: User: null, Accessed URL: /admin/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: null
+Jan 13, 2025 8:51:52 PM utils.LoggerManager logAccess
+INFO: User: null, Accessed URL: /admin/books/add, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: null
+Jan 13, 2025 8:52:10 PM utils.LoggerManager logAccess
+INFO: User: null, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: null
+Jan 13, 2025 8:52:21 PM utils.LoggerManager logAccess
+INFO: User: null, Accessed URL: /user/records, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: null
+Jan 13, 2025 8:52:38 PM servlets.LoginServlet doPost
+INFO: User: 0:0:0:0:0:0:0:1 Failed to login: Invalid Credentials
+Jan 13, 2025 9:27:18 PM services.Auth login
+INFO: User: 241 Logged In, IPaddress:0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:27:18 PM utils.LoggerManager logAccess
+INFO: User: 241, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:27:25 PM utils.LoggerManager logAccess
+INFO: User: 241, Accessed URL: /logout, HTTP Method: POST, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:31:29 PM servlets.LoginServlet doPost
+INFO: User: 0:0:0:0:0:0:0:1 Failed to login: Invalid Credentials
+Jan 13, 2025 9:32:31 PM services.Auth login
+INFO: User: 241 Logged In, IPaddress:0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 9:32:31 PM utils.LoggerManager logAccess
+INFO: User: 241, Accessed URL: /admin/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 9:32:33 PM utils.LoggerManager logAccess
+INFO: User: 241, Accessed URL: /admin/password-requests, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 9:32:37 PM utils.LoggerManager logAccess
+INFO: User: 241, Accessed URL: /admin/password-requests/*, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 9:36:17 PM utils.LoggerManager logAccess
+INFO: User: 241, Accessed URL: /admin/password-requests, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 9:36:27 PM utils.LoggerManager logAccess
+INFO: User: 241, Accessed URL: /logout, HTTP Method: POST, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 9:46:12 PM servlets.LoginServlet doPost
+INFO: User: 0:0:0:0:0:0:0:1 Failed to login: Invalid Credentials
+Jan 13, 2025 9:46:22 PM services.Auth login
+INFO: User: 29 Logged In, IPaddress:0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 9:46:22 PM utils.LoggerManager logAccess
+INFO: User: 29, Accessed URL: /admin/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 9:46:26 PM utils.LoggerManager logAccess
+INFO: User: 29, Accessed URL: /admin/books/*, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 9:46:31 PM utils.LoggerManager logAccess
+INFO: User: 29, Accessed URL: /admin/records, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 9:46:32 PM utils.LoggerManager logAccess
+INFO: User: 29, Accessed URL: /admin/analytics, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 9:46:33 PM utils.LoggerManager logAccess
+INFO: User: 29, Accessed URL: /admin/password-requests, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 9:46:34 PM utils.LoggerManager logAccess
+INFO: User: 29, Accessed URL: /admin/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 9:46:45 PM utils.LoggerManager logAccess
+INFO: User: 29, Accessed URL: /admin/password-requests, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 9:46:46 PM utils.LoggerManager logAccess
+INFO: User: 29, Accessed URL: /admin/analytics, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 9:46:46 PM utils.LoggerManager logAccess
+INFO: User: 29, Accessed URL: /admin/records, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 9:46:47 PM utils.LoggerManager logAccess
+INFO: User: 29, Accessed URL: /admin/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 9:48:58 PM utils.LoggerManager logAccess
+INFO: User: 29, Accessed URL: /logout, HTTP Method: POST, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 9:49:26 PM services.Auth login
+INFO: User: 2022-00099-TG-0 Logged In, IPaddress:0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:49:26 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:49:28 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /admin/books/*, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:49:28 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:49:30 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /admin/books/*, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:49:30 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:49:33 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /user/records, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:49:34 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:49:34 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /admin/books/*, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:49:34 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:49:37 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /admin/books/*, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:49:37 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:49:38 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /admin/books/*, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:49:38 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:49:39 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /admin/books/*, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:49:39 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:49:39 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /admin/books/*, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:49:39 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:49:39 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /admin/books/*, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:49:39 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:49:40 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /admin/books/*, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:49:40 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:49:40 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /admin/books/*, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:49:40 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:50:52 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /user/records, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:50:53 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:50:54 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /admin/books/*, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:50:54 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:50:54 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /admin/books/*, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:50:54 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:50:54 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /admin/books/*, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:50:54 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:56:43 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /admin/books/*, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:56:43 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:56:43 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /admin/books/*, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 9:56:43 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 10:00:47 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /admin/books/*, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 10:00:47 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 10:00:49 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /admin/books/*, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 10:00:49 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 10:00:49 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /admin/books/*, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 10:00:49 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 10:00:51 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /admin/books/*, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 10:00:51 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 10:00:54 PM utils.LoggerManager logAccess
+INFO: User: 2022-00099-TG-0, Accessed URL: /logout, HTTP Method: POST, IPaddress: 0:0:0:0:0:0:0:1, role: USER
+Jan 13, 2025 10:01:01 PM services.Auth login
+INFO: User: 29 Logged In, IPaddress:0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 10:01:01 PM utils.LoggerManager logAccess
+INFO: User: 29, Accessed URL: /admin/books, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 10:01:04 PM utils.LoggerManager logAccess
+INFO: User: 29, Accessed URL: /admin/books/*, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 10:01:07 PM utils.LoggerManager logAccess
+INFO: User: 29, Accessed URL: /admin/records, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 10:01:09 PM utils.LoggerManager logAccess
+INFO: User: 29, Accessed URL: /admin/records/add, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 10:01:29 PM utils.LoggerManager logAccess
+INFO: User: 29, Accessed URL: /admin/records/add, HTTP Method: POST, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 10:01:29 PM utils.LoggerManager logAccess
+INFO: User: 29, Accessed URL: /admin/records/add, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 10:01:39 PM utils.LoggerManager logAccess
+INFO: User: 29, Accessed URL: /admin/records/add, HTTP Method: POST, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 10:01:39 PM utils.LoggerManager logAccess
+INFO: User: 29, Accessed URL: /admin/records/add, HTTP Method: GET, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN

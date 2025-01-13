@@ -1,2 +1,10 @@
 Jan 13, 2025 7:14:13 PM utils.LoggerManager logTransaction
 INFO: User: 2022-00197-TG-0,Transaction: Add Record ID: 0, IPaddress: 127.0.0.1, role: ADMIN
+Jan 13, 2025 9:17:57 PM utils.LoggerManager logTransaction
+INFO: User: null, Transaction: User Registered: 0, IPaddress: 0:0:0:0:0:0:0:1, role: null
+Jan 13, 2025 9:31:41 PM utils.LoggerManager logTransaction
+INFO: User: null, Transaction: Add Password Request ID, IPaddress: 0:0:0:0:0:0:0:1, role: null
+Jan 13, 2025 9:36:17 PM utils.LoggerManager logTransaction
+INFO: User: 241, Transaction: Update User ID: 18, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
+Jan 13, 2025 9:36:17 PM utils.LoggerManager logTransaction
+INFO: User: 241, Transaction: Delete Password Request's USER ID: 18, IPaddress: 0:0:0:0:0:0:0:1, role: ADMIN
