@@ -67,6 +67,11 @@ public class LoginServlet extends BaseServlet {
 			}
 	        
 	    } catch (Exception e) {
+	    	try {
+				resp.sendRedirect("login?error=InvalidCredentials");
+			} catch (IOException e1) {
+				LoggerManager.systemLogger.log(Level.SEVERE, e1.getMessage(), e1);
+			}
 	    	LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 	    }
 	}

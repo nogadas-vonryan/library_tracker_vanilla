@@ -52,3 +52,17 @@ Jan 13, 2025 7:24:33 PM utils.LoggerManager logAccess
 INFO: User: 2022-00002-TG-0, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 127.0.0.1, role: USER
 Jan 13, 2025 7:24:36 PM utils.LoggerManager logAccess
 INFO: User: 2022-00002-TG-0, Accessed URL: /user/books, HTTP Method: GET, IPaddress: 127.0.0.1, role: USER
+Jan 13, 2025 7:41:01 PM utils.LoggerManager logAccess
+INFO: User: null, Accessed URL: /admin/books, HTTP Method: GET, IPaddress: 127.0.0.1, role: null
+Jan 13, 2025 7:41:02 PM services.Auth login
+INFO: User: 2022-00197-TG-0 Logged In, IPaddress:127.0.0.1, role: ADMIN
+Jan 13, 2025 7:41:02 PM utils.LoggerManager logAccess
+INFO: User: 2022-00197-TG-0, Accessed URL: /admin/books, HTTP Method: GET, IPaddress: 127.0.0.1, role: ADMIN
+Jan 13, 2025 7:41:23 PM utils.LoggerManager logAccess
+INFO: User: 2022-00197-TG-0, Accessed URL: /admin/records, HTTP Method: GET, IPaddress: 127.0.0.1, role: ADMIN
+Jan 13, 2025 7:41:25 PM utils.LoggerManager logAccess
+INFO: User: 2022-00197-TG-0, Accessed URL: /admin/analytics, HTTP Method: GET, IPaddress: 127.0.0.1, role: ADMIN
+Jan 13, 2025 7:41:26 PM utils.LoggerManager logAccess
+INFO: User: 2022-00197-TG-0, Accessed URL: /admin/password-requests, HTTP Method: GET, IPaddress: 127.0.0.1, role: ADMIN
+Jan 13, 2025 7:41:27 PM utils.LoggerManager logAccess
+INFO: User: 2022-00197-TG-0, Accessed URL: /admin/books, HTTP Method: GET, IPaddress: 127.0.0.1, role: ADMIN
