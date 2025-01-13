@@ -142,7 +142,8 @@
                         		
                         	</form>
                     	</div>
-                        <form class="inline" method="POST" action="/admin/records/delete">
+                        <form class="inline" method="POST" action="/admin/records">
+                            <input type="hidden" name="_method" value="DELETE" />
 							<input type="hidden" name="id" value="${record.id}" />
                         	<button type="submit" class="bg-primary text-white px-4 py-1 rounded-md">Delete</button>
                         </form>
