@@ -3,6 +3,7 @@ package servlets;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
+import java.util.regex.Pattern;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -48,6 +49,29 @@ public class RegisterServlet extends BaseServlet {
 		String lastName = req.getParameter("lastName");
 		String password = req.getParameter("password");
 		String confirmPassword = req.getParameter("confirmPassword");
+		
+		Pattern referenceNumberPattern = Pattern.compile("\\d{4}-\\d{5}-[A-Z]{2}-\\d");
+		Pattern passwordPattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\W)[A-Za-z\\W\\d]{8,}$");
+		
+		if (!referenceNumberPattern.matcher(referenceNumber).matches()) {
+			try {
+				LoggerManager.accessLogger.info("User: " + req.getRemoteAddr() + " Failed to register: Invalid Reference Number");
+				resp.sendRedirect("register?error=InvalidReferenceNumber");
+			} catch (IOException e) {
+				LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
+			}
+			return;
+		}
+		
+		if (!passwordPattern.matcher(password).matches()) {
+			try {
+				LoggerManager.accessLogger.info("User: " + req.getRemoteAddr() + " Failed to register: Invalid Password");
+				resp.sendRedirect("register?error=InvalidPassword");
+			} catch (IOException e) {
+				LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
+			}
+			return;
+		}
 		
 		User user;
 		

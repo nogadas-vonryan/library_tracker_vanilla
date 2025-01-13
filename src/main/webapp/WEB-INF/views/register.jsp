@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
@@ -16,8 +18,20 @@
 
     <div class="p-4 pt-8 lg:w-1/3 m-auto">
         <div class="text-stone-700 text-2xl font-semibold mb-4">Register</div>
+        
+        <c:if test="${param.error == 'InvalidReferenceNumber'}">
+        	<div class="text-red-900 bg-red-200 p-2 rounded-lg mb-2">Reference Number must be of 2XXX-XXXXX-XX-0 format</div>
+        </c:if>
+        
+        <c:if test="${param.error == 'InvalidPassword'}">
+        	<div class="text-red-900 bg-red-200 p-2 rounded-lg mb-2">Password must be 8 characters long, no special characters, and has an upper and lowercase character</div>
+        </c:if>
+        
+        <c:if test="${param.error == 'PasswordMismatch'}">
+        	<div class="text-red-900 bg-red-200 p-2 rounded-lg mb-2">Password does not match</div>
+        </c:if>
+        
         <form method="POST" action="/register">
-        <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
         <div class="flex flex-col items-center">
             <div class="w-full space-y-4">
                 <div class="w-full mb-4">
