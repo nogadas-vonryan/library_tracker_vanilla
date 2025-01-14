@@ -128,7 +128,7 @@
                         </c:if>
                     </td>
                     <td class="p-3"> ${record.borrowDate}</td>
-                    <td class="p-3"> ${record.returnDate}</td>
+                    <td class="p-3 ${RecordService.isExpired(record) ? 'text-red-700' : 'text-black'}"> ${record.returnDate}</td>
                     <td class="p-3 space-x-2 font-semibold">
                     	<div class="inline">
                     		<form class="inline" method="POST" action="/admin/records">

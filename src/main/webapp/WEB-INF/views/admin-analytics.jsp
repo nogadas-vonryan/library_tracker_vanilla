@@ -65,11 +65,11 @@
     <!-- Content -->
     <div class="grow p-4 overflow-auto">
     	<div class="flex justify-around p-4">
-	    	<div class="w-fit text-center p-4 shadow-md rounded-lg text-xl">
+	    	<div class="w-fit bg-primary text-white text-center p-4 shadow-md rounded-lg text-xl">
 	    		<div>Total Borrowed In A Year</div> 
 				<div class="font-semibold text-4xl">${totalBorrowed}</div>
 			</div>
-    		<div class="w-fit text-center p-4 shadow-md rounded-lg text-xl">
+    		<div class="w-fit bg-primary text-white text-center p-4 shadow-md rounded-lg text-xl">
 	    		<div>Average Borrowed In A Year</div> 
 				<div class="font-semibold text-4xl">${averageBorrowed}</div>
 			</div>
@@ -97,7 +97,7 @@
 	            {
 	                month: "${record.month}",
 	                count: "${record.count}",
-	            }
+	            },
 	        </c:forEach>
     	];
         
