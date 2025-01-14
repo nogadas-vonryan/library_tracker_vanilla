@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import models.MonthlyRecord;
 import repository.BorrowingRecordRepository;
 import services.Auth;
+import services.RecordService;
 import utils.LoggerManager;
 
 @WebServlet("/admin/analytics")
@@ -39,10 +40,18 @@ public class AdminAnalytics extends BaseServlet {
 		
 		List<MonthlyRecord> records = null;
 		try {
-			records = borrowingRecordRepository.getRecordAnalytics(conn, year);
+			records = borrowingRecordRepository.getRecordAnalytics(conn, year);	
+			
 		} catch (SQLException e) {
 			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 		}
+		
+		int totalBorrowed = records.stream().mapToInt(record -> record.getCount()).sum();
+		int averageBorrowed = (totalBorrowed > 0) ? totalBorrowed / records.size() : 0;
+		
+		req.setAttribute("year", year);
+		req.setAttribute("totalBorrowed", totalBorrowed);
+		req.setAttribute("averageBorrowed", averageBorrowed);
 		req.setAttribute("records", records);
 		
 		try {

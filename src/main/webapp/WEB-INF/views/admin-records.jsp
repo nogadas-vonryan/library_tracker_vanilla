@@ -111,10 +111,14 @@
 		    	
                 <c:forEach var="record"  items="${records}">
                 <tr class="${RecordService.isExpired(record) ? 'bg-red-200' : 'bg-white'} shadow-md">
-                	<td class="p-3"> ${record.user.referenceNumber} </td>
-                    <td class="p-3"> ${record.user.lastName}, ${record.user.firstName} </td>
-                    <td class="p-3"> ${record.book.title} </td>
+                	<td class="p-3 text-sm"> ${record.user.referenceNumber} </td>
+                    <td class="p-3"> 
+                    	<div class="text-sm truncate max-w-[8rem]"> ${record.user.lastName}, ${record.user.firstName} </div>
+                     </td>
                     <td class="p-3">
+                    	<div class="text-sm truncate max-w-[13rem]"> ${record.book.title} </div>
+                    </td>
+                    <td class="p-3 space-y-2">	
 						<c:if test="${record.returned}">
                         <span class="text-green-900 font-medium">Returned</span>
                         </c:if>
