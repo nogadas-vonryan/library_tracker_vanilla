@@ -89,7 +89,9 @@
 		    	
                 <c:forEach var="record"  items="${records}">
                     <tr class="${RecordService.isExpired(record) ? 'bg-red-200' : 'bg-white'} shadow-md">
-                    <td class="p-3"> ${record.book.title} </td>
+                    <td class="p-3 text-center truncate max-w-[30rem]">
+                    	<div class="truncate">${record.book.title}</div>
+                    </td>
                     <td class="p-3">
 						<c:if test="${record.returned}">
                         <span class="text-green-900 font-medium">Returned</span>
