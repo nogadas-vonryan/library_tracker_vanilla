@@ -55,7 +55,7 @@
     </div>
 
     <!-- Content -->
-    <div class="grow p-4 bg-gray-100">
+    <div class="grow p-4 bg-gray-100 overflow-auto">
         <div class="hidden lg:block lg:flex justify-center p-4">
 			<select onchange="updateSorting('sortOrder', this.value)" class="ml-2 pl-2 rounded-md">
 				<option value="" disabled selected>Sort Order</option>
