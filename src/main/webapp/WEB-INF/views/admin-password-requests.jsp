@@ -62,7 +62,7 @@
     </div>
 
     <!-- Content -->
-    <div class="grow p-4 bg-gray-100">
+    <div class="grow p-4 bg-gray-100 overflow-auto">
         <div class="hidden lg:block lg:flex p-4">
             
             <form class="w-1/5" method="GET" action="/admin/records">
