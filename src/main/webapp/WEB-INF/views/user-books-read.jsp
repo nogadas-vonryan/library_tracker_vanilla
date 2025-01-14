@@ -21,7 +21,7 @@
 				<div class="text-center pt-4 text-sm">User Portal</div>
 			</div>
 			<hr>
-			<a href="/user/books" class="block px-4 p-1 rounded-md hover:bg-white hover:text-black">
+			<a href="/user/books" class="block px-4 p-1 rounded-md bg-white text-black">
 				<span class="material-symbols-outlined translate-y-[6px]">library_books</span>
 				<span class="inline p-2 font-medium">Books</span>
 			</a>	

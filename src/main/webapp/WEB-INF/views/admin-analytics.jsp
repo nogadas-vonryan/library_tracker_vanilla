@@ -32,7 +32,7 @@
 				<span class="material-symbols-outlined translate-y-[6px]">history</span>
 				<span class="inline p-2 font-medium">Records</span>
 			</a>
-			<a href="/admin/analytics" class="block px-4 p-1 rounded-md hover:bg-white hover:text-black">
+			<a href="/admin/analytics" class="block px-4 p-1 rounded-md bg-white text-black">
 				<span class="material-symbols-outlined translate-y-[6px]">monitoring</span>
 				<span class="inline p-2 font-medium">Analytics</span>
 			</a>

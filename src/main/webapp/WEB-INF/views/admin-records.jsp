@@ -28,7 +28,7 @@
 				<span class="material-symbols-outlined translate-y-[6px]">library_books</span>
 				<span class="inline p-2 font-medium">Books</span>
 			</a>
-			<a href="/admin/records" class="block px-4 p-1 rounded-md hover:bg-white hover:text-black">
+			<a href="/admin/records" class="block px-4 p-1 rounded-md bg-white text-black">
 				<span class="material-symbols-outlined translate-y-[6px]">history</span>
 				<span class="inline p-2 font-medium">Records</span>
 			</a>
