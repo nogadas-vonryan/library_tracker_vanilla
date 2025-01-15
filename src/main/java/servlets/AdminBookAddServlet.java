@@ -30,12 +30,8 @@ public class AdminBookAddServlet extends BaseServlet {
 		LoggerManager.logAccess(req, "/admin/books/add", "GET");
 		
 		if (!Auth.isLoggedIn(req) || !Auth.isAdmin(req)) {
-			try {
-				resp.sendRedirect("/login");
-				return;
-			} catch (Exception e) {
-				LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
-			}
+			handleRedirect(resp, "/login");
+			return;
 		}
 
 		forward(req, resp, "admin-books-add");
@@ -46,12 +42,8 @@ public class AdminBookAddServlet extends BaseServlet {
 		LoggerManager.logAccess(req, "/admin/books/add", "POST");
 		
 		if (!Auth.isLoggedIn(req) || !Auth.isAdmin(req)) {
-			try {
-				resp.sendRedirect("/login");
-				return;
-			} catch (Exception e) {
-				LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
-			}
+			handleRedirect(resp, "/login");
+			return;
 		}
 		
 		String fileName = null;
@@ -70,22 +62,15 @@ public class AdminBookAddServlet extends BaseServlet {
 		
 		try {
 			book.save(conn);
-			conn.commit();
 			LoggerManager.logTransaction(req, "Add Book ID");
 		} catch (SQLException e) {
 			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
-			try {
-				conn.rollback();
-			} catch (SQLException e1) {
-				LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
-			}
+			handleRollback();
+			handleRedirect(resp, "/admin/books/add?error=AddBookFailed");
+			return;
 		}
 
-		try {
-			resp.sendRedirect("/admin/books");
-		} catch (IOException e) {
-			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
-		}
+		handleRedirect(resp, "/admin/books");
 	}
 	
 }

@@ -1,8 +1,5 @@
 package servlets;
 
-import java.io.IOException;
-import java.util.logging.Level;
-
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -16,13 +13,7 @@ public class LogoutServlet extends BaseServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
 		LoggerManager.logAccess(req, "/logout", "POST");
-		
-        try {
-            req.getSession().invalidate();
-            resp.sendRedirect("/login");
-        } catch (IOException e) {
-        	LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
-        }
+        req.getSession().invalidate();
+        handleRedirect(resp, "/login");
 	}
-	
 }

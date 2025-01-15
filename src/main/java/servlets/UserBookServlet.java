@@ -22,12 +22,7 @@ public class UserBookServlet extends BaseServlet {
 		LoggerManager.logAccess(req, "/user/books", "GET");
 		
 		if (!Auth.isLoggedIn(req) || !Auth.isUser(req)) {
-			try {
-				resp.sendRedirect("/login");
-				return;
-			} catch (Exception e) {
-				LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
-			}
+			handleRedirect(resp, "/login");
 		}
 		
 		try {

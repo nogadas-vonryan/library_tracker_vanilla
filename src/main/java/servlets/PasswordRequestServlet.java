@@ -1,11 +1,9 @@
 package servlets;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -29,22 +27,23 @@ public class PasswordRequestServlet extends BaseServlet {
 		LoggerManager.logAccess(req, "/admin/password-requests", "GET");
 		
 		if (!Auth.isLoggedIn(req)) {
-			try {
-				resp.sendRedirect("/login");
-				return;
-			} catch (Exception e) {
-				LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
-			}
+			handleRedirect(resp, "/login");
 		}
 		
+		List<PasswordRequest> requests = null;
 		try {
-			List<PasswordRequest> requests = passwordRequestRepository.findAll(conn);
-			
-			for (PasswordRequest request : requests) {
-				System.out.println(request.getUser().getFirstName() + request.getUser().getLastName() + request.getDateTimeCreated());
-			}
-			
-			req.setAttribute("requests", requests);
+			requests = passwordRequestRepository.findAll(conn);
+		} catch (SQLException e) {
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
+		}
+		
+		for (PasswordRequest request : requests) {
+			System.out.println(request.getUser().getFirstName() + request.getUser().getLastName() + request.getDateTimeCreated());
+		}
+		
+		req.setAttribute("requests", requests);
+		
+		try {
 			forward(req, resp, "admin-password-requests");
 		} catch (Exception e) {
 			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
@@ -55,18 +54,14 @@ public class PasswordRequestServlet extends BaseServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) {		
 		String method = req.getParameter("_method");
 		
-		try {
-			if (Auth.isLoggedIn(req) && Auth.isAdmin(req) && method.equals("DELETE")) {
-				delete(req, resp);
-				resp.sendRedirect("/admin/password-requests?success=RequestDeleted");
-			} else if(method.equals("POST")) {
-				insert(req, resp);
-				resp.sendRedirect("/admin/password-requests?success=RequestCreated");
-			} else {
-				resp.sendRedirect("/login");
-			}
-		} catch (Exception e) {
-			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
+		if (Auth.isLoggedIn(req) && Auth.isAdmin(req) && method.equals("DELETE")) {
+			delete(req, resp);
+			handleRedirect(resp, "/admin/password-requests?success=RequestDeleted");
+		} else if(method.equals("POST")) {
+			insert(req, resp);
+			handleRedirect(resp, "/admin/password-requests?success=RequestCreated");
+		} else {
+			handleRedirect(resp, "/login");
 		}
 	}
 

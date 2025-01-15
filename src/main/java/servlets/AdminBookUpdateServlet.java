@@ -1,10 +1,8 @@
 package servlets;
 
 import java.io.IOException;
-import java.lang.ProcessBuilder.Redirect;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.sql.SQLException;
 import java.util.logging.Level;
 
 import configs.Config;
@@ -35,14 +33,15 @@ public class AdminBookUpdateServlet extends BaseServlet {
     	LoggerManager.logAccess(req, "/admin/books/*", "GET");
     	
         if (!Auth.isLoggedIn(req) || !Auth.isAdmin(req)) {
-            redirectToLogin(resp);
-            return;
+        	handleRedirect(resp, "/login");
+        	return;
         }
         
         String path = req.getPathInfo();
         if (path == null) {
-            redirectToBooksPage(resp);
-            return;
+        	LoggerManager.systemLogger.log(Level.WARNING, "Path is null");
+        	handleRedirect(resp, "/admin/books");
+        	return;
         }
 
         String[] parts = path.split("/");
@@ -53,21 +52,22 @@ public class AdminBookUpdateServlet extends BaseServlet {
             req.setAttribute("book", book);        
             forward(req, resp, "admin-books-edit");
         } catch (Exception e) {
-            logAndRedirectError(e, resp, "admin/books");
+        	handleRedirect(resp, "/admin/books?error=BookNotFound");
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         if (!Auth.isLoggedIn(req) || !Auth.isAdmin(req)) {
-            redirectToLogin(resp);
+            handleRedirect(resp, "/login");
             return;
         }
         
         String method = req.getParameter("_method");
         
         if (method == null) {
-            redirectToBooksPage(resp);
+        	LoggerManager.systemLogger.log(Level.WARNING, "Method is null");
+            handleRedirect(resp, "/admin/books");
             return;
         }
         
@@ -81,86 +81,56 @@ public class AdminBookUpdateServlet extends BaseServlet {
                 handleDelete(req, resp);
                 break;
             default:
-                redirectToBooksPage(resp);
+            	LoggerManager.systemLogger.log(Level.WARNING, "Invalid Method");
+                handleRedirect(resp, "/admin/books");
                 break;
         }
     }
 
     private void handlePut(HttpServletRequest req, HttpServletResponse resp) {
         try {
-            put(req, resp);
+        	Book book = bookRepository.findById(conn, Integer.parseInt(req.getParameter("id")));
+            Part filePart = req.getPart("bookCover");
+            String fileName = (filePart != null && filePart.getSize() > 0) ? FileUploader.save(filePart) : "";
+
+            book.setTitle(getParameterOrDefault(req, "title", book.getTitle()));
+            book.setAuthor(getParameterOrDefault(req, "author", book.getAuthor()));
+            book.setCategory(getParameterOrDefault(req, "category", book.getCategory()));
+            book.setImageUrl(fileName.isEmpty() ? book.getImageUrl() : fileName);
+            book.save(conn);
+            
+            LoggerManager.logTransaction(req, "Update Book ID: " + book.getId());
+
+            handleRedirect(resp, "/admin/books");
         } catch (Exception e) {
-            logAndRedirectError(e, resp, "/admin/books?error=CannotUpdateBook");
+        	LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage());
+        	handleRollback();
+            handleRedirect(resp, "/admin/books?error=CannotUpdateBook");
         }
     }
 
     private void handleDelete(HttpServletRequest req, HttpServletResponse resp) {
         try {
-            delete(req, resp);
+        	Book book = bookRepository.findById(conn, Integer.parseInt(req.getParameter("id")));
+            String imageUrl = book.getImageUrl();
+
+            if (imageUrl != null && !imageUrl.isEmpty()) {
+                Files.delete(Paths.get(Config.UPLOAD_PATH + imageUrl));
+            }
+            
+            bookRepository.delete(conn, book.getId());
+            LoggerManager.logTransaction(req, "Delete Book ID: " + book.getId());
+            
+            resp.sendRedirect("/admin/books");
         } catch (Exception e) {
-            logAndRedirectError(e, resp, "/admin/books?error=CannotDeleteBook");
+        	LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage());
+        	handleRollback();
+            handleRedirect(resp, "/admin/books?error=CannotDeleteBook");
         }
-    }
-
-    private void put(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-        Book book = bookRepository.findById(conn, Integer.parseInt(req.getParameter("id")));
-        Part filePart = req.getPart("bookCover");
-        String fileName = (filePart != null && filePart.getSize() > 0) ? FileUploader.save(filePart) : "";
-
-        book.setTitle(getParameterOrDefault(req, "title", book.getTitle()));
-        book.setAuthor(getParameterOrDefault(req, "author", book.getAuthor()));
-        book.setCategory(getParameterOrDefault(req, "category", book.getCategory()));
-        book.setImageUrl(fileName.isEmpty() ? book.getImageUrl() : fileName);
-        book.save(conn);
-        
-        LoggerManager.logTransaction(req, "Update Book ID: " + book.getId());
-
-        resp.sendRedirect("/admin/books");
-    }
-
-    private void delete(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException {
-        Book book = bookRepository.findById(conn, Integer.parseInt(req.getParameter("id")));
-        String imageUrl = book.getImageUrl();
-
-        if (imageUrl != null && !imageUrl.isEmpty()) {
-            Files.delete(Paths.get(Config.UPLOAD_PATH + imageUrl));
-        }
-        
-        bookRepository.delete(conn, book.getId());
-        
-        LoggerManager.logTransaction(req, "Delete Book ID: " + book.getId());
-        
-        resp.sendRedirect("/admin/books");
     }
 
     private String getParameterOrDefault(HttpServletRequest req, String paramName, String defaultValue) {
         String paramValue = req.getParameter(paramName);
         return (paramValue == null || paramValue.isEmpty()) ? defaultValue : paramValue;
-    }
-
-    private void redirectToLogin(HttpServletResponse resp) {
-        try {
-            resp.sendRedirect("/login");
-        } catch (IOException e) {
-        	LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
-        }
-    }
-
-    private void redirectToBooksPage(HttpServletResponse resp) {
-        try {
-            resp.sendRedirect("/admin/books");
-        } catch (IOException e) {
-        	LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
-        }
-    }
-
-    private void logAndRedirectError(Exception e, HttpServletResponse resp, String redirectUrl) {
-    	LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
-    	
-        try {
-            resp.sendRedirect(redirectUrl);
-        } catch (IOException ioException) {
-        	LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
-        }
     }
 }

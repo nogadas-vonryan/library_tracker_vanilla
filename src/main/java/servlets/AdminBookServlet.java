@@ -1,5 +1,6 @@
 package servlets;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -23,24 +24,27 @@ public class AdminBookServlet extends BaseServlet {
 		LoggerManager.logAccess(req, "/admin/books", "GET");
 		
 		if (!Auth.isLoggedIn(req) || !Auth.isAdmin(req)) {
-			try {
-				resp.sendRedirect("/login");
-				return;
-			} catch (Exception e) {
-				LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
-			}
+			handleRedirect(resp, "/login");
+			return;
 		}
 		
+		String search = req.getParameter("search");
+		List<Book> books = null;
+		
+		if (search == null) search = "";
+		
 		try {
-			String search = req.getParameter("search");
-			
-			if (search == null) search = "";
-			
-			List<Book> books = bookRepository.search(conn, search);
-			req.setAttribute("books", books);
-			forward(req, resp, "admin-books");
+			books = bookRepository.search(conn, search);
+		} catch (SQLException e) {
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
+		}
+		
+		req.setAttribute("books", books);
+		
+		try {
+			forward(req, resp, "admin-books"); 
 		} catch (Exception e) {
 			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
-		} 
+		}
 	}
 }

@@ -1,6 +1,5 @@
 package servlets;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.logging.Level;
@@ -24,12 +23,7 @@ public class UserRecordServlet extends BaseServlet {
 		LoggerManager.logAccess(req, "/user/records", "GET");
 		
 		if (!Auth.isLoggedIn(req) || !Auth.isUser(req)) {
-			try {
-				resp.sendRedirect("/login");
-				return;
-			} catch (IOException e) {
-				LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
-			}
+			handleRedirect(resp, "/login");
 		}
 		
 		try {

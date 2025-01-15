@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import configs.Config;
 import jakarta.servlet.ServletException;
@@ -37,7 +36,23 @@ public class BaseServlet extends HttpServlet {
 		}
 	}
 	
-	public void forward(HttpServletRequest req, HttpServletResponse resp, String name) throws ServletException, IOException {
+	protected void forward(HttpServletRequest req, HttpServletResponse resp, String name) throws ServletException, IOException {
 		req.getRequestDispatcher("/WEB-INF/views/" + name + ".jsp").forward(req, resp);
+	}
+	
+	protected void handleRedirect(HttpServletResponse resp, String url) {
+		try {
+			resp.sendRedirect(url);
+		} catch (IOException e) {
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
+		}
+	}
+	
+	protected void handleRollback() {
+		try {
+			conn.rollback();
+		} catch (SQLException e) {
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
+		}
 	}
 }

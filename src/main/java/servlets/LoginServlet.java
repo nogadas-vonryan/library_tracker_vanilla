@@ -1,13 +1,11 @@
 package servlets;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import services.Auth;
 import utils.LoggerManager;
 
@@ -20,16 +18,12 @@ public class LoginServlet extends BaseServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
 		if (Auth.isLoggedIn(req)) {
-			try {
-				if (Auth.isAdmin(req)) {
-					resp.sendRedirect("admin/books");
-				} else {
-					resp.sendRedirect("user/books");
-				}
-				return;
-			} catch (Exception e) {
-				LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
+			if (Auth.isAdmin(req)) {
+				handleRedirect(resp, "/admin/books");
+			} else {
+				handleRedirect(resp, "/user/books");
 			}
+			return;
 		}
 		
 		try {
@@ -44,36 +38,35 @@ public class LoginServlet extends BaseServlet {
 		String referenceNumber = req.getParameter("referenceNumber");
 		String password = req.getParameter("password");	
 		
-	   try {
-	        boolean isAuthenticated = auth.login(this, req, referenceNumber, password);
-	        
-			if(!isAuthenticated) {
-				LoggerManager.accessLogger.info("User: " + req.getRemoteAddr() + " Failed to login: Invalid Credentials");
-				resp.sendRedirect("login?error=InvalidCredentials");
-				return;
-			}
-			
-			String role = (String) req.getSession().getAttribute("role");
-			
-			if(role == null) {
-				resp.sendRedirect("login?error=InvalidRole");
-				return;
-			}
-			else if(role.equals("ADMIN")) {
-                resp.sendRedirect("admin/books");
-            }
-			else {	
-				resp.sendRedirect("user/books");
-			}
-	        
-	    } catch (Exception e) {
-	    	try {
-				resp.sendRedirect("login?error=InvalidCredentials");
-			} catch (IOException e1) {
-				LoggerManager.systemLogger.log(Level.SEVERE, e1.getMessage(), e1);
-			}
-	    	LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
-	    }
+        boolean isAuthenticated = false;
+		try {
+			isAuthenticated = auth.login(this, req, referenceNumber, password);
+		} catch (SQLException e) {
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
+			handleRedirect(resp, "/login?error=InvalidCredentials");
+		}
+        
+		if(!isAuthenticated) {
+			LoggerManager.accessLogger.info("User: " + req.getRemoteAddr() + " Failed to login: Invalid Credentials");
+			handleRedirect(resp, "/login?error=InvalidCredentials");
+			return;
+		}
+		
+		String role = (String) req.getSession().getAttribute("role");
+		
+		if(role == null) {
+			LoggerManager.accessLogger.info("User: " + req.getRemoteAddr() + " Failed to login: Role is null");
+			handleRedirect(resp, "/login?error=InvalidRole");
+			return;
+		}
+		else if(role.equals("ADMIN")) {
+            handleRedirect(resp, "/admin/books");
+            return;
+        }
+		else {	
+			handleRedirect(resp, "/user/books");
+			return;
+		}
 	}
 	
 }

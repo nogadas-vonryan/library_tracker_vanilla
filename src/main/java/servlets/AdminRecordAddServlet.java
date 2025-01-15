@@ -1,12 +1,10 @@
 package servlets;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.logging.Level;
 
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -33,12 +31,8 @@ public class AdminRecordAddServlet extends BaseServlet {
 		LoggerManager.logAccess(req, "/admin/records/add", "GET");
 		
 		if (!Auth.isLoggedIn(req) || !Auth.isAdmin(req)) {
-			try {
-				resp.sendRedirect("/login");
-				return;
-			} catch (Exception e) {
-				LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
-			}
+			handleRedirect(resp, "/login");
+			return;
 		}
 		
 		try {
@@ -60,39 +54,42 @@ public class AdminRecordAddServlet extends BaseServlet {
 		LoggerManager.logAccess(req, "/admin/records/add", "POST");
 		
 		if (!Auth.isLoggedIn(req) || !Auth.isAdmin(req)) {
-			try {
-				resp.sendRedirect("/login");
-				return;
-			} catch (Exception e) {
-				LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
-			}
+			handleRedirect(resp, "/login");
+			return;
 		}
 		
+		User user = null;
+		Book book = null;
+		
 		try {
-			User user = userRepository.findByReferenceNumber(conn, req.getParameter("studentNumber"));
-			Book book = bookRepository.findByTitle(conn, req.getParameter("bookTitle"));
-			String returnDate = req.getParameter("returnDate");
-
-			if(RecordService.isExpired(returnDate)) {
-                resp.sendRedirect("/admin/records/add?error=ExpiredReturnDate");
-                return;
-			}
-			
-			BorrowingRecord record = new BorrowingRecord(user, book, LocalDate.now().toString(), returnDate);
-			record.save(conn);
-			
-			LoggerManager.logTransaction(req, "Add Record ID");
-			
-			resp.sendRedirect("/admin/records");
+			user = userRepository.findByReferenceNumber(conn, req.getParameter("studentNumber"));
+			book = bookRepository.findByTitle(conn, req.getParameter("bookTitle"));
 		} catch (Exception e) {
-			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
-			
-			try {
-				resp.sendRedirect("/admin/records/add?error=StudentOrBookNotFound");
-			} catch (IOException e1) {
-				LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
-			}
+			LoggerManager.systemLogger.log(Level.WARNING, e.getMessage(), e);
+			handleRedirect(resp, "/admin/records/add?error=InvalidUserOrBook");
+			return;
 		}
+		
+		String returnDate = req.getParameter("returnDate");
+
+		if(RecordService.isExpired(returnDate)) {
+			LoggerManager.systemLogger.log(Level.WARNING, "Return date is expired");
+            handleRedirect(resp, "/admin/records/add?error=ExpiredReturnDate");
+            return;
+		}
+		
+		BorrowingRecord record = new BorrowingRecord(user, book, LocalDate.now().toString(), returnDate);
+		
+		try {
+			record.save(conn);
+		} catch (SQLException e) {
+			LoggerManager.systemLogger.log(Level.WARNING, e.getMessage());
+			handleRollback();
+			handleRedirect(resp, "/admin/records/add?error=CannotAddRecord");
+			return;
+		}
+		
+		LoggerManager.logTransaction(req, "Add Record ID");
+		handleRedirect(resp, "/admin/records");
 	}
-	
 }

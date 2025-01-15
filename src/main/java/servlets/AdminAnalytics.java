@@ -25,12 +25,8 @@ public class AdminAnalytics extends BaseServlet {
 		LoggerManager.logAccess(req, "/admin/analytics", "GET");
 		
 		if (!Auth.isLoggedIn(req) || !Auth.isAdmin(req)) {
-			try {
-				resp.sendRedirect("/login");
-				return;
-			} catch (Exception e) {
-				LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
-			}
+			handleRedirect(resp, "/login");
+			return;
 		}
 		
 		String yearString = req.getParameter("year");
@@ -41,7 +37,6 @@ public class AdminAnalytics extends BaseServlet {
 		List<MonthlyRecord> records = null;
 		try {
 			records = borrowingRecordRepository.getRecordAnalytics(conn, year);	
-			
 		} catch (SQLException e) {
 			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 		}

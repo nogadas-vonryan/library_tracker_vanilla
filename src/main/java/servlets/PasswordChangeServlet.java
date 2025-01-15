@@ -1,5 +1,6 @@
 package servlets;
 
+import java.sql.SQLException;
 import java.util.logging.Level;
 
 import jakarta.servlet.annotation.WebServlet;
@@ -24,36 +25,33 @@ public class PasswordChangeServlet extends BaseServlet {
 		LoggerManager.logAccess(req, "/admin/password-requests/*", "GET");
 		
 		if (!Auth.isLoggedIn(req)) {
-			try {
-				resp.sendRedirect("/login");
-				return;
-			} catch (Exception e) {
-				LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
-			}
+			handleRedirect(resp, "/login");
 		}
 		
 		String path = req.getPathInfo();
 		if (path == null) {
-			try {
-				resp.sendRedirect("/admin/password-requests");
-			} catch (Exception e) {
-				LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
-			}
+			handleRedirect(resp, "/admin/password-requests");
 			return;
 		}
 
 		String[] parts = path.split("/");
 		String id = parts[1];
 		
+		PasswordRequest request = null;
 		try {
-			PasswordRequest request = passwordRequestRepository.findByUserId(conn, Integer.parseInt(id));
-			
-			if (request == null) {
-				resp.sendRedirect("/admin/password-requests?error=RequestNotFound");
-				return;
-			}
-			
-			req.setAttribute("request", request);
+			request = passwordRequestRepository.findByUserId(conn, Integer.parseInt(id));
+		} catch (Exception e) {
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
+		}
+		
+		if (request == null) {
+			handleRedirect(resp, "/admin/password-requests");
+			return;
+		}
+		
+		req.setAttribute("request", request);
+		
+		try {
 			forward(req, resp, "admin-password-change");
 		} catch (Exception e) {
 			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
@@ -66,35 +64,40 @@ public class PasswordChangeServlet extends BaseServlet {
         String newPassword = req.getParameter("newPassword");
         String confirmPassword = req.getParameter("confirmPassword");
         
-        try {
-        	User user = userRepository.findByReferenceNumber(conn, referenceNumber);
-			
-        	if (user == null) {
-				resp.sendRedirect("/admin/password-requests?error=UserNotFound");
-				return;
-			}
-        	
-     		if (!newPassword.equals(confirmPassword)) {
-     			try {
-     				resp.sendRedirect("/admin/password-requests/" + user.id + "/?error=PasswordMismatch");
-		    	}
-		    	catch (Exception e) {
-		    		LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
-		    	}
-		    	return;
-		    }
-			
-			user.setPassword(newPassword);
+    	User user = null;
+		try {
+			user = userRepository.findByReferenceNumber(conn, referenceNumber);
+		} catch (SQLException e) {
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
+		}
+		
+    	if (user == null) {
+			handleRedirect(resp, "/admin/password-requests?error=UserNotFound");
+			return;
+		}
+    	
+ 		if (!newPassword.equals(confirmPassword)) {
+			handleRedirect(resp, "/admin/password-requests/" + user.id + "/?error=PasswordMismatch");
+	    	return;
+	    }
+		
+		user.setPassword(newPassword);
+		try {
 			user.save(conn);
-			
+		} catch (SQLException e) {
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
+			return;
+		}
+		
+		try {
 			passwordRequestRepository.delete(conn, user.id);
-			
-			LoggerManager.logTransaction(req, "Update User ID: " + user.getId());
-			LoggerManager.logTransaction(req, "Delete Password Request's USER ID: " + user.id);
+		} catch (SQLException e) {
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
+		}
+		
+		LoggerManager.logTransaction(req, "Update User ID: " + user.getId());
+		LoggerManager.logTransaction(req, "Delete Password Request's USER ID: " + user.id);
 
-        	resp.sendRedirect("/admin/password-requests?success=PasswordChanged");
-        } catch (Exception e) {
-        	LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
-        }
+    	handleRedirect(resp, "/admin/password-requests?success=PasswordChanged");
 	}
 }
