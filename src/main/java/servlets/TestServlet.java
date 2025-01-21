@@ -1,5 +1,7 @@
 package servlets;
 
+import java.io.Console;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -11,6 +13,7 @@ import repository.BookRepository;
 import repository.BorrowingRecordRepository;
 import repository.PasswordRequestRepository;
 import repository.UserRepository;
+import services.RecordService;
 import utils.LoggerManager;
 
 @WebServlet("/tests")
@@ -26,9 +29,12 @@ public class TestServlet extends BaseServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
 		
 		try {
-			int x = 10/0;
-		} catch (Exception e) {
-			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
+			List<BorrowingRecord> records = borrowingRecordRepository.findAll(conn);
+			BorrowingRecord record = records.getFirst();
+			System.out.println(RecordService.daysLeftBeforeExpiry(record));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }

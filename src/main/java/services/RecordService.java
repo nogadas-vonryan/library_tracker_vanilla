@@ -2,6 +2,7 @@ package services;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -45,6 +46,19 @@ public class RecordService {
 		}
 		
 		return isExpired;
+	}
+	
+	public static long daysLeftBeforeExpiry(BorrowingRecord record) {
+		try {
+			Date returnDate = new SimpleDateFormat("yyyy-MM-dd").parse(record.returnDate);
+			Date currentDate = new Date();
+			long daysLeft = ChronoUnit.DAYS.between(currentDate.toInstant(), returnDate.toInstant());
+			return daysLeft;
+ 		} catch (ParseException e) {
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
+		}
+		
+		return 0;
 	}
 	
 	public static long borrowCount(List<BorrowingRecord> records) {

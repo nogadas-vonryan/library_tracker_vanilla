@@ -7,9 +7,25 @@
     <link rel="stylesheet" href="../static/stylesheet/main.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <title>Borrowing Manager</title>
+    	<style>
+		dialog::backdrop {
+            height: 100vh;
+            width: 100vw;
+            background-color: black;
+            opacity: 0.75;
+        }
+	</style>
+    
 </head>
 
 <body class="h-screen flex flex-col lg:flex-row justify-between">
+
+	<dialog open id="dialog">
+	    <div>Hello</div>
+        <button onclick="dialog.close()">Close</button>
+	</dialog>
+
+	<button onclick="dialog.showModal()">Open</button>
 
     <!--  Desktop Sidebar -->
     <div class="lg:flex flex-col hidden lg:block justify-between p-3 bg-primary text-white h-svh w-[15rem]">

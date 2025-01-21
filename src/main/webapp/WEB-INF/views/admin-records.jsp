@@ -13,7 +13,12 @@
 </head>
 
 <body class="h-screen flex flex-col lg:flex-row justify-between">
-
+	<c:if test="${isExpired}">
+		<dialog>
+			PLEASE RETURN THE BOOK IMMEDIATELY!
+		</dialog>
+	</c:if>
+	
     <!--  Desktop Sidebar -->
     <div
 		class="lg:flex flex-col hidden lg:block justify-between p-3 bg-primary text-white h-svh w-[15rem]">

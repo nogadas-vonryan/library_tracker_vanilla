@@ -10,9 +10,53 @@
     <link rel="stylesheet" href="/stylesheet/main.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <title>Borrowing Manager</title>
+    <style>
+		dialog::backdrop {
+			
+			background-color: black;
+			opacity: 0.75;
+		}
+</style>
 </head>
 
 <body class="h-screen flex flex-col lg:flex-row justify-between">
+
+	<dialog class="p-6 pt-4 rounded-lg" id="dialog">
+		<div>
+			<div class="flex justify-end"><button class="mb-2 btn btn-sm" onclick="dialog.close()">Close</button></div>
+			<div role="alert" class="alert flex flex-col">
+				<div class="font-semibold text-lg">Return the books before their return date.</div>
+				<div class="text-sm"> Please return them by their respective due dates to avoid any penalties. Thank you!</div>
+			</div>
+			<div class="p-4">
+				<c:forEach var="record" items="${records}">
+					<c:if test="${RecordService.daysLeftBeforeExpiry(record) <= 7 && RecordService.daysLeftBeforeExpiry(record) >= 0}"> 
+					<div>
+						<span class="font-medium"> ${record.book.title} </span>
+						<span> - ${RecordService.daysLeftBeforeExpiry(record)} days left</span>
+					</div>
+					</c:if>
+					
+					<c:if test="${RecordService.daysLeftBeforeExpiry(record) < 0}"> 
+					<div class="text-red-700">
+						<span class="font-medium"> ${record.book.title} </span>
+						<span> - ${-RecordService.daysLeftBeforeExpiry(record)} days expired</span>
+					</div>
+					</c:if>
+				</c:forEach>
+			</div>
+		</div>
+	</dialog>
+	
+	<script>
+		dialog.showModal();
+		
+		dialog.addEventListener('click', (event) => {
+	      if (event.target === dialog) {
+	        dialog.close();
+	      }
+	    });
+	</script>
 
     <!--  Desktop Sidebar -->
     <div
