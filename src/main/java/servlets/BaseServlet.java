@@ -2,11 +2,9 @@ package servlets;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
 
-import configs.Config;
 import database.DatabaseConnection;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;

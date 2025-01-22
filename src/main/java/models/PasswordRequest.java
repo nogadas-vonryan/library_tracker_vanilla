@@ -3,7 +3,6 @@ package models;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 
 import lombok.Getter;
 import lombok.ToString;

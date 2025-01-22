@@ -11,7 +11,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import models.MonthlyRecord;
 import repository.BorrowingRecordRepository;
 import services.Auth;
-import services.RecordService;
 import utils.LoggerManager;
 
 @WebServlet("/admin/analytics")
