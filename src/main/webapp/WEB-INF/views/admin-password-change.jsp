@@ -12,6 +12,10 @@
 <body class="h-svh background">
     <div class="p-4 pt-16 lg:w-1/3 m-auto">
         <div class="text-stone-700 text-2xl font-medium mb-4">Changing Password of <span class="block font-semibold">${request.user.referenceNumber}</span></div>
+        <c:if test="${param.error == 'ReferenceNumberInvalid'}">
+        <div class="text-red-900 bg-red-200 p-2 rounded-lg mb-2">The reference Number must be of 2XXX-XXXXX-XX-0 format</div>
+        </c:if>
+        
         <c:if test="${param.error == 'PasswordMismatch'}">
         <div class="text-red-900 bg-red-200 p-2 rounded-lg mb-2">The password do not match</div>
         </c:if>
