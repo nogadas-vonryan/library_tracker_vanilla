@@ -89,7 +89,7 @@
 				</c:if>
 				
 				<c:if test="${empty book.imageUrl}">
-				<a href="/admin/books/${book.id}" class="flex justify-center items-center h-full w-full p-2" >
+				<a href="/admin/books/${book.id}" class="book-cover text-white flex justify-center items-center h-full w-full p-2" >
 					<span class="block align-middle font-semibold overflow-hidden overflow-ellipsis"> ${book.title} </span>
 				</a>
 				</c:if>
@@ -109,5 +109,30 @@
 			class="material-symbols-outlined !text-4xl">logout</span>
 		</a>
 	</div>
+	
+	<script>
+		const colorList = [
+			"bg-red-800",
+	        "bg-yellow-800",
+	        "bg-green-800",
+	        "bg-blue-800",
+	        "bg-indigo-800",
+	        "bg-purple-800",
+	        "bg-pink-800",
+	        "bg-amber-800",
+	    ];
+	
+	    function assignRandomColor(element) {
+	        const randomColor = colorList[Math.floor(Math.random() * colorList.length)];
+	        element.classList.add(randomColor);
+	    }
+	
+	    document.addEventListener("DOMContentLoaded", () => {
+	        const element = document.querySelector(".book-cover");
+	        if (element) {
+	            assignRandomColor(element);
+	        }
+	    });
+	</script>
 </body>
 </html>
