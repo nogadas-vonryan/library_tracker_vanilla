@@ -65,7 +65,7 @@
     <div class="grow p-4 bg-gray-100 overflow-auto">
         <div class="hidden lg:block lg:flex p-4">
             
-            <form class="w-1/5" method="GET" action="/admin/records">
+            <form class="w-1/5" method="GET" action="/admin/password-requests">
 			<input class="border rounded-md p-1" type="text" name="search"
 				placeholder=" Search for a record..."> 
 			</form>	
@@ -75,11 +75,6 @@
 				<option value="" disabled selected>Sort Order</option>
 				<option value="asc">Ascending</option>
 				<option value="desc">Descending</option>
-			</select>
-			<select onchange="updateSorting('status', this.value)" class="ml-2 pl-2 rounded-md">
-				<option value="" disabled selected>Status</option>
-				<option value="borrowing">Borrowing</option>
-				<option value="returned">Returned</option>
 			</select>
 			<input onchange="updateDateSorting(this.value)" class="ml-2 bg-gray-200 rounded-md" type="month" />
 			<a href="/admin/records" class="ml-2 bg-gray-300 text-gray-800 px-4 py-1 rounded-md">Clear Filters</a>

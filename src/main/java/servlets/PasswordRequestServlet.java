@@ -1,6 +1,8 @@
 package servlets;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -30,12 +32,35 @@ public class PasswordRequestServlet extends BaseServlet {
 			handleRedirect(resp, "/login");
 		}
 		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		String search = req.getParameter("search");
+		String month = req.getParameter("month");
+		String year = req.getParameter("year");
+		String sortOrder = req.getParameter("sortOrder");
+		
+		if (search == null) search = "";
+		
 		List<PasswordRequest> requests = null;
 		try {
-			requests = passwordRequestRepository.findAll(conn);
+			requests = passwordRequestRepository.search(conn, search);
 		} catch (SQLException e) {
 			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 		}
+		
+		requests = requests.stream()
+				.filter(record -> month == null || LocalDate.parse(record.getDateTimeCreated(), formatter).getMonthValue() == Integer.parseInt(month))
+				.filter(record -> year == null || LocalDate.parse(record.getDateTimeCreated(), formatter).getYear() == Integer.parseInt(year))
+				.sorted((record1, record2) -> {
+			        LocalDate date1 = LocalDate.parse(record1.getDateTimeCreated(), formatter);
+			        LocalDate date2 = LocalDate.parse(record2.getDateTimeCreated(), formatter);
+			        
+			        if (sortOrder != null && sortOrder.equals("asc")) {
+			            return date1.compareTo(date2);
+			        } else {
+			            return date2.compareTo(date1);
+			        }
+			    })
+				.toList();
 		
 		req.setAttribute("requests", requests);
 		

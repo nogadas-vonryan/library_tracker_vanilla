@@ -5,10 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Logger;
 
 import models.PasswordRequest;
-import utils.LoggerManager;
 import utils.ResultHandler;
 
 public class PasswordRequestRepository {
@@ -36,5 +34,20 @@ public class PasswordRequestRepository {
         stmt.setInt(1, userId);
         ResultSet rs = stmt.executeQuery();
         return ResultHandler.getResult(conn, PasswordRequest.class, rs);
+	}
+	
+	public List<PasswordRequest> search(Connection conn, String searchTerm) throws SQLException {
+		PreparedStatement stmt = conn.prepareStatement("SELECT r.* "
+			    		+ "FROM password_request r "
+			    		+ "JOIN user u ON r.user_id = u.id "
+			    		+ "WHERE u.first_name LIKE ? "
+			    		+ "   OR u.last_name LIKE ? "
+			    		+ "   OR u.reference_number LIKE ? ");
+		stmt.setString(1, "%" + searchTerm + "%");
+		stmt.setString(2, "%" + searchTerm + "%");
+		stmt.setString(3, "%" + searchTerm + "%");
+		ResultSet rs = stmt.executeQuery();
+		List<PasswordRequest> requests = ResultHandler.getResultList(conn, PasswordRequest.class, rs);
+		return requests;
 	}
 }
