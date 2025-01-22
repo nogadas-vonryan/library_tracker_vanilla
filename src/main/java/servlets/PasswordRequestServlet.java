@@ -56,10 +56,10 @@ public class PasswordRequestServlet extends BaseServlet {
 		
 		if (Auth.isLoggedIn(req) && Auth.isAdmin(req) && method.equals("DELETE")) {
 			delete(req, resp);
-			handleRedirect(resp, "/admin/password-requests?success=RequestDeleted");
+			return;
 		} else if(method.equals("POST")) {
 			insert(req, resp);
-			handleRedirect(resp, "/admin/password-requests?success=RequestCreated");
+			return;
 		} else {
 			handleRedirect(resp, "/login");
 		}
@@ -70,12 +70,25 @@ public class PasswordRequestServlet extends BaseServlet {
 		User user;
 		try {
 			user = userRepository.findByReferenceNumber(conn, referenceNumber);
+			
+			if (user == null) {
+				resp.sendRedirect("/login?error=UserNotFound");
+				return;
+			}
+			
+			PasswordRequest existingRequest = passwordRequestRepository.findByUserId(conn, user.getId());
+			
+			if (existingRequest != null) {
+				resp.sendRedirect("/login?error=RequestExists");
+				return;
+			}
+			
 			PasswordRequest request = new PasswordRequest(user);
 			request.save(conn);
 			
 			LoggerManager.logTransaction(req, "Add Password Request ID");
 			
-			resp.sendRedirect("/login?success=PasswordRequestSent");
+			resp.sendRedirect("/login?success=PasswordRequestCreated");
 		} catch (Exception e) {
 			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 		}

@@ -2,6 +2,7 @@ package servlets;
 
 import java.sql.SQLException;
 import java.util.logging.Level;
+import java.util.regex.Pattern;
 
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -73,6 +74,15 @@ public class PasswordChangeServlet extends BaseServlet {
 		
     	if (user == null) {
 			handleRedirect(resp, "/admin/password-requests?error=UserNotFound");
+			return;
+		}
+    	
+    	Pattern referenceNumberPattern = Pattern.compile("\\d{4}-\\d{5}-[A-Z]{2}-\\d");
+		Pattern passwordPattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\W)[A-Za-z\\W\\d]{8,}$");
+		
+		if (!passwordPattern.matcher(newPassword).matches()) {
+			LoggerManager.accessLogger.info("User: " + req.getRemoteAddr() + " Failed to register: Invalid Password");
+			handleRedirect(resp, "/admin/password-requests/" + user.id + "/?error=PasswordInvalid");
 			return;
 		}
     	

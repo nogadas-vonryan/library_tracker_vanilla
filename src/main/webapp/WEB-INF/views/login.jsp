@@ -26,6 +26,14 @@
         	<div class="text-red-900 bg-red-200 p-2 rounded-lg mb-2">No Role found</div>
         </c:if>
         
+        <c:if test="${param.error == 'RequestExists'}">
+        	<div class="text-red-900 bg-red-200 p-2 rounded-lg mb-2">You already have a request pending</div>
+        </c:if>
+        
+        <c:if test="${param.error == 'UserNotFound'}">
+        	<div class="text-red-900 bg-red-200 p-2 rounded-lg mb-2">User does not exist</div>
+        </c:if>
+        
         <c:if test="${param.success == 'PasswordRequestSent'}">
         	<div class="text-green-900 bg-green-200 p-2 rounded-lg mb-2">Change Password Request Sent</div>
         </c:if>
