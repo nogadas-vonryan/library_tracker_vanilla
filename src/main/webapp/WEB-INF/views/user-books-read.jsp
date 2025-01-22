@@ -57,10 +57,17 @@
 			<div class="text-xl font-semibold text-gray-700">Book Details</div>
 			<hr>
 			<div class="flex justify-center">
-				<div class="flex flex-col">
-					<label class="text-center font-semibold">Book Cover</label>
-	                <img class="w-48 h-60" src="/uploads/${book.imageUrl}" alt="book cover">
-				</div>
+				<c:if test="${not empty book.imageUrl}">
+				<a href="#" class="lg:h-64 lg:w-52">
+					<img src="/uploads/${book.imageUrl}" class="h-full w-full">
+				</a>
+				</c:if>
+				
+				<c:if test="${empty book.imageUrl}">
+				<a href="#" class="flex justify-center items-center lg:h-64 lg:w-52 p-2" >
+					<span class="block align-middle font-semibold overflow-hidden overflow-ellipsis"> ${book.title} </span>
+				</a>
+				</c:if>
 			</div>
 			<div class="flex flex-col pt-2">
 				<label class="font-semibold">Title</label>
