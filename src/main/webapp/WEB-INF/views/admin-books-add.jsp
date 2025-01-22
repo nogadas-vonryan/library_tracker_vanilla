@@ -77,7 +77,7 @@
 			</div>
 			<div class="flex flex-col">
 				<label>Book Cover</label>
-				<input type="file" name="bookCover">
+				<input type="file" class="file-input file-input-bordered file-input-sm" name="bookCover">
 			</div>
 			<div class="flex justify-end">
 				<button type="submit" class="bg-primary text-white px-4 py-1 rounded-md font-semibold">Add</button>

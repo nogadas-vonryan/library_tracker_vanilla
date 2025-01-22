@@ -76,7 +76,7 @@
 			</div>
 			<div class="flex flex-col">
 				<label>Book Cover</label>
-				<input type="file" value="/uploads/${book.imageUrl}" name="bookCover">
+				<input type="file" class="file-input file-input-bordered file-input-sm" value="/uploads/${book.imageUrl}" name="bookCover">
 			</div>
 			<div class="flex justify-between">
 				<input id="methodInput" type="hidden" name="_method" />

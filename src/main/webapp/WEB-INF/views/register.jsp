@@ -24,7 +24,7 @@
         </c:if>
         
         <c:if test="${param.error == 'InvalidPassword'}">
-        	<div class="text-red-900 bg-red-200 p-2 rounded-lg mb-2">Password must be 8 characters long, no special characters, and has an upper and lowercase character</div>
+        	<div class="text-red-900 bg-red-200 p-2 rounded-lg mb-2">Password must be 8 characters long, has a special character, and has an upper and lower case character</div>
         </c:if>
         
         <c:if test="${param.error == 'PasswordMismatch'}">
