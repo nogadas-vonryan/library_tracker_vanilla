@@ -3,6 +3,8 @@ package services;
 import java.sql.SQLException;
 import java.util.logging.Level;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import models.User;
@@ -16,8 +18,18 @@ public class Auth {
 	
 	public boolean login(BaseServlet baseServlet, HttpServletRequest req, String referenceNumber, String password) throws SQLException {
 		User user = userRepository.findByReferenceNumber(baseServlet.conn, referenceNumber);
+		boolean isAuthenticated = false;
 		
-		if (password.equals(user.password)) {
+		try {
+			if(BCrypt.checkpw(password, user.password)) {
+				isAuthenticated = true;
+			}
+		} catch (Exception e) {
+			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
+            return false;
+		}
+		
+		if (isAuthenticated) {
 			HttpSession session = req.getSession();
 			session.setAttribute("referenceNumber", referenceNumber);
 			session.setAttribute("role", user.role);

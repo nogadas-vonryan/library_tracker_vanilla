@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.regex.Pattern;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -91,7 +93,9 @@ public class PasswordChangeServlet extends BaseServlet {
 	    	return;
 	    }
 		
-		user.setPassword(newPassword);
+ 		String hashedPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt());
+ 		
+		user.setPassword(hashedPassword);
 		try {
 			user.save(conn);
 		} catch (SQLException e) {

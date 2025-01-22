@@ -37,10 +37,6 @@ public class PasswordRequestServlet extends BaseServlet {
 			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
 		}
 		
-		for (PasswordRequest request : requests) {
-			System.out.println(request.getUser().getFirstName() + request.getUser().getLastName() + request.getDateTimeCreated());
-		}
-		
 		req.setAttribute("requests", requests);
 		
 		try {

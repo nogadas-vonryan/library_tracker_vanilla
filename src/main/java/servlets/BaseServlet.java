@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 
 import configs.Config;
+import database.DatabaseConnection;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,21 +20,7 @@ public class BaseServlet extends HttpServlet {
 	public Connection conn;
 	
 	public BaseServlet() {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-		} catch (Exception e) {
-			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
-		}
-		
-		try {
-		    conn = DriverManager.getConnection(
-		    		"jdbc:mysql://localhost/" + Config.SCHEMA +
-		    		"?user=" + Config.USER + 
-		    		"&password=" + Config.PASSWORD);
-		    conn.setAutoCommit(true);
-		} catch (SQLException e) {
-			LoggerManager.systemLogger.log(Level.SEVERE, e.getMessage(), e);
-		}
+		conn = DatabaseConnection.getConnection();
 	}
 	
 	protected void forward(HttpServletRequest req, HttpServletResponse resp, String name) throws ServletException, IOException {
