@@ -82,6 +82,13 @@ public class PasswordChangeServlet extends BaseServlet {
     	Pattern referenceNumberPattern = Pattern.compile("\\d{4}-\\d{5}-[A-Z]{2}-\\d");
 		Pattern passwordPattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\W)[A-Za-z\\W\\d]{8,}$");
 		
+		if (!referenceNumberPattern.matcher(referenceNumber).matches()) {
+			LoggerManager.accessLogger
+					.info("User: " + req.getRemoteAddr() + " Failed to register: Invalid Reference Number");
+			handleRedirect(resp, "/admin/password-requests/" + user.id + "/?error=ReferenceNumberInvalid");
+			return;
+		}
+		
 		if (!passwordPattern.matcher(newPassword).matches()) {
 			LoggerManager.accessLogger.info("User: " + req.getRemoteAddr() + " Failed to register: Invalid Password");
 			handleRedirect(resp, "/admin/password-requests/" + user.id + "/?error=PasswordInvalid");
