@@ -61,6 +61,14 @@ public class RecordService {
 		return 0;
 	}
 	
+	public static boolean isNearDueOrExpired(List<BorrowingRecord> records) {
+		if (records == null || records.isEmpty()) {
+			return false;
+		}
+		
+		return records.stream().anyMatch(record -> isExpired(record) || daysLeftBeforeExpiry(record) <= 7);
+	}
+	
 	public static long borrowCount(List<BorrowingRecord> records) {
 		return records.size();
 	}

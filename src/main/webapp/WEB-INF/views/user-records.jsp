@@ -21,6 +21,7 @@
 
 <body class="h-screen flex flex-col lg:flex-row justify-between">
 
+    <c:if test="${RecordService.isNearDueOrExpired(records)}">
 	<dialog class="p-6 pt-4 rounded-lg" id="dialog">
 		<div>
 			<div class="flex justify-end"><button class="mb-2 btn btn-sm" onclick="dialog.close()">Close</button></div>
@@ -47,6 +48,7 @@
 			</div>
 		</div>
 	</dialog>
+	</c:if>
 	
 	<script>
 		dialog.showModal();
