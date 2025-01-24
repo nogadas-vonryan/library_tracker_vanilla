@@ -29,9 +29,9 @@ public class TestServlet extends BaseServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
 		
 		try {
-			List<BorrowingRecord> records = borrowingRecordRepository.findAll(conn);
-			BorrowingRecord record = records.getFirst();
-			System.out.println(RecordService.daysLeftBeforeExpiry(record));
+			List<BorrowingRecord> records = borrowingRecordRepository.findByUserReferenceNumber(conn, "2022-00099-TG-0");
+			boolean output = RecordService.isNearDueOrExpired(records);
+			System.out.println(output);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
